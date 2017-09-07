@@ -1,6 +1,7 @@
 <template>
   <div class="hello">
     <toolBar></toolBar>
+    <tabBar></tabBar>
   </div>
 </template>
 
