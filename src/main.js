@@ -3,6 +3,12 @@
 import Vue from 'vue'
 import App from './App'
 import router from './router'
+import VueMaterial from 'vue-material'
+import toolBar from './components/toolBar';
+
+Vue.use(VueMaterial)
+
+Vue.component('toolBar', toolBar);
 
 Vue.config.productionTip = false
 
