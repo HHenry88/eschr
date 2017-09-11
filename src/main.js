@@ -6,11 +6,13 @@ import router from './router'
 import VueMaterial from 'vue-material'
 import toolBar from './components/toolBar';
 import tabBar from './components/tabBar';
+import searchBar from './components/searchBar';
 
 Vue.use(VueMaterial)
 
 Vue.component('toolBar', toolBar);
 Vue.component('tabBar', tabBar);
+Vue.component('searchBar', searchBar);
 
 Vue.config.productionTip = false
 
