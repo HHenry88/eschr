@@ -1,19 +1,19 @@
 <template id="tabBar">
   <md-tabs md-fixed>
     <md-tab id="time" md-label="TIME">
-      <p>time</p>
+      <photosView></photosView>
     </md-tab>
 
     <md-tab id="people" md-label="PEOPLE">
-      <p>people</p>
+      <photosView></photosView>
     </md-tab>
 
     <md-tab id="places" md-label="PLACES">
-      <p>places</p>
+      <photosView></photosView>
     </md-tab>
 
     <md-tab id="things" md-label="THINGS">
-      <p>things</p>
+      <photosView></photosView>
     </md-tab>
   </md-tabs>
 </template>
