@@ -1,6 +1,7 @@
 <template>
   <div class="hello">
     <toolBar></toolBar>
+    <searchBar></searchBar>
     <tabBar></tabBar>
   </div>
 </template>
