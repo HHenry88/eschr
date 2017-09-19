@@ -10,7 +10,7 @@
 
 <script>
 export default {
-  name: 'galleryView',
+  name: 'galleryComponent',
   props:['images']
 }
 </script>

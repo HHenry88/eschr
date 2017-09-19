@@ -13,17 +13,17 @@
       </md-button>
     </md-layout>
   </md-toolbar>
-  <galleryView v-bind:images="responseData"></galleryView>
+  <galleryComponent v-bind:images="responseData"></galleryComponent>
 </div>
 </template>
 
 <script>
 import Vue from 'vue'
-import galleryView from './galleryView.vue';
+import galleryComponent from '../components/galleryComponent.vue';
 export default {
-  name: 'photosView',
+  name: 'gallery',
   components :{
-    'galleryView': galleryView
+    'galleryComponent': galleryComponent
   },
   data(){
     return {

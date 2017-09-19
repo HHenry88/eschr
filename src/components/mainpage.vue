@@ -3,7 +3,6 @@
     <toolBar></toolBar>
     <searchBar></searchBar>
     <tabBar></tabBar>
-    <filterButton></filterButton>
   </div>
 </template>
 
