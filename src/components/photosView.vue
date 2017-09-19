@@ -21,6 +21,7 @@
 import Vue from 'vue'
 import galleryView from './galleryView.vue';
 export default {
+  name: 'photosView',
   components :{
     'galleryView': galleryView
   },

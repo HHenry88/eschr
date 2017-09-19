@@ -1,9 +1,8 @@
 <template lang="html">
-  <md-layout :md-gutter="8">
-    <md-card>
-      <md-card-media v-for="(image,key) in images" :key="key">
-    <!-- <img src="assets/card-image-1.jpg" alt="People"> -->
-        <p>{{image._id}}</p>
+  <md-layout>
+    <md-card v-for="(image,key) in images" :key="key" md-with-hover>
+      <md-card-media>
+        <thumbnail v-bind:image='image'></thumbnail>
       </md-card-media>
     </md-card>
   </md-layout>
@@ -11,6 +10,7 @@
 
 <script>
 export default {
+  name: 'galleryView',
   props:['images']
 }
 </script>
