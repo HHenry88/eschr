@@ -7,41 +7,44 @@
       <h2 style="flex: 1, float: left">{{subject}}</h2>
     </md-layout>
     <md-layout md-align="end">
-      <h2 style="flex: 1,float: right">{{photoQuantity}} Photos</h2>
+      <h2 style="flex: 1,float: right">{{ getData.length }} Photos</h2>
       <md-button class="md-icon-button" md-align="end" style="float:right, position: relative, margin: 0">
         <md-icon>keyboard_arrow_right</md-icon>
       </md-button>
     </md-layout>
   </md-toolbar>
-  <galleryView v-bind:images="responseData"></galleryView>
+  <galleryComponent v-bind:images="getData"></galleryComponent>
 </div>
 </template>
 
 <script>
 import Vue from 'vue'
-import galleryView from './galleryView.vue';
+import galleryComponent from '../components/galleryComponent.vue';
+import { mapGetters, mapActions } from 'vuex'
+
 export default {
-  name: 'photosView',
+  name: 'gallery',
   components :{
-    'galleryView': galleryView
+    'galleryComponent': galleryComponent
+  },
+  computed: {
+    ...mapGetters([
+      'getData'
+    ])
+  },
+  methods:{
+    ...mapActions([
+      'retrieveData'
+    ])
   },
   data(){
     return {
       displayIcon: 'portrait',
       subject: 'Taylor Host',
-      photoQuantity: 50,
-      responseData: []
     }
   },
   created(){
-    Vue.axios.get('http://search.eschr.com/images/_search')
-      .then((data) => {
-        this.photoQuantity = data.data.hits.hits.length
-        this.responseData = data.data.hits.hits
-      })
-      .catch((err) => {
-        console.warn(err);
-      })
+    this.retrieveData();
   }
 }
 </script>

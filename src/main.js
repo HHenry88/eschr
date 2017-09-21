@@ -4,34 +4,38 @@ import Vue from 'vue'
 import App from './App'
 import router from './router'
 import VueMaterial from 'vue-material'
+import axios from 'axios'
+import VueAxios from 'vue-axios'
 
+//Components
 import toolBar from './components/toolBar'
 import tabBar from './components/tabBar'
 import searchBar from './components/searchBar'
 import filterButton from './components/filterButton'
-import photosView from './components/photosView'
 import thumbnail from './components/thumbnail'
-
-import axios from 'axios'
-import VueAxios from 'vue-axios'
-
-
-Vue.use(VueMaterial)
-Vue.use(VueAxios, axios)
-
 Vue.component('toolBar', toolBar)
 Vue.component('tabBar', tabBar)
 Vue.component('searchBar', searchBar)
 Vue.component('filterButton', filterButton)
-Vue.component('photosView', photosView)
 Vue.component('thumbnail', thumbnail)
+
+//Views
+import gallery from './views/gallery'
+Vue.component('gallery', gallery)
+
+Vue.use(VueMaterial)
+Vue.use(VueAxios, axios)
+
 
 Vue.config.productionTip = false
 
 /* eslint-disable no-new */
+import { store } from './store/store.js'
+
 new Vue({
   el: '#app',
   router,
   template: '<App/>',
-  components: { App }
+  components: { App },
+  store: store
 })
