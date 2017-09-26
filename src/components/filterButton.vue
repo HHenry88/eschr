@@ -7,12 +7,12 @@
         <span class="md-title">Categories</span>
       </md-toolbar>
       <md-list>
-        <orientationFilter v-bind:orientation="getFilters" v-bind:changeValue="changeValue"></orientationFilter>
-        <peopleFilter v-bind:people="getFilters" v-bind:changeValue="changeValue"></peopleFilter>
-        <timeFilter v-bind:time="getFilters" v-bind:changeValue="changeValue"></timeFilter>
-        <colorFilter v-bind:color="getFilters" v-bind:changeValue="changeValue"></colorFilter>
-        <dateFilter v-bind:date="getFilters" v-bind:changeValue="changeValue"></dateFilter>
-        <tagsFilter v-bind:tags="getFilters" v-bind:changeValue="changeValue"></tagsFilter>
+        <orientationFilter></orientationFilter>
+        <peopleFilter v-bind:filters="getFilters" v-bind:changeValue="changeValue"></peopleFilter>
+        <timeFilter v-bind:filters="getFilters" v-bind:changeValue="changeValue"></timeFilter>
+        <colorFilter v-bind:filters="getFilters" v-bind:changeValue="changeValue"></colorFilter>
+        <dateFilter v-bind:filters="getFilters" v-bind:changeValue="changeValue"></dateFilter>
+        <tagsFilter v-bind:filters="getFilters" v-bind:changeValue="changeValue"></tagsFilter>
       </md-list>
     </div>
   </md-dialog>

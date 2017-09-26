@@ -1,5 +1,6 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
+import filterStore from './filterStore'
 
 Vue.use(Vuex)
 
@@ -27,5 +28,8 @@ export const store = new Vuex.Store({
           console.warn(err);
         })
     }
+  },
+  modules: {
+    filterStore: filterStore
   }
 })
