@@ -1,20 +1,20 @@
 <template lang="html">
-  <form>
+  <div class="">
+    <md-toolbar class="md-dense">
     <md-layout md-row>
-      <md-layout md-flex-xsmall>
-      <md-input-container class="input-container " v-show="!showSearchBar">
-          <button v-on:click="toggleSearchBar"><md-icon class="md-size-2x">search</md-icon></button>
-          <md-input class="searchInput" placeholder="Search by text"></md-input>
-      </md-input-container>
-      </md-layout>
       <md-layout class="icons" md-align="end" md-flex-xsmall>
-        <span v-show="showSearchBar" v-on:click="toggleSearchBar"><md-icon class="md-size-2x">search</md-icon></span>
-        <md-icon class="md-size-2x">photo</md-icon>
+        <md-button v-on:click="openDialog('searchDialog')" id="search"><md-icon class="searchIcon" >search</md-icon></md-button>
         <md-icon class="md-size-2x">camera_alt</md-icon>
         <md-icon class="md-size-2x">import_export</md-icon>
       </md-layout>
     </md-layout>
-  </form>
+  </md-toolbar>
+
+  <md-dialog md-open-from="#searchButton" ref="searchDialog" class="searchDialog">
+    <searchView></searchView>
+  </md-dialog>
+
+</div>
 </template>
 
 <script>
@@ -27,6 +27,12 @@ export default {
   methods: {
     toggleSearchBar: function(){
       this.showSearchBar = !this.showSearchBar
+    },
+    openDialog(ref) {
+      this.$refs[ref].open();
+    },
+    closeDialog(ref) {
+      this.$refs[ref].close();
     }
   }
 }
@@ -46,5 +52,9 @@ export default {
   }
   .icons {
     padding-top: 0.9em;
+  }
+  div.md-dialog-container.searchDialog.md-theme-default.md-active > div.md-dialog.md-reference{
+    height: 100%;
+    width: 100%;
   }
 </style>

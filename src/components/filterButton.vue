@@ -8,11 +8,11 @@
       </md-toolbar>
       <md-list>
         <orientationFilter></orientationFilter>
-        <peopleFilter v-bind:filters="getFilters" v-bind:changeValue="changeValue"></peopleFilter>
-        <timeFilter v-bind:filters="getFilters" v-bind:changeValue="changeValue"></timeFilter>
-        <colorFilter v-bind:filters="getFilters" v-bind:changeValue="changeValue"></colorFilter>
-        <dateFilter v-bind:filters="getFilters" v-bind:changeValue="changeValue"></dateFilter>
-        <tagsFilter v-bind:filters="getFilters" v-bind:changeValue="changeValue"></tagsFilter>
+        <peopleFilter></peopleFilter>
+        <timeFilter></timeFilter>
+        <colorFilter></colorFilter>
+        <dateFilter></dateFilter>
+        <tagsFilter></tagsFilter>
       </md-list>
     </div>
   </md-dialog>
@@ -74,11 +74,6 @@ export default {
   .filterIcon {
     margin-left: 10px;
     margin-top: 12px;
-  }
-
-  .md-dialog {
-    width: 100%;
-    height: 100%;
   }
 
   .phone-viewport {
