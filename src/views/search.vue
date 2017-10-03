@@ -4,15 +4,29 @@
       <md-button><md-icon class="md-size-2x">keyboard_arrow_left</md-icon></md-button>
       <md-autocomplete v-model="colorValue"
                           :list="getSearchTerms"
-                          :filter-list="colorFilter"
+                          :filter-list="termFilter"
                           :min-chars="0"
                           :max-height="6"
-                          @selected="colorCallback"
+                          @selected="submit"
                           :debounce="500"
-                          placeholder="Choose by image or type">
+                          placeholder="Choose by image or type"
+                          class="autocomplete-input"
+                          >
       </md-autocomplete>
-      <md-button><md-icon class="md-size-2x">camera_alt</md-icon></md-button>
-      <md-button><md-icon class="md-size-2x">portrait</md-icon></md-button>
+      <div class="" v-if="routeName !== 'demo'">
+        <md-layout md-gutter>
+          <md-layout class="imageIcons">
+            <md-button>
+              <md-icon class="md-size-2x">camera_alt</md-icon>
+            </md-button>
+          </md-layout>
+          <md-layout class="imageIcons">
+            <md-button>
+              <md-icon class="md-size-2x">portrait</md-icon>
+            </md-button>
+          </md-layout>
+        </md-layout>
+      </div>
     </md-input-container>
 
     <div class="color-box"></div>
@@ -20,17 +34,22 @@
 </template>
 
 <script>
-import {mapGetters} from 'vuex'
+import {mapGetters, mapActions} from 'vuex'
 
 export default {
   data() {
     return {
       colorValue: '',
-      searchTerms: []
+      searchTerms: [],
+      selectedTerm: '',
+      routeName: this.$route.name
     };
   },
   methods: {
-    colorFilter: function(list, query) {
+    ...mapActions([
+      'changeSingleItem'
+    ]),
+    termFilter: function(list, query) {
       var arr = [];
 
       for(var i = 0; i < list.length; i++) {
@@ -43,9 +62,9 @@ export default {
 
       return arr;
     },
-
-    colorCallback: function(item) {
-      this.selectedColor = item.color;
+    submit: function(item) {
+      this.selectedTerm = item;
+      console.log(this.selectedColor, 'afwefawefaf', item);
     }
   },
   computed:{
@@ -71,5 +90,13 @@ export default {
     min-width: 80% !important;
     left: 100px !important;
     top: 220px !important;
+  }
+
+  .imageIcons {
+    width: 20%;
+  }
+
+  .autocomplete-input {
+    width: 70% !important;
   }
 </style>
