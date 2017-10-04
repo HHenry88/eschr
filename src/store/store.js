@@ -1,5 +1,8 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
+import filterStore from './filterStore'
+import searchTerms from './searchTerms'
+import singleItem from './singleItem'
 
 Vue.use(Vuex)
 
@@ -27,5 +30,10 @@ export const store = new Vuex.Store({
           console.warn(err);
         })
     }
+  },
+  modules: {
+    filterStore,
+    searchTerms,
+    singleItem
   }
 })

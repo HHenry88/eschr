@@ -14,6 +14,7 @@
     </md-layout>
   </md-toolbar>
   <galleryComponent v-bind:images="getData"></galleryComponent>
+  <filterButton></filterButton>
 </div>
 </template>
 

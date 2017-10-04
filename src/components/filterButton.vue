@@ -1,19 +1,68 @@
 <template lang="html">
-  <md-speed-dial md-open="hover" md-direction="bottom" class="md-fab-bottom-right" md-theme="light-blue">
-    <md-button class="md-fab row" id="filter" md-fab-trigger>
+  <div class="">
+
+  <md-dialog md-open-from="#filterButton" ref="filterDialog">
+    <div class="phone-viewport">
+      <md-toolbar md-theme="white">
+        <span class="md-title">Categories</span>
+      </md-toolbar>
+      <md-list>
+        <orientationFilter></orientationFilter>
+        <peopleFilter></peopleFilter>
+        <timeFilter></timeFilter>
+        <colorFilter></colorFilter>
+        <dateFilter></dateFilter>
+        <tagsFilter></tagsFilter>
+      </md-list>
+    </div>
+  </md-dialog>
+
+    <md-button class="md-fab row" id="filter" md-fab-trigger v-on:click="openDialog('filterDialog')" md-theme="white">
         <md-icon class="col-xs-3 filterIcon">filter_list</md-icon>
         <label class="filterText col-xs-9">Filter</label>
     </md-button>
-  </md-speed-dial>
+</div>
 </template>
 
 <script>
-export default {
+import orientationFilter from './orientationFilter'
+import peopleFilter from './peopleFilter'
+import timeFilter from './timeFilter'
+import colorFilter from './colorFilter'
+import dateFilter from './dateFilter'
+import tagsFilter from './tagsFilter'
+import { mapGetters, mapActions} from 'vuex'
 
+
+export default {
+  computed: {
+    ...mapGetters([
+      'getFilters'
+    ])
+  },
+  methods: {
+    openDialog(ref) {
+      this.$refs[ref].open();
+    },
+    closeDialog(ref) {
+      this.$refs[ref].close();
+    },
+    ...mapActions([
+      'changeValue'
+    ])
+  },
+  components: {
+    'orientationFilter': orientationFilter,
+    'peopleFilter': peopleFilter,
+    'timeFilter': timeFilter,
+    'colorFilter': colorFilter,
+    'dateFilter': dateFilter,
+    'tagsFilter': tagsFilter
+  }
 }
 </script>
 
-<style lang="css">
+<style lang="css" scoped>
   #filter {
     width: 10em;
   }
@@ -25,5 +74,9 @@ export default {
   .filterIcon {
     margin-left: 10px;
     margin-top: 12px;
+  }
+
+  .phone-viewport {
+    padding: 30px;
   }
 </style>

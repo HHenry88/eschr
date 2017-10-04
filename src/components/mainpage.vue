@@ -1,7 +1,13 @@
 <template>
   <div class="hello">
-    <toolBar></toolBar>
-    <searchBar></searchBar>
+    <md-layout class="header" md-gutter>
+      <md-layout>
+        <toolBar></toolBar>
+      </md-layout>
+      <md-layout>
+        <searchBar></searchBar>
+      </md-layout>
+    </md-layout>
     <tabBar></tabBar>
   </div>
 </template>
@@ -20,5 +26,9 @@ export default {
 <style scoped>
   .hello {
     height: 100em;
+  }
+
+  .header {
+    height: 55px;
   }
 </style>
