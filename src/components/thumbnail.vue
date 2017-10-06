@@ -1,6 +1,4 @@
 <template lang="html">
-
-  <!-- <p>{{image._source.resource_id}}</p> -->
   <div class="container" v-on:click="selectImage">
     <img v-bind:src="imgSrc" alt="">
   </div>

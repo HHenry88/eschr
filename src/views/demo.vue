@@ -12,7 +12,7 @@
     </md-toolbar>
 
     <md-dialog md-open-from="#searchButton" ref="searchDialog" class="searchDialog">
-      <searchView></searchView>
+      <searchView v-bind:close-button="refss"></searchView>
     </md-dialog>
 </div>
 </template>
@@ -22,7 +22,8 @@ export default {
   name: 'demo',
   data () {
     return {
-      onlyImages: null
+      onlyImages: null,
+      refss: this.$refs
     }
   },
   methods: {

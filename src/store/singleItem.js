@@ -12,7 +12,6 @@ const singleItem = {
   },
   actions: {
     selectSingleItem: (context, payload) => {
-      console.log('this is payload', payload);
       context.commit('changeSingleItem', payload)
     }
   }

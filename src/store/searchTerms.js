@@ -46,17 +46,22 @@ const searchTerms = {
       {name: "violet", color: "#ee82ee"},
       {name: "white", color: "#ffffff"},
       {name: "yellow", color: "#ffff00"},
-    ]
+    ],
+    searchTerm: ''
   },
   getters: {
     getSearchTerms: state => state.searchTerms
   },
   mutations: {
-
+    retrieveSearchTerms:(state, payload) => {
+      //retrieve search terms from API
+      state.searchTerms = response;
+    }
   },
   actions: {
-    getSearchTerms:(context) => {
-      //get search terms to auto complete with.
+    retrieveSearchTerms:(context) => {
+      // on load get search terms to auto complete with.
+      context.commit('retrieveSearchTerms');
     }
   }
 }

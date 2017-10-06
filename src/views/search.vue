@@ -1,11 +1,11 @@
 <template lang="html">
   <form novalidate @submit.stop.prevent="submit">
     <md-input-container md-theme="green">
-      <md-button><md-icon class="md-size-2x">keyboard_arrow_left</md-icon></md-button>
+      <md-button v-on:click="closeDialog('searchDialog')"><md-icon class="md-size-2x">keyboard_arrow_left</md-icon></md-button>
       <md-autocomplete v-model="colorValue"
                           :list="getSearchTerms"
                           :filter-list="termFilter"
-                          :min-chars="0"
+                          :min-chars="2"
                           :max-height="6"
                           @selected="submit"
                           :debounce="500"
@@ -34,7 +34,8 @@
 </template>
 
 <script>
-import {mapGetters, mapActions} from 'vuex'
+import { mapGetters, mapActions } from 'vuex'
+import { store } from '../store/store'
 
 export default {
   data() {
@@ -45,9 +46,10 @@ export default {
       routeName: this.$route.name
     };
   },
+  props: ['closeButton'],
   methods: {
     ...mapActions([
-      'changeSingleItem'
+      'retrieveData'
     ]),
     termFilter: function(list, query) {
       var arr = [];
@@ -62,9 +64,12 @@ export default {
 
       return arr;
     },
-    submit: function(item) {
-      this.selectedTerm = item;
-      console.log(this.selectedColor, 'afwefawefaf', item);
+    closeDialog(ref) {
+      this.closeButton[ref].close();
+    },
+    submit: function(searchTerm) {
+      store.dispatch('retrieveData', searchTerm);
+      this.$router.push('demodrilldown')
     }
   },
   computed:{
@@ -77,19 +82,19 @@ export default {
 
 <style lang="css">
   .md-dialog.md-reference{
-    height: 100%;
-    width: 100%;
+    min-height: 100%;
+    min-width: 100%;
   }
 
   input.md-input {
-    height: 70px;
+    height: 3em;
     font-size: 24px !important;
   }
 
   .md-menu-content {
-    min-width: 80% !important;
-    left: 100px !important;
-    top: 220px !important;
+    min-width: 100% !important;
+    left: 1% !important;
+    top: 6% !important; 
   }
 
   .imageIcons {

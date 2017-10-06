@@ -13,12 +13,15 @@ import tabBar from './components/tabBar'
 import searchBar from './components/searchBar'
 import filterButton from './components/filterButton'
 import thumbnail from './components/thumbnail'
+import relatedImages from './components/relatedImages'
 import searchView from './views/search'
+
 Vue.component('toolBar', toolBar)
 Vue.component('tabBar', tabBar)
 Vue.component('searchBar', searchBar)
 Vue.component('filterButton', filterButton)
 Vue.component('thumbnail', thumbnail)
+Vue.component('relatedImages', relatedImages)
 Vue.component('searchView', searchView)
 
 //Views

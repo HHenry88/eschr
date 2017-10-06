@@ -10,7 +10,7 @@
     </md-layout>
   </md-toolbar>
 
-  <md-dialog md-open-from="#searchButton" ref="searchDialog" class="searchDialog">
+  <md-dialog md-open-from="#searchButton" md-close-to="#custom" ref="searchDialog" class="searchDialog">
     <searchView></searchView>
   </md-dialog>
 
@@ -21,7 +21,7 @@
 export default {
   data(){
     return {
-        showSearchBar: true
+        showSearchBar: true,
     }
   },
   methods: {

@@ -11,6 +11,7 @@
 
     <img v-bind:src="getSingleItem" alt="">
     <singleItemMap></singleItemMap>
+    <relatedImages></relatedImages>
   </div>
 </template>
 

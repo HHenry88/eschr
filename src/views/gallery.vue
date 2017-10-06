@@ -14,7 +14,9 @@
     </md-layout>
   </md-toolbar>
   <galleryComponent v-bind:images="getData"></galleryComponent>
-  <filterButton></filterButton>
+  <div class="" v-if="routeName !== '/demodrilldown'">
+    <filterButton></filterButton>
+  </div>
 </div>
 </template>
 
@@ -42,6 +44,7 @@ export default {
     return {
       displayIcon: 'portrait',
       subject: 'Taylor Host',
+      routeName: this.$route.path
     }
   },
   created(){
