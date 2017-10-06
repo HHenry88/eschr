@@ -1,5 +1,5 @@
 <template lang="html">
-  <div class="">
+  <div class="single-item-container">
     <md-toolbar class="md-dense">
       <router-link to="/demodrilldown">
         <md-button class="md-icon-button" >
@@ -10,6 +10,7 @@
     </md-toolbar>
 
     <img v-bind:src="getSingleItem" alt="">
+    <singleItemMap></singleItemMap>
   </div>
 </template>
 
@@ -39,5 +40,8 @@ export default {
 }
 </script>
 
-<style lang="css">
+<style lang="css" scoped>
+  .single-item-container {
+    padding: 0.5%;
+  }
 </style>
