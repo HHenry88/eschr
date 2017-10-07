@@ -14,7 +14,7 @@ export default {
   props: ['image'],
   data(){
     return {
-      imgSrc: `https://s3-eu-west-1.amazonaws.com/eschr-test-development/SOURCE/${this.image._source.resource_id}.jpg`
+      imgSrc: `https://s3-eu-west-1.amazonaws.com/eschr-test-demo/SOURCE/${this.image._source.resource_id}.jpg`
     }
   },
   methods: {
@@ -22,7 +22,11 @@ export default {
       'selectSingleItem'
     ]),
     selectImage: function() {
-      store.dispatch('selectSingleItem', this.imgSrc);
+      console.log('thiss', this.imgSrc);
+      store.dispatch('selectSingleItem', {
+        imageSrc: this.imgSrc,
+        image: this.image
+      });
       this.$router.push('image/1')
     }
   }

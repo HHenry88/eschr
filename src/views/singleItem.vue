@@ -6,12 +6,12 @@
           <md-icon>keyboard_arrow_left</md-icon>
         </md-button>
       </router-link>
-      <h2 class="md-title" style="flex: 1, float: left">Taylor Host</h2>
+      <h2 class="md-title" style="flex: 1, float: left">{{getSearchTerm}}</h2>
     </md-toolbar>
 
-    <img v-bind:src="getSingleItem" alt="">
+    <img v-bind:src="getSingleImageSrc" alt="">
     <singleItemMap></singleItemMap>
-    <relatedImages></relatedImages>
+    <!-- <relatedImages></relatedImages> -->
   </div>
 </template>
 
@@ -32,7 +32,8 @@ export default {
   },
   computed: {
     ...mapGetters([
-      'getSingleItem'
+      'getSingleImageSrc',
+      'getSearchTerm'
     ])
   },
   components:{

@@ -18,13 +18,20 @@
 </template>
 
 <script>
-
+import { mapGetters } from 'vuex'
 
 export default {
+  props: ['coordinates'],
   data(){
     return {
       displayIcon: 'portrait'
     }
+  },
+  computed: {
+    ...mapGetters([
+      'getLatitude',
+      'getLongitude'
+    ])
   },
   mounted:function(){
     var mapboxgl = require('mapbox-gl');
@@ -32,9 +39,9 @@ export default {
     mapboxgl.accessToken = 'pk.eyJ1IjoiaGVucnloYW4iLCJhIjoiY2o4YmNhY3IyMGV3ZjJ3cG1ncmw4YXBiZCJ9.arf5UU-kaFT1SOhPbzKlOA';
     var map = new mapboxgl.Map({
     container: 'image-map',
-    style: 'mapbox://styles/mapbox/streets-v10',
-    zoom: 5,
-    center: [-74.0073, 40.7124]
+    style: 'mapbox://styles/mapbox/dark-v9',
+    zoom: 7,
+    center: [this.getLongitude, this.getLatitude]
     });
   }
 }

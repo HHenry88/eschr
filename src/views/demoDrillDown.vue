@@ -3,7 +3,7 @@
 
     <md-toolbar class="md-dense">
       <md-button class="md-icon-button">
-        <router-link to="/demo"><md-icon>keyboard_arrow_left</md-icon></router-link>
+        <router-link to="/"><md-icon>keyboard_arrow_left</md-icon></router-link>
       </md-button>
     </md-toolbar>
     <gallery></gallery>

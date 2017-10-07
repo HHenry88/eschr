@@ -9,18 +9,18 @@ Vue.use(Router)
 
 export default new Router({
   routes: [
-    {
-      path: '/',
-      name: 'mainpage',
-      component: Main
-    },
+    // {
+    //   path: '/',
+    //   name: 'mainpage',
+    //   component: Main
+    // },
     {
       path: '/image/:id',
       name: 'singleItem',
       component: singleItem
     },
     {
-      path:'/demo',
+      path:'/',
       name: 'demo',
       component: demo
     },

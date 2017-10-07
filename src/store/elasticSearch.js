@@ -15,10 +15,13 @@ const elasticSearch = {
     }
   },
   actions:{
-    retrieveData: (context)=> {
-      Vue.axios.get('http://search.eschr.com/images/_search')
+    retrieveData: ({commit, dispatch}, payload)=> {
+      Vue.axios.get('http://search.eschr.com/demo/_search')
         .then((data) => {
-          context.commit('responseData', data.data.hits.hits)
+          commit('responseData', data.data.hits.hits)
+          if(payload){
+            dispatch('retrieveKeywords');
+          }
         })
         .catch((err) => {
           console.warn(err);

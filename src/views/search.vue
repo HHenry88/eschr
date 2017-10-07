@@ -2,8 +2,8 @@
   <form novalidate @submit.stop.prevent="submit">
     <md-input-container md-theme="green">
       <md-button v-on:click="closeDialog('searchDialog')"><md-icon class="md-size-2x">keyboard_arrow_left</md-icon></md-button>
-      <md-autocomplete v-model="colorValue"
-                          :list="getSearchTerms"
+      <md-autocomplete v-model="selectedTerm"
+                          :list="getKeywords"
                           :filter-list="termFilter"
                           :min-chars="2"
                           :max-height="6"
@@ -11,6 +11,7 @@
                           :debounce="500"
                           placeholder="Choose by image or type"
                           class="autocomplete-input"
+                          print-attribute="name"
                           >
       </md-autocomplete>
       <div class="" v-if="routeName !== 'demo'">
@@ -40,7 +41,6 @@ import { store } from '../store/store'
 export default {
   data() {
     return {
-      colorValue: '',
       searchTerms: [],
       selectedTerm: '',
       routeName: this.$route.name
@@ -49,7 +49,8 @@ export default {
   props: ['closeButton'],
   methods: {
     ...mapActions([
-      'retrieveData'
+      'retrieveKeywords',
+      'retrieveMatchedImages'
     ]),
     termFilter: function(list, query) {
       var arr = [];
@@ -67,14 +68,14 @@ export default {
     closeDialog(ref) {
       this.closeButton[ref].close();
     },
-    submit: function(searchTerm) {
-      store.dispatch('retrieveData', searchTerm);
+    submit: function() {
+      store.dispatch('retrieveMatchedImages', this.selectedTerm);
       this.$router.push('demodrilldown')
     }
   },
   computed:{
     ...mapGetters([
-      'getSearchTerms'
+      'getKeywords'
     ])
   }
 };
@@ -94,7 +95,7 @@ export default {
   .md-menu-content {
     min-width: 100% !important;
     left: 1% !important;
-    top: 6% !important; 
+    top: 6% !important;
   }
 
   .imageIcons {

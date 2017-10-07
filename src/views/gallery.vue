@@ -4,16 +4,16 @@
   <md-toolbar class="md-dense">
     <md-layout md-align="start">
       <md-icon class="displayIcon md-size-2x">{{displayIcon}}</md-icon>
-      <h2 style="flex: 1, float: left">{{subject}}</h2>
+      <h2 style="flex: 1, float: left">{{getSearchTerm}}</h2>
     </md-layout>
     <md-layout md-align="end">
-      <h2 style="flex: 1,float: right">{{ getData.length }} Photos</h2>
+      <h2 style="flex: 1,float: right">{{ getMatchedImages.length }} Photos</h2>
       <md-button class="md-icon-button" md-align="end" style="float:right, position: relative, margin: 0">
         <md-icon>keyboard_arrow_right</md-icon>
       </md-button>
     </md-layout>
   </md-toolbar>
-  <galleryComponent v-bind:images="getData"></galleryComponent>
+  <galleryComponent v-bind:images="getMatchedImages"></galleryComponent>
   <div class="" v-if="routeName !== '/demodrilldown'">
     <filterButton></filterButton>
   </div>
@@ -32,7 +32,8 @@ export default {
   },
   computed: {
     ...mapGetters([
-      'getData'
+      'getMatchedImages',
+      'getSearchTerm'
     ])
   },
   methods:{
@@ -43,7 +44,6 @@ export default {
   data(){
     return {
       displayIcon: 'portrait',
-      subject: 'Taylor Host',
       routeName: this.$route.path
     }
   },

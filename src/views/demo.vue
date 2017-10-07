@@ -18,9 +18,13 @@
 </template>
 
 <script>
+import { mapGetters, mapActions } from 'vuex'
+import { store } from '../store/store'
+
+
 export default {
   name: 'demo',
-  data () {
+  data() {
     return {
       onlyImages: null,
       refss: this.$refs
@@ -29,10 +33,18 @@ export default {
   methods: {
     openDialog(ref) {
       this.$refs[ref].open();
+
     },
     closeDialog(ref) {
       this.$refs[ref].close();
-    }
+    },
+    ...mapActions([
+      'retrieveData',
+      'retrieveKeywords'
+    ])
+  },
+  created() {
+    store.dispatch('retrieveData', true)
   }
 }
 </script>

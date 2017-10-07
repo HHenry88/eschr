@@ -1,18 +1,22 @@
 const singleItem = {
   state: {
-    singleItem:{}
-  },
-  mutations: {
-    changeSingleItem: (state, payload) => {
-      state.singleItem = payload
-    }
+    singleImageSrc:{},
+    singleImage: {}
   },
   getters: {
-    getSingleItem: state => state.singleItem
+    getSingleImageSrc: state => state.singleImageSrc,
+    getSingleImage: state => state.SingleImage
+  },
+  mutations: {
+    changeSingleImage: (state, payload) => {
+      state.singleImageSrc = payload.imageSrc;
+      state.singleImage = payload.image;
+    }
   },
   actions: {
     selectSingleItem: (context, payload) => {
-      context.commit('changeSingleItem', payload)
+      context.commit('changeSingleImage', payload);
+      context.dispatch('retrieveCoordinates', payload.image);
     }
   }
 }
