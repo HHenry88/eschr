@@ -40,9 +40,13 @@ export default {
     var map = new mapboxgl.Map({
     container: 'image-map',
     style: 'mapbox://styles/mapbox/dark-v9',
-    zoom: 7,
+    zoom: 9,
     center: [this.getLongitude, this.getLatitude]
     });
+
+    var marker = new mapboxgl.Marker()
+      .setLngLat([this.getLongitude, this.getLatitude])
+      .addTo(map);
   }
 }
 </script>
@@ -58,4 +62,12 @@ export default {
   .md-icon-button {
     margin: 6px 8px;
   }
+
+  .mapboxgl-marker {
+    width: 25px;
+    height: 25px;
+    border-radius: 50%;
+    border:1px solid gray;
+    background-color:red;
+}
 </style>

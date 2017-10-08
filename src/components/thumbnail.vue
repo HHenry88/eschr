@@ -22,7 +22,6 @@ export default {
       'selectSingleItem'
     ]),
     selectImage: function() {
-      console.log('thiss', this.imgSrc);
       store.dispatch('selectSingleItem', {
         imageSrc: this.imgSrc,
         image: this.image

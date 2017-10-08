@@ -10,6 +10,7 @@
     </md-toolbar>
 
     <img v-bind:src="getSingleImageSrc" alt="">
+    <tagChips></tagChips>
     <singleItemMap></singleItemMap>
     <!-- <relatedImages></relatedImages> -->
   </div>

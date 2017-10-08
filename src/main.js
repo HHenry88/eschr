@@ -14,6 +14,7 @@ import searchBar from './components/searchBar'
 import filterButton from './components/filterButton'
 import thumbnail from './components/thumbnail'
 import relatedImages from './components/relatedImages'
+import tagChips from './components/tagChips'
 import searchView from './views/search'
 
 Vue.component('toolBar', toolBar)
@@ -22,6 +23,7 @@ Vue.component('searchBar', searchBar)
 Vue.component('filterButton', filterButton)
 Vue.component('thumbnail', thumbnail)
 Vue.component('relatedImages', relatedImages)
+Vue.component('tagChips', tagChips)
 Vue.component('searchView', searchView)
 
 //Views

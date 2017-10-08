@@ -1,14 +1,12 @@
 const searchTerms = {
   state: {
-    keywords: [
-      {name: "apple"}
-    ],
-    searchTerm: ''
+    keywords: [{name: "apple"}],
+    searchTerm: '',
+    keywordsTracker: ['apple', 'banana']
   },
   getters: {
-    getKeywords: (state) => {
-      return state.keywords
-    }
+    getKeywords: state => state.keywords,
+    getKeywordsTracker: state => state.keywordsTracker
   },
   mutations: {
     sortKeywords:(state, payload) => {
@@ -24,6 +22,7 @@ const searchTerms = {
         })
       });
       state.keywords = keywords;
+      state.keywordsTracker = keywordsTracker;
     }
   },
   actions: {
