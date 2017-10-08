@@ -1,3 +1,5 @@
+import Vue from 'vue'
+
 const searchImages = {
   state:{
     matchedImages: [],
@@ -9,20 +11,20 @@ const searchImages = {
   },
   mutations: {
     sortMatchedImages: (state, payload) => {
-      state.searchTerm = payload.searchterm;
-      const newImages = payload.responseData.filter((obj) => {
-        return obj._source.keywords.includes(payload.searchterm)
-      })
+      state.searchTerm = payload;
 
-      state.matchedImages = newImages;
+      Vue.axios.get(`http://search.eschr.com/demo/_search?q=keywords:${payload}`)
+        .then((data) => {
+          state.matchedImages = data.data.hits.hits;
+        })
+        .catch((err) => {
+          console.warn(err);
+        })
     }
   },
   actions:{
     retrieveMatchedImages: (context, payload) => {
-      context.commit('sortMatchedImages', {
-        searchterm: payload,
-        responseData: context.rootState.elasticSearch.responseData
-      })
+      context.commit('sortMatchedImages', payload)
     }
   }
 }

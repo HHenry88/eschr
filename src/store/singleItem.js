@@ -5,7 +5,7 @@ const singleItem = {
   },
   getters: {
     getSingleImageSrc: state => state.singleImageSrc,
-    getSingleImage: state => state.SingleImage
+    getSingleImage: state => state.singleImage
   },
   mutations: {
     changeSingleImage: (state, payload) => {

@@ -3,14 +3,14 @@
     <md-toolbar class="md-dense">
       <md-layout md-align="start">
         <md-icon class="displayIcon md-size-2x">{{displayIcon}}</md-icon>
-        <h2 style="flex: 1, float: left">Location</h2>
+        <h2 style="flex: 1, float: left">{{getSingleImage._source.places[0] || 'Location'}}</h2>
       </md-layout>
-      <md-layout md-align="end">
+      <!-- <md-layout md-align="end">
         <h2 style="flex: 1,float: right"># Photos</h2>
         <md-button class="md-icon-button" md-align="end" style="float:right, position: relative, margin: 0">
           <md-icon>keyboard_arrow_right</md-icon>
         </md-button>
-      </md-layout>
+      </md-layout> -->
     </md-toolbar>
     <div class="" id="image-map">
     </div>
@@ -30,7 +30,8 @@ export default {
   computed: {
     ...mapGetters([
       'getLatitude',
-      'getLongitude'
+      'getLongitude',
+      'getSingleImage'
     ])
   },
   mounted:function(){

@@ -89,13 +89,17 @@ export default {
 
   input.md-input {
     height: 3em;
-    font-size: 24px !important;
+    font-size: 36px !important;
   }
 
   .md-menu-content {
     min-width: 100% !important;
     left: 1% !important;
-    top: 6% !important;
+    top: 8% !important;
+  }
+
+  .md-list-item .md-list-item-container{
+    font-size: 30px;
   }
 
   .imageIcons {

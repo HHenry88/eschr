@@ -1,15 +1,22 @@
 <template>
   <div class="demoView">
-    <md-toolbar class="md-large searchBar">
-      <md-button class="md-icon-button searchButton" v-on:click="openDialog('searchDialog')">
-        <md-icon class="md-size-4x">search</md-icon>
-      </md-button>
+    <div class="content">
 
-      <md-input-container>
-        <label class="image-upload-icon"><md-icon class="md-size-4x" for="file-input">image</md-icon></label>
-        <md-file v-model="onlyImages" accept="image/*" id="file-input" class="image-upload"></md-file>
-        </md-input-container>
-    </md-toolbar>
+      <img src="../assets/it2g.png" alt="miro" class="miroImg">
+      <h1>Add Visual Search to Your App or Project with Eschr</h1>
+      <md-toolbar class="md-large searchBar">
+        <md-button class="md-icon-button searchButton" v-on:click="openDialog('searchDialog')">
+          <md-icon class="md-size-4x">search</md-icon>
+        </md-button>
+
+        <h2 class="md-title search-by-image" style="flex: 1">SEARCH BY IMAGE</h2>
+
+        <md-input-container>
+          <label class="image-upload-icon"><md-icon class="md-size-4x" for="file-input">photo_camera</md-icon></label>
+          <md-file v-model="onlyImages" accept="image/*" id="file-input" class="image-upload"></md-file>
+          </md-input-container>
+      </md-toolbar>
+    </div>
 
     <md-dialog md-open-from="#searchButton" ref="searchDialog" class="searchDialog">
       <searchView v-bind:close-button="refss"></searchView>
@@ -55,35 +62,63 @@ export default {
     display: block;
     width: 100%;
     height: 100%;
-    margin: 60% auto;
+    /* bounds: */
+    background-image: linear-gradient(-131deg, #00C5F0 0%, #3B51AD 100%);
+    /* Kabob Menu Icon: */
+
   }
-
-
-  .searchButton {
-    width: 10%;
-    height: 100px;
+  .content {
+    margin: 10% auto;
   }
 
   .searchBar {
     width: 90%;
     margin: auto;
+    background-color: white !important;
+    border-radius: 15px;
+  }
+
+  .searchButton {
+    width: 10%;
+    height: 100px;
+    margin-left: 1em !important;
   }
 
   .md-input-container {
-    width: 80% !important;
+    width: 15% !important;
   }
 
   .image-upload-icon {
     position: relative;
-    margin-left: 670px;
+    /*margin-left: 25em;*/
     margin-bottom: 45px;
+  }
+
+  .image-upload-icon > i {
+    color: red !important;
   }
 
   .md-input-container > div > .md-icon{
     display: none !important;
   }
 
-  .image-upload {
+  h1 {
+    /* Add Visual Search to: */
+    font-family: AvenirNext-Bold;
+    font-size: 60px;
+    color: #FFFFFF;
+    height: 3em;
+    line-height: normal;
+    margin: 0.3em;
+  }
 
+  .search-by-image {
+    color: red;
+    width: 100%;
+    font-size: 30px;
+  }
+
+  i {
+    color: #6DC6B5;
   }
 </style>
