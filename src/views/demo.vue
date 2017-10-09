@@ -13,11 +13,11 @@
 
         <md-input-container>
           <label class="image-upload-icon"><md-icon class="md-size-4x" for="file-input">photo_camera</md-icon></label>
-          <md-file v-model="onlyImages" accept="image/*" id="file-input" class="image-upload"></md-file>
+          <md-file v-model="onlyImages" accept="image/*" id="file-input" class="image-upload" @selected="uploadImage($event)"></md-file>
           </md-input-container>
       </md-toolbar>
     </div>
-
+    <!-- <md-progress md-indeterminate></md-progress> -->
     <md-dialog md-open-from="#searchButton" ref="searchDialog" class="searchDialog">
       <searchView v-bind:close-button="refss"></searchView>
     </md-dialog>
@@ -27,27 +27,47 @@
 <script>
 import { mapGetters, mapActions } from 'vuex'
 import { store } from '../store/store'
-
+import Vue from 'vue'
 
 export default {
   name: 'demo',
   data() {
     return {
-      onlyImages: null,
+      onlyImages: '',
       refss: this.$refs
     }
   },
   methods: {
     openDialog(ref) {
       this.$refs[ref].open();
-
     },
     closeDialog(ref) {
       this.$refs[ref].close();
     },
+    uploadImage(e){
+      const headers = {
+        'Content-Type': 'image/jpeg',
+      }
+
+      const reader = new FileReader();
+      reader.onload = (e) => {
+        console.log('uploading...');
+        Vue.axios.post(`https://vynwt6nfq5.execute-api.eu-west-1.amazonaws.com/demo/upload`, e.target.result, {headers: headers})
+        .then((data) => {
+          store.dispatch('retrieveMatchedImages', data.data.keywords)
+          this.$router.push('/demodrilldown')
+        })
+        .catch((err) => {
+          console.warn(err);
+        })
+      }
+      reader.readAsArrayBuffer(e[0]);
+
+    },
     ...mapActions([
       'retrieveData',
-      'retrieveKeywords'
+      'retrieveKeywords',
+      'retrieveMatchedImages',
     ])
   },
   created() {

@@ -2,15 +2,21 @@
   <div class="">
 
   <md-toolbar class="md-dense">
-    <md-layout md-align="start">
-      <md-icon class="displayIcon md-size-2x">{{displayIcon}}</md-icon>
-      <h2 style="flex: 1, float: left">{{getSearchTerm}}</h2>
-    </md-layout>
-    <md-layout md-align="end">
-      <h2 style="flex: 1,float: right">{{ getMatchedImages.length }} Photos</h2>
-      <md-button class="md-icon-button" md-align="end" style="float:right, position: relative, margin: 0">
-        <md-icon>keyboard_arrow_right</md-icon>
-      </md-button>
+    <md-layout>
+      <md-layout md-align="start" md-flex=75>
+        <md-layout md-flex=10>
+          <md-icon class="displayIcon md-size-2x">{{displayIcon}}</md-icon>
+        </md-layout>
+        <md-layout>
+          <h2 style="flex: 1, float: left">{{searchTerm}}</h2>
+        </md-layout>
+      </md-layout>
+      <md-layout md-align="end">
+        <h2 style="flex: 1,float: right">{{ getMatchedImages.length }} Photos</h2>
+        <md-button class="md-icon-button" md-align="end" style="float:right, position: relative, margin: 0">
+          <md-icon>keyboard_arrow_right</md-icon>
+        </md-button>
+      </md-layout>
     </md-layout>
   </md-toolbar>
   <galleryComponent v-bind:images="getMatchedImages"></galleryComponent>
@@ -44,11 +50,17 @@ export default {
   data(){
     return {
       displayIcon: 'portrait',
-      routeName: this.$route.path
+      routeName: this.$route.path,
+      searchTerm: ''
     }
   },
   created(){
     this.retrieveData();
+    if(typeof this.getSearchTerm === 'object'){
+      this.searchTerm = this.getSearchTerm.join(', ')
+    } else {
+      this.searchTerm = this.getSearchTerm
+    }
   }
 }
 </script>

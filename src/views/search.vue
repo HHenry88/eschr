@@ -6,7 +6,7 @@
                           :list="getKeywords"
                           :filter-list="termFilter"
                           :min-chars="2"
-                          :max-height="6"
+                          :max-height="10"
                           @selected="submit"
                           :debounce="500"
                           placeholder="Choose by image or type"
