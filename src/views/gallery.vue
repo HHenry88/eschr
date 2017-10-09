@@ -59,7 +59,7 @@ export default {
     }
   },
   created(){
-    this.retrieveData();
+    // this.retrieveData();
     if(typeof this.getSearchTerm === 'object'){
       this.searchTerm = this.getSearchTerm.join(', ')
     } else {
