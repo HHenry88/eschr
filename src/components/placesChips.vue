@@ -39,9 +39,9 @@ export default {
     margin: 0% 5%;
   }
   div > div.tags > div{
-    padding: 10px 20px 3px 20px;
+    padding: 10px 20px 10px 20px;
     margin: 2px;
-    font-size: 1.5em;
+    font-size: 2em;
     background: #0193DC;
   }
 </style>

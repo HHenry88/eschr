@@ -19,7 +19,7 @@ const searchImages = {
       } else {
         query = payload.result
       }
-      Vue.axios.get(`https://search-eschr-demo-kokjqkr3h4rrpfcwbrqzdrdhbu.ap-southeast-1.es.amazonaws.com/demo/image/_search?q=keywords:${query}`)
+      Vue.axios.get(`https://search-eschr-demo-kokjqkr3h4rrpfcwbrqzdrdhbu.ap-southeast-1.es.amazonaws.com/demo/image/_search?q=keywords:${query}&size=100`)
         .then((data) => {
           state.matchedImages = data.data.hits.hits;
         })
