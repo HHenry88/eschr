@@ -3,7 +3,7 @@
     <div class="content">
 
       <img src="../assets/it2g.png" alt="miro" class="miroImg">
-      <h1>Add Visual Search to Your App or Project with Eschr</h1>
+      <h1>Add Visual Search to Your App or Project in Minutes</h1>
       <md-toolbar class="md-large searchBar">
         <md-button class="md-icon-button searchButton" v-on:click="openDialog('searchDialog')">
           <md-icon class="md-size-4x">search</md-icon>
