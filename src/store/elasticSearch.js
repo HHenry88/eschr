@@ -16,16 +16,17 @@ const elasticSearch = {
   },
   actions:{
     retrieveData: ({commit, dispatch}, payload)=> {
-      Vue.axios.get('http://search.eschr.com/demo/_search')
-        .then((data) => {
-          commit('responseData', data.data.hits.hits)
-          if(payload){
-            dispatch('retrieveKeywords');
-          }
-        })
-        .catch((err) => {
-          console.warn(err);
-        })
+      // Vue.axios.get('http://search.eschr.com/demo/_search')
+      //   .then((data) => {
+      //     commit('responseData', data.data.hits.hits)
+      //     if(payload){
+      //       dispatch('retrieveKeywords');
+      //     }
+      //   })
+      //   .catch((err) => {
+      //     console.warn(err);
+      //   })
+      console.log('retreiving');
     }
   },
 }

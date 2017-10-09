@@ -69,7 +69,6 @@ export default {
       this.closeButton[ref].close();
     },
     submit: function(e) {
-      console.log(e);
       store.dispatch('retrieveMatchedImages', {result: this.selectedTerm, thumbnail: false });
       this.$router.push('demodrilldown')
     }
