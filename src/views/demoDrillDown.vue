@@ -1,6 +1,5 @@
 <template lang="html">
   <div class="">
-
     <md-toolbar class="md-dense">
       <md-button class="md-icon-button">
         <router-link to="/"><md-icon>keyboard_arrow_left</md-icon></router-link>
@@ -13,6 +12,7 @@
 <script>
 
 export default {
+  name: 'demodrilldown',
   data(){
     return{
       returnedData: {}

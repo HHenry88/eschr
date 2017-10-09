@@ -1,6 +1,6 @@
 <template lang="html">
   <div class="container" v-on:click="selectImage">
-    <img v-bind:src="imgSrc" alt="">
+    <img v-bind:src="thumbnailSrc" alt="">
   </div>
 </template>
 
@@ -14,7 +14,8 @@ export default {
   props: ['image'],
   data(){
     return {
-      imgSrc: `https://s3-eu-west-1.amazonaws.com/eschr-test-demo/SOURCE/${this.image._source.resource_id}.jpg`
+      thumbnailSrc: `https://demoimg.miro.io/120_${this.image._source.resource_id}.jpg`,
+      imgSrc: `https://demoimg.miro.io/480_${this.image._source.resource_id}.jpg`
     }
   },
   methods: {
@@ -34,8 +35,7 @@ export default {
 
 <style lang="css">
 .container{
-  width: 187px;
-  height: 120px;
+  width: 230px;
 }
 
 /* resize images */

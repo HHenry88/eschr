@@ -17,7 +17,10 @@
           </md-input-container>
       </md-toolbar>
     </div>
-    <!-- <md-progress md-indeterminate></md-progress> -->
+    <clip-loader :loading="loading" :color="color" :size="size">hiiiiii</clip-loader>
+    <div class="" v-if="loading">
+      <img v-bind:src="thumbnailSrc" alt="" class="thumbnailImg">
+    </div>
     <md-dialog md-open-from="#searchButton" ref="searchDialog" class="searchDialog">
       <searchView v-bind:close-button="refss"></searchView>
     </md-dialog>
@@ -28,13 +31,19 @@
 import { mapGetters, mapActions } from 'vuex'
 import { store } from '../store/store'
 import Vue from 'vue'
+import ClipLoader from 'vue-spinner/src/ClipLoader.vue'
+
 
 export default {
   name: 'demo',
   data() {
     return {
       onlyImages: '',
-      refss: this.$refs
+      refss: this.$refs,
+      loading: false,
+      size: '300px',
+      color: 'red',
+      thumbnailSrc: ''
     }
   },
   methods: {
@@ -45,16 +54,24 @@ export default {
       this.$refs[ref].close();
     },
     uploadImage(e){
+      this.loading = true;
       const headers = {
         'Content-Type': 'image/jpeg',
       }
 
       const reader = new FileReader();
+      const thumbnail = new FileReader();
+      thumbnail.onload = (e) => {
+          this.thumbnailSrc = thumbnail.result;
+          store.dispatch('retrieveThumbnail', thumbnail.result)
+      }
+      thumbnail.readAsDataURL(e[0]);
+
       reader.onload = (e) => {
-        console.log('uploading...');
         Vue.axios.post(`https://vynwt6nfq5.execute-api.eu-west-1.amazonaws.com/demo/upload`, e.target.result, {headers: headers})
         .then((data) => {
-          store.dispatch('retrieveMatchedImages', data.data.keywords)
+          store.dispatch('retrieveMatchedImages', {result: data.data.keywords, thumbnail: true})
+          this.loading = false;
           this.$router.push('/demodrilldown')
         })
         .catch((err) => {
@@ -62,16 +79,19 @@ export default {
         })
       }
       reader.readAsArrayBuffer(e[0]);
-
     },
     ...mapActions([
       'retrieveData',
       'retrieveKeywords',
       'retrieveMatchedImages',
+      'retrieveThumbnail',
     ])
   },
   created() {
     store.dispatch('retrieveData', true)
+  },
+  components: {
+    ClipLoader
   }
 }
 </script>
@@ -105,17 +125,24 @@ export default {
   }
 
   .md-input-container {
-    width: 15% !important;
+    width: 20% !important;
   }
 
   .image-upload-icon {
     position: relative;
-    /*margin-left: 25em;*/
     margin-bottom: 45px;
+    top: 23 !important;
+    left: 0;
+    right: 0;
+    padding-left: 50px;
   }
 
   .image-upload-icon > i {
     color: red !important;
+  }
+
+  input.md-input {
+    display: none !important;
   }
 
   .md-input-container > div > .md-icon{
@@ -141,4 +168,9 @@ export default {
   i {
     color: #6DC6B5;
   }
+
+  .thumbnailImg {
+    border-radius: 15px;
+  }
+
 </style>

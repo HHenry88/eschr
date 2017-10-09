@@ -6,8 +6,8 @@
                           :list="getKeywords"
                           :filter-list="termFilter"
                           :min-chars="2"
-                          :max-height="10"
-                          @selected="submit"
+                          :max-height="20"
+                          @selected="submit($event)"
                           :debounce="500"
                           placeholder="Choose by image or type"
                           class="autocomplete-input"
@@ -68,8 +68,9 @@ export default {
     closeDialog(ref) {
       this.closeButton[ref].close();
     },
-    submit: function() {
-      store.dispatch('retrieveMatchedImages', this.selectedTerm);
+    submit: function(e) {
+      console.log(e);
+      store.dispatch('retrieveMatchedImages', {result: this.selectedTerm, thumbnail: false });
       this.$router.push('demodrilldown')
     }
   },
@@ -89,7 +90,7 @@ export default {
 
   input.md-input {
     height: 3em;
-    font-size: 36px !important;
+    font-size: 50px !important;
   }
 
   .md-menu-content {
@@ -99,7 +100,8 @@ export default {
   }
 
   .md-list-item .md-list-item-container{
-    font-size: 30px;
+    font-size: 50px;
+    line-height: 20px;
   }
 
   .imageIcons {
@@ -109,4 +111,7 @@ export default {
   .autocomplete-input {
     width: 70% !important;
   }
+
+  li { background: white; }
+  li:nth-child(even) { background: #f9f9f9; }
 </style>

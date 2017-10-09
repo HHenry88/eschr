@@ -17,6 +17,6 @@ export default {
 
 <style lang="css" scoped>
   .thumbnails-layout {
-    padding: 0.3em 1.1em 0 1.1em;
+    padding: 0.3em 1.5em 0 1.5em;
   }
 </style>

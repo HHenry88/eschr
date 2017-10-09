@@ -11,15 +11,15 @@ const searchImages = {
   },
   mutations: {
     sortMatchedImages: (state, payload) => {
-      state.searchTerm = payload;
+      state.searchTerm = payload.result;
       let query;
-      if(typeof payload === 'object') {
-        query = payload.join(',')
-        this.searchTerm = payload.join(', ')
+      if(typeof payload.result === 'object') {
+        query = payload.result.join(',')
+        this.searchTerm = payload.result.join(', ')
       } else {
-        query = payload
+        query = payload.result
       }
-      Vue.axios.get(`http://search.eschr.com/demo/_search?q=keywords:${query}`)
+      Vue.axios.get(`https://search-eschr-demo-kokjqkr3h4rrpfcwbrqzdrdhbu.ap-southeast-1.es.amazonaws.com/demo/image/_search?q=keywords:${query}`)
         .then((data) => {
           state.matchedImages = data.data.hits.hits;
         })
@@ -31,6 +31,9 @@ const searchImages = {
   actions:{
     retrieveMatchedImages: (context, payload) => {
       context.commit('sortMatchedImages', payload)
+      if(payload.thumbnail === false){
+        context.dispatch('turnOffThumbnail' )
+      }
     }
   }
 }

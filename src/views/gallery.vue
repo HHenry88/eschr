@@ -1,21 +1,23 @@
 <template lang="html">
   <div class="">
-
   <md-toolbar class="md-dense">
     <md-layout>
-      <md-layout md-align="start" md-flex=75>
-        <md-layout md-flex=10>
+      <md-layout md-align="start" md-flex=85>
+        <md-layout md-flex=10 v-if="!getThumbnailActive">
           <md-icon class="displayIcon md-size-2x">{{displayIcon}}</md-icon>
         </md-layout>
+        <md-layout md-flex=20 v-if="getThumbnailActive">
+          <img v-bind:src="getThumbnailSrc" alt="" class="thumbnailImage">
+        </md-layout>
         <md-layout>
-          <h2 style="flex: 1, float: left">{{searchTerm}}</h2>
+          <h1 style="flex: 1, float: left" class="searchTerms">{{searchTerm}}</h1>
         </md-layout>
       </md-layout>
       <md-layout md-align="end">
-        <h2 style="flex: 1,float: right">{{ getMatchedImages.length }} Photos</h2>
-        <md-button class="md-icon-button" md-align="end" style="float:right, position: relative, margin: 0">
+        <h2 style="flex: 1, margin: auto 0">{{ getMatchedImages.length }} Photos</h2>
+        <!-- <md-button class="md-icon-button" md-align="end" style="float:right, position: relative, margin: 0">
           <md-icon>keyboard_arrow_right</md-icon>
-        </md-button>
+        </md-button> -->
       </md-layout>
     </md-layout>
   </md-toolbar>
@@ -39,7 +41,9 @@ export default {
   computed: {
     ...mapGetters([
       'getMatchedImages',
-      'getSearchTerm'
+      'getSearchTerm',
+      'getThumbnailSrc',
+      'getThumbnailActive'
     ])
   },
   methods:{
@@ -71,5 +75,17 @@ export default {
 }
 .md-icon-button {
   margin: 6px 8px;
+}
+
+.thumbnailImage {
+  width: 120px;
+  height: 100px;
+  padding-left: 20px;
+  padding-top: 20%;
+}
+
+.searchTerms {
+  font-size: 2em;
+  line-height: 110%;
 }
 </style>
