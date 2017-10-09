@@ -88,7 +88,7 @@ export default {
     ])
   },
   created() {
-    store.dispatch('retrieveData', true)
+    store.dispatch('retrieveKeywords')
   },
   components: {
     ClipLoader
