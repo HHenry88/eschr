@@ -37,7 +37,6 @@ Vue.component('gallery', gallery)
 Vue.use(VueMaterial)
 Vue.use(VueAxios, axios)
 
-
 Vue.config.productionTip = false
 
 /* eslint-disable no-new */

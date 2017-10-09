@@ -1,6 +1,6 @@
 <template lang="html">
   <div class="tags" v-if="getSingleImage._source.people.length > 0">
-    <md-chip v-for="(keyword, index) in getSingleImage._source.people" :key="index" md-editable v-bind:style="">
+    <md-chip v-for="(keyword, index) in keywords" :key="index" md-editable v-bind:style="">
       <span v-on:click="changeTag(keyword)">{{keyword}}</span>
     </md-chip>
   </div>
@@ -14,7 +14,7 @@ import Vue from 'vue'
 export default {
   data(){
     return {
-      keywords: this.getKeywordsTracker
+      keywords: []
     }
   },
   computed:{
@@ -30,6 +30,13 @@ export default {
       store.dispatch('retrieveMatchedImages', {result: term, thumbnail: false});
       this.$router.push('/demodrilldown');
     }
+  },
+  created(){
+    this.keywords = this.getSingleImage._source.people.filter((word) => {
+      if(word !== null){
+        return word
+      }
+    })
   }
 }
 </script>
