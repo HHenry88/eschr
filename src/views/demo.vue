@@ -88,7 +88,7 @@ export default {
     ])
   },
   created() {
-    store.dispatch('retrieveData', true)
+    store.dispatch('retrieveData')
     store.dispatch('retrieveKeywords')
   },
   components: {
