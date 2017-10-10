@@ -13,15 +13,24 @@ const searchImages = {
   mutations: {
     sortMatchedImages: (state, payload) => {
       state.searchTerm = payload.result;
-      let query;
+      let query = []
       if(typeof payload.result === 'object') {
-        query = payload.result.join(',')
+        query = payload.result
         this.searchTerm = payload.result.join(', ')
       } else {
-        query = payload.result
+        query.push(payload.result)
       }
-      Vue.axios.get(`https://search-eschr-demo-kokjqkr3h4rrpfcwbrqzdrdhbu.ap-southeast-1.es.amazonaws.com/demo/image/_search?q=keywords:${query}&size=100`)
+      Vue.axios.post(`https://search-eschr-demo-kokjqkr3h4rrpfcwbrqzdrdhbu.ap-southeast-1.es.amazonaws.com/test/tags/_search`,
+        {
+          size: 100,
+          "query" : {
+            "terms" : {
+              "keywords" : query
+            }
+          }
+        })
         .then((data) => {
+          console.log(data);
           state.matchedImages = data.data.hits.hits;
           router.push('/demodrilldown')
         })

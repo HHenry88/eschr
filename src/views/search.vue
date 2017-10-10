@@ -12,6 +12,7 @@
                           placeholder="Choose by image or type"
                           class="autocomplete-input"
                           print-attribute="name"
+                          ref="typeBox"
                           >
       </md-autocomplete>
       <div class="" v-if="routeName !== 'demo'">

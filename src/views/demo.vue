@@ -32,7 +32,7 @@
       <img v-bind:src="thumbnailSrc" alt="" class="thumbnailImg">
     </div>
 
-    <md-dialog md-open-from="#searchButton" ref="searchDialog" class="searchDialog">
+    <md-dialog md-open-from="#searchButton" ref="searchDialog" class="searchDialog" id="search-dialog">
       <searchView v-bind:close-button="refss"></searchView>
     </md-dialog>
 
@@ -59,7 +59,17 @@ export default {
   },
   methods: {
     openDialog(ref) {
+      // console.log(this.$refs.searchDialog.$children[0].$children[0].$children[1].$refs);
+      // this.$refs.searchDialog.$children[0].$children[0].$children[1].$refs.input.focus();
       this.$refs[ref].open();
+      // this.$refs.searchDialog.$children[0].$children[0].$children[1].$refs.input.__proto__.__proto__.focus()
+      // this.$nextTick(() => {
+        // console.log(this.$refs.searchDialog.$children[0].$children[0].$children[1].$refs);
+        // console.log(this.$refs.searchDialog.$refs);
+        // this.$refs.typeBox.input.focus();
+        // this.$refs.searchDialog.$children[0].$children[0].$children[1].$refs.input.__proto__.__proto__.focus()
+        // this.$refs.searchDialog.$children[0].$children[0].$children[1].$refs
+      // });
     },
     closeDialog(ref) {
       this.$refs[ref].close();
@@ -122,6 +132,16 @@ export default {
     margin: 10% auto;
   }
 
+  h1 {
+    /* Add Visual Search to: */
+    font-family: AvenirNext-Bold;
+    font-size: 60px;
+    color: #FFFFFF;
+    height: 3em;
+    line-height: normal;
+    margin: 0.3em;
+  }
+
   .searchBar {
     width: 90%;
     margin: 0 auto;
@@ -152,17 +172,7 @@ export default {
   .search-by-image {
     width: 50%;
     position: relative;
-    left: 19%;
-  }
-
-  h1 {
-    /* Add Visual Search to: */
-    font-family: AvenirNext-Bold;
-    font-size: 60px;
-    color: #FFFFFF;
-    height: 3em;
-    line-height: normal;
-    margin: 0.3em;
+    left: 18%;
   }
 
   .search-text {
@@ -170,10 +180,6 @@ export default {
     width: 100%;
     font-size: 30px;
     margin: auto;
-  }
-
-  button{
-    margin: 0;
   }
 
   .searchButton i {
