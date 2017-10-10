@@ -17,6 +17,7 @@ import relatedImages from './components/relatedImages'
 import tagChips from './components/tagChips'
 import peopleChips from './components/peopleChips'
 import placesChips from './components/placesChips'
+import autoComplete from './components/autoComplete'
 import searchView from './views/search'
 
 Vue.component('toolBar', toolBar)
@@ -28,6 +29,7 @@ Vue.component('relatedImages', relatedImages)
 Vue.component('tagChips', tagChips)
 Vue.component('peopleChips', peopleChips)
 Vue.component('placesChips', placesChips)
+Vue.component('autoComplete', autoComplete)
 Vue.component('searchView', searchView)
 
 //Views

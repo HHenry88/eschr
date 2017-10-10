@@ -30,7 +30,6 @@ const searchImages = {
           }
         })
         .then((data) => {
-          console.log(data);
           state.matchedImages = data.data.hits.hits;
           router.push('/demodrilldown')
         })

@@ -59,17 +59,10 @@ export default {
   },
   methods: {
     openDialog(ref) {
-      // console.log(this.$refs.searchDialog.$children[0].$children[0].$children[1].$refs);
-      // this.$refs.searchDialog.$children[0].$children[0].$children[1].$refs.input.focus();
       this.$refs[ref].open();
-      // this.$refs.searchDialog.$children[0].$children[0].$children[1].$refs.input.__proto__.__proto__.focus()
-      // this.$nextTick(() => {
-        // console.log(this.$refs.searchDialog.$children[0].$children[0].$children[1].$refs);
-        // console.log(this.$refs.searchDialog.$refs);
-        // this.$refs.typeBox.input.focus();
-        // this.$refs.searchDialog.$children[0].$children[0].$children[1].$refs.input.__proto__.__proto__.focus()
-        // this.$refs.searchDialog.$children[0].$children[0].$children[1].$refs
-      // });
+      setTimeout(()=> {
+        document.getElementById("autocompleteTextField").focus()
+      },1)
     },
     closeDialog(ref) {
       this.$refs[ref].close();
@@ -122,7 +115,7 @@ export default {
     position: absolute;
     display: block;
     width: 100%;
-    height: 100%;
+    min-height: 100%;
     /* bounds: */
     background-image: linear-gradient(-131deg, #00C5F0 0%, #3B51AD 100%);
     /* Kabob Menu Icon: */
