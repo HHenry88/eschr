@@ -1,4 +1,5 @@
 import Vue from 'vue'
+import router from '../router/index'
 
 const searchImages = {
   state:{
@@ -22,6 +23,7 @@ const searchImages = {
       Vue.axios.get(`https://search-eschr-demo-kokjqkr3h4rrpfcwbrqzdrdhbu.ap-southeast-1.es.amazonaws.com/demo/image/_search?q=keywords:${query}&size=100`)
         .then((data) => {
           state.matchedImages = data.data.hits.hits;
+          router.push('/demodrilldown')
         })
         .catch((err) => {
           console.warn(err);

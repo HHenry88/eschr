@@ -570,7 +570,6 @@ export default {
     },
     submit: function(e) {
       store.dispatch('retrieveMatchedImages', {result: this.selectedTerm, thumbnail: false });
-      this.$router.push('/demodrilldown');
     }
   },
   computed:{

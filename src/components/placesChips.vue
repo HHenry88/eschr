@@ -28,7 +28,6 @@ export default {
     ]),
     changeTag: function(term) {
       store.dispatch('retrieveMatchedImages', {result: term, thumbnail: false});
-      this.$router.push('/demodrilldown');
     }
   }
 }

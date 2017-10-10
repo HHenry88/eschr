@@ -6,16 +6,22 @@
       <h1>Add Visual Search to Your App or Project in <u>Minutes</u></h1>
       <md-toolbar class="md-large searchBar">
         <md-button class="md-icon-button searchButton" v-on:click="openDialog('searchDialog')">
-          <md-icon class="md-size-4x">search</md-icon>
+          <md-layout>
+            <md-layout md-flex="20">
+              <md-icon class="md-size-4x">search</md-icon>
+            </md-layout>
+            <md-layout md-flex="10">
+              <img src="../assets/grey-bar.png" alt="" class="">
+            </md-layout>
+            <md-layout>
+              <h2 class="md-title search-text" style="flex: 1">SEARCH</h2>
+            </md-layout>
+          </md-layout>
         </md-button>
-        <img src="../assets/grey-bar.png" alt="" class="">
-        <h2 class="md-title search-text" style="flex: 1">SEARCH</h2>
-        <md-input-container>
-          <label class="image-upload-icon" for="file-input">
-            <md-icon class="md-size-4x">photo_camera</md-icon>
-          </label>
-          <input type="file" id="file-input" class="image-upload" v-on:change="uploadImage($event)"></input>
-          </md-input-container>
+        <label class="image-upload-icon" for="file-input">
+          <md-icon class="md-size-4x">photo_camera</md-icon>
+        </label>
+        <input type="file" id="file-input" class="image-upload" v-on:change="uploadImage($event)"></input>
       </md-toolbar>
       <img src="../assets/searchByImage.png" alt="" class="search-by-image">
     </div>
@@ -77,7 +83,6 @@ export default {
         .then((data) => {
           store.dispatch('retrieveMatchedImages', {result: data.data.keywords, thumbnail: true})
           this.loading = false;
-          this.$router.push('/demodrilldown')
         })
         .catch((err) => {
           console.warn(err);
@@ -119,41 +124,35 @@ export default {
 
   .searchBar {
     width: 90%;
-    margin: auto;
+    margin: 0 auto;
     margin-bottom: -2%;
-    background-color: white !important;
+    background-color: white;
     border-radius: 15px;
   }
 
   .searchButton {
-    width: 10%;
-    height: 100px;
-    margin-left: 1em !important;
-  }
-
-  .md-input-container {
-    width: 20% !important;
+    width: 80%;
+    height: 120px;
   }
 
   .image-upload-icon {
     position: relative;
-    margin-bottom: 45px;
-    top: 23 !important;
-    left: 0;
-    right: 0;
-    padding-left: 50px;
+    left: 4%;
   }
 
-  .image-upload-icon > i {
-    color: red !important;
+  .image-upload-icon i{
+    color: red;
   }
 
-  input.md-input {
-    /*display: none !important;*/
+  .image-upload {
+    /*So 'Choose file' button does not appear and uses camera icon to input file*/
+    display: none;
   }
 
-  .md-input-container > div > .md-icon{
-    display: none !important;
+  .search-by-image {
+    width: 50%;
+    position: relative;
+    left: 19%;
   }
 
   h1 {
@@ -166,20 +165,21 @@ export default {
     margin: 0.3em;
   }
 
-  .search-by-image {
-    width: 50%;
-    position: relative;
-    left: 19%;
-  }
-
   .search-text {
     color: red;
     width: 100%;
     font-size: 30px;
+    margin: auto;
   }
 
-  i {
+  button{
+    margin: 0;
+  }
+
+  .searchButton i {
     color: #6DC6B5;
+    margin-left: 3%;
+    margin-top: 2%;
   }
 
   .thumbnailImg {
