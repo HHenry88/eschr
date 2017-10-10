@@ -1,30 +1,36 @@
 <template>
   <div class="demoView">
-    <div class="content">
 
+    <div class="content">
       <img src="../assets/it2g.png" alt="miro" class="miroImg">
-      <h1>Add Visual Search to Your App or Project in Minutes</h1>
+      <h1>Add Visual Search to Your App or Project in <u>Minutes</u></h1>
       <md-toolbar class="md-large searchBar">
         <md-button class="md-icon-button searchButton" v-on:click="openDialog('searchDialog')">
           <md-icon class="md-size-4x">search</md-icon>
         </md-button>
-
-        <h2 class="md-title search-by-image" style="flex: 1">SEARCH BY IMAGE</h2>
-
+        <img src="../assets/grey-bar.png" alt="" class="">
+        <h2 class="md-title search-text" style="flex: 1">SEARCH</h2>
         <md-input-container>
-          <label class="image-upload-icon"><md-icon class="md-size-4x" for="file-input">photo_camera</md-icon></label>
-          <md-file v-model="onlyImages" accept="image/*" id="file-input" class="image-upload" @selected="uploadImage($event)"></md-file>
+          <label class="image-upload-icon" for="file-input">
+            <md-icon class="md-size-4x">photo_camera</md-icon>
+          </label>
+          <input type="file" id="file-input" class="image-upload" v-on:change="uploadImage($event)"></input>
           </md-input-container>
       </md-toolbar>
+      <img src="../assets/searchByImage.png" alt="" class="search-by-image">
     </div>
-    <clip-loader :loading="loading" :color="color" :size="size">hiiiiii</clip-loader>
+
+    <clip-loader :loading="loading" :color="color" :size="size"></clip-loader>
+
     <div class="" v-if="loading">
       <img v-bind:src="thumbnailSrc" alt="" class="thumbnailImg">
     </div>
+
     <md-dialog md-open-from="#searchButton" ref="searchDialog" class="searchDialog">
       <searchView v-bind:close-button="refss"></searchView>
     </md-dialog>
-</div>
+
+  </div>
 </template>
 
 <script>
@@ -38,7 +44,6 @@ export default {
   name: 'demo',
   data() {
     return {
-      onlyImages: '',
       refss: this.$refs,
       loading: false,
       size: '300px',
@@ -65,7 +70,7 @@ export default {
           this.thumbnailSrc = thumbnail.result;
           store.dispatch('retrieveThumbnail', thumbnail.result)
       }
-      thumbnail.readAsDataURL(e[0]);
+      thumbnail.readAsDataURL(e.target.files[0]);
 
       reader.onload = (e) => {
         Vue.axios.post(`https://vynwt6nfq5.execute-api.eu-west-1.amazonaws.com/demo/upload`, e.target.result, {headers: headers})
@@ -78,7 +83,7 @@ export default {
           console.warn(err);
         })
       }
-      reader.readAsArrayBuffer(e[0]);
+      reader.readAsArrayBuffer(e.target.files[0]);
     },
     ...mapActions([
       'retrieveData',
@@ -115,6 +120,7 @@ export default {
   .searchBar {
     width: 90%;
     margin: auto;
+    margin-bottom: -2%;
     background-color: white !important;
     border-radius: 15px;
   }
@@ -143,7 +149,7 @@ export default {
   }
 
   input.md-input {
-    display: none !important;
+    /*display: none !important;*/
   }
 
   .md-input-container > div > .md-icon{
@@ -161,6 +167,12 @@ export default {
   }
 
   .search-by-image {
+    width: 50%;
+    position: relative;
+    left: 19%;
+  }
+
+  .search-text {
     color: red;
     width: 100%;
     font-size: 30px;
