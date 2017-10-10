@@ -5,10 +5,10 @@
       <md-autocomplete v-model="selectedTerm"
                           :list="keywords"
                           :filter-list="termFilter"
-                          :min-chars="2"
-                          :max-height="20"
+                          :min-chars="1"
+                          :max-height="30"
                           @selected="submit($event)"
-                          :debounce="500"
+                          :debounce="50"
                           placeholder="Choose by image or type"
                           class="autocomplete-input"
                           print-attribute="name"
@@ -553,15 +553,16 @@ export default {
     ]),
     termFilter: function(list, query) {
       var arr = [];
-
+      query = query.toLowerCase();
       for(var i = 0; i < list.length; i++) {
-        if(list[i].name.indexOf(query) !== -1)
-          arr.push(list[i]);
-
+        var term = list[i].name;
+        if(term.indexOf(query) !== -1) {
+          arr.push({ name: list[i].name });
+        }
         if(arr.length > 5)
           break;
       }
-
+      console.log(arr);
       return arr;
     },
     closeDialog(ref) {
