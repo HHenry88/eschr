@@ -22,7 +22,7 @@ import { store } from '../store/store'
 export default {
   data(){
     return {
-      isOpen: true,
+      isOpen: false,
       highlightedPosition:0,
       keyword: '',
       options: [
