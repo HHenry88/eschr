@@ -1,9 +1,9 @@
 <template lang="html">
   <div>
     <md-layout class="searchHeader">
-      <md-layout md-flex="10">
-        <md-button v-on:click="closeDialog('searchDialog')">
-          <md-icon class="md-size-2x">keyboard_arrow_left</md-icon>
+      <md-layout md-flex="10" >
+        <md-button class="backButton" v-on:click="closeDialog('searchDialog')">
+          <md-icon class="md-size-5x">keyboard_arrow_left</md-icon>
         </md-button>
       </md-layout>
       <md-layout>
@@ -80,14 +80,13 @@ export default {
     min-width: 100%;
   }
 
-  .md-menu-content {
-    min-width: 100% !important;
-    left: 1% !important;
-    top: 8% !important;
-  }
-
   .searchHeader {
     height: 8em;
+  }
+
+  .backButton {
+    right: 2.5em;
+    top: 1.5em;
   }
 
   .imageIcons {

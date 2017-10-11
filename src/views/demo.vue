@@ -140,12 +140,12 @@ export default {
     margin: 0 auto;
     margin-bottom: -2%;
     background-color: white;
-    border-radius: 15px;
   }
 
   .searchButton {
     width: 80%;
     height: 120px;
+    border-radius: 0%;
   }
 
   .image-upload-icon {
@@ -178,7 +178,6 @@ export default {
   .searchButton i {
     color: #6DC6B5;
     margin-left: 3%;
-    margin-top: 2%;
   }
 
   .thumbnailImg {

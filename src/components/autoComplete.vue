@@ -1,13 +1,13 @@
 <template lang="html">
   <div id="autocomplete-input-template">
     <div class="autocomplete-input" >
-      <input v-model="keyword" type="text" ref="autocompleteRef" id="autocompleteTextField" value="text field" placeholder="Search..." @input="onInput($event.target.value)" @keyup.esc="isOpen = false" @blur="isOpen = false" @keydown.down="moveDown" @keydown.up="moveUp" @keydown.enter="select">
+      <input v-model="keyword" type="text" ref="autocompleteRef" id="autocompleteTextField" value="text field" placeholder="Search for Image" @input="onInput($event.target.value)" @keyup.esc="isOpen = false" @blur="isOpen = false" @keydown.down="moveDown" @keydown.up="moveUp" @keydown.enter="select">
       <ul v-show="isOpen" class="options-list">
         <li v-for="(option, index) in fOptions" :class="{
             'highlighted': index === highlightedPosition
             }" @mouseenter="highlightedPosition = index" @mousedown="select">
-          <div class="">
-            <h1>{{option.name}}</h1>
+          <div class="autocomplete-option">
+            <p class="optionText"><md-icon class="md-size-2x optionIcon">search</md-icon> {{option.name}}</p>
           </div>
         </li>
       </ul>
@@ -22,7 +22,7 @@ import { store } from '../store/store'
 export default {
   data(){
     return {
-      isOpen: false,
+      isOpen: true,
       highlightedPosition:0,
       keyword: '',
       options: [
@@ -534,7 +534,7 @@ export default {
     ]),
     fOptions() {
       const re = new RegExp(this.keyword, 'i')
-      return this.options.filter(o => o.name.match(re))
+      return this.options.filter(o => o.name.match(re)).slice(0, 10);
     }
   },
   methods: {
@@ -569,12 +569,11 @@ export default {
 
 <style lang="css" scoped>
 #autocomplete-input-template {
-  width: 90%;
+  width: 100%;
   margin-top: 2%;
 }
 
 ul {
-  list-style-type: none;
   padding: 0;
 }
 
@@ -585,9 +584,10 @@ li {
 
 input {
   font-family: 'Avenir', Helvetica, Arial, sans-serif;
-  width: 90%;
-  font-size: 50px;
+  width: 95%;
+  font-size: 70px;
   border: 1px solid black;
+  padding: 2%;
 }
 
 .autocomplete-input {
@@ -601,7 +601,7 @@ ul.options-list {
   border: 1px solid #dbdbdb;
   border-radius: 0 0 3px 3px;
   position: absolute;
-  width: 90%;
+  width: 95%;
   overflow: hidden;
 }
 
@@ -609,14 +609,32 @@ ul.options-list li {
   width: 100%;
   flex-wrap: wrap;
   background: white;
-  margin: 0;
   border-bottom: 1px solid #eee;
   color: #363636;
-  padding: 7px;
+  margin: 0;
+  padding: 30px 7px;
   cursor: pointer;
 }
 
 ul.options-list li.highlighted {
   background: #f8f8f8
+}
+
+.autocomplete-option {
+  font-size: 4em;
+}
+
+.optionIcon {
+  background: #3B51AD;
+  border-radius: 50%;
+  color: white;
+  padding: 5px;
+  width: 1.3em;
+  height: auto;
+  margin: auto;
+}
+
+.optionText {
+  padding-top: 15px;
 }
 </style>

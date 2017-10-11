@@ -15,7 +15,7 @@ export default {
   data(){
     return {
       thumbnailSrc: `https://demoimg.miro.io/120_${this.image._source.resource_id}.jpg`,
-      imgSrc: `https://demoimg.miro.io/480_${this.image._source.resource_id}.jpg`
+      imgSrc: `https://demoimg.miro.io/full/${this.image._source.resource_id}.jpg`
     }
   },
   methods: {
