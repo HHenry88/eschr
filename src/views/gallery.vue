@@ -71,7 +71,7 @@ export default {
 
 <style lang="css" scoped>
 .md-dense {
-  background: #fff;
+  background: #fff !important;
   color: #9FA9BA;
 }
 
