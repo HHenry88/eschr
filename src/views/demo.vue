@@ -52,7 +52,7 @@ export default {
     return {
       refss: this.$refs,
       loading: false,
-      size: '300px',
+      size: '200px',
       color: 'red',
       thumbnailSrc: ''
     }
@@ -119,7 +119,7 @@ export default {
     /* bounds: */
     background-image: linear-gradient(-131deg, #00C5F0 0%, #3B51AD 100%);
     /* Kabob Menu Icon: */
-
+    overflow: scroll;
   }
   .content {
     margin: 10% auto;
@@ -150,7 +150,7 @@ export default {
 
   .image-upload-icon {
     position: relative;
-    left: 4%;
+    left: 2em;
   }
 
   .image-upload-icon i{
@@ -177,11 +177,13 @@ export default {
 
   .searchButton i {
     color: #6DC6B5;
-    margin-left: 3%;
+    margin-left: 0.2em;
   }
 
   .thumbnailImg {
     border-radius: 15px;
+    max-width: 50%;
+    height: auto;
   }
 
 </style>

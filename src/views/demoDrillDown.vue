@@ -21,7 +21,11 @@ export default {
 }
 </script>
 
-<style lang="css">
+<style lang="css" scoped>
+  .md-dense {
+    background-image: linear-gradient(-131deg, #00C5F0 0%, #3B51AD 100%);
+  }
+
   .md-icon {
     color: white;
   }
@@ -29,5 +33,6 @@ export default {
   .md-icon-button {
     font-size: 40px;
     height: 100px !important;
+    border-radius: 0%;
   }
 </style>

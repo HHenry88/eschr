@@ -89,6 +89,10 @@ export default {
     top: 1.5em;
   }
 
+  .backButton i {
+    color: #000;
+  }
+
   .imageIcons {
     width: 20%;
   }

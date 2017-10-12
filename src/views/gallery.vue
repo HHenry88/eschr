@@ -2,7 +2,7 @@
   <div class="">
   <md-toolbar class="md-dense">
     <md-layout>
-      <md-layout md-align="start" md-flex=85>
+      <md-layout md-align="start" md-flex="85">
         <md-layout md-flex=10 v-if="!getThumbnailActive">
           <md-icon class="displayIcon md-size-2x">{{displayIcon}}</md-icon>
         </md-layout>
@@ -13,8 +13,8 @@
           <h1 style="flex: 1, float: left" class="searchTerms">{{searchTerm}}</h1>
         </md-layout>
       </md-layout>
-      <md-layout md-align="end">
-        <h2 style="flex: 1, margin: auto 0">{{ getMatchedImages.length }} Photos</h2>
+      <md-layout>
+        <h1 style="flex: 1, margin: auto 0" class="searchTerms">{{ getMatchedImages.length }} Photos</h1>
         <!-- <md-button class="md-icon-button" md-align="end" style="float:right, position: relative, margin: 0">
           <md-icon>keyboard_arrow_right</md-icon>
         </md-button> -->
@@ -70,6 +70,11 @@ export default {
 </script>
 
 <style lang="css" scoped>
+.md-dense {
+  background: #fff;
+  color: #9FA9BA;
+}
+
 .displayIcon {
   margin: 5px;
 }
@@ -85,7 +90,6 @@ export default {
 }
 
 .searchTerms {
-  font-size: 2em;
   line-height: 110%;
 }
 </style>
