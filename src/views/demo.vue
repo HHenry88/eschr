@@ -157,6 +157,10 @@ export default {
       color: red;
   }
 
+  .image-upload-icon:hover {
+    cursor: pointer;
+  }
+
   .image-upload {
       /*So 'Choose file' button does not appear and uses camera icon to input file*/
       display: none;

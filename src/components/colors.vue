@@ -1,18 +1,18 @@
 <template lang="html">
-  <b-container fluid class="tags">
+  <b-container fluid class="colors">
     <b-row class="info-header">
       <b-col col sm="1" class='icon'>
-        <img src='static/img/tags-icon.png' />
+        <img src='static/img/colors-icon.png' />
       </b-col>
       <b-col col sm="10">
-        <div class='info-title'>Things</div>
+        <div class='info-title'>Colors</div>
 	    </b-col>
     </b-row>
     <b-row class="justify-content-md-center">
       <b-col col lg="1"></b-col>
       <b-col cols="11">
-        <div v-for="(keyword, index) in keywords" :key="index" v-bind:style="">
-          <div v-on:click="changeTag(keyword)" class="tag blue">{{keyword}}</div>
+        <div v-for="(keyword, index) in keywords" :key="index" class="tags">
+          <div v-on:click="changeTag(keyword)" class="tag" v-bind:style="{background: keyword}"></div>
         </div>
       </b-col>
     </b-row>
@@ -27,7 +27,7 @@ import Vue from 'vue'
 export default {
   data(){
     return {
-      keywords: []
+      keywords: ['dodgerblue', 'mediumpurple', 'limegreen', 'yellow', 'tomato', 'orange']
     }
   },
   computed:{
@@ -40,21 +40,22 @@ export default {
       'retrieveMatchedImages'
     ]),
     changeTag: function(term) {
-      store.dispatch('retrieveMatchedImages', {result: term, thumbnail: false});
+      // store.dispatch('retrieveMatchedImages', {result: term, thumbnail: false});
+      console.log('you picked:', term);
     }
   },
   created(){
-    this.keywords = this.getSingleImage._source.keywords.filter((word) => {
-      if(word !== null){
-        return word
-      }
-    })
+    // this.keywords = this.getSingleImage._source.keywords.filter((word) => {
+    //   if(word !== null){
+    //     return word
+    //   }
+    // })
   }
 }
 </script>
 
 <style lang="css" scoped>
-  .tags {
+  .colors {
     margin-bottom: 2em;
   }
 
@@ -63,22 +64,13 @@ export default {
   	float:left;
   	padding: 5px 8px 3px 8px;
   	margin: 0px 10px 5px 0px;
-  	background: #FFF;
-  	border:1px solid #006FFF;
-  	font-size: 1.5em;
-    font-weight: bold;
-  	color:#006FFF;
+  	width: 6.5em;
+    height: 2.5em;
 	}
 
   .tag:hover{
     cursor: pointer;
   }
-
-  .blue {
-  	background: #006FFF;
-  	border:1px solid #006FFF;
-  	color:#fff;
-	}
 
   .icon {
     margin-top: 0.5em;

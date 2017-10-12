@@ -1,11 +1,9 @@
 <template lang="html">
-  <md-layout class='thumbnails-layout'>
-    <md-card v-for="(image,key) in images" :key="key" md-with-hover>
-      <md-card-media>
+  <b-row class='thumbnails-layout'>
+    <b-col cols="*" sm="5" md="3" lg="2" v-for="(image,key) in images" :key="key" md-with-hover class="thumbnailcols">
         <thumbnail v-bind:image='image'></thumbnail>
-      </md-card-media>
-    </md-card>
-  </md-layout>
+    </b-col>
+  </b-row>
 </template>
 
 <script>
@@ -17,6 +15,11 @@ export default {
 
 <style lang="css" scoped>
   .thumbnails-layout {
-    padding: 0.3em 1.5em 0 1.5em;
+    padding: 0.3em 0.5em 0 0.5em;
+    margin: 0;
+  }
+
+  .thumbnailcols {
+    padding: 0;
   }
 </style>

@@ -10,11 +10,16 @@
     </md-toolbar>
 
     <img v-bind:src="getSingleImageSrc" alt="">
-    <tags v-bind:chips="getSingleImage._source.people" bgcolor="#9DC4B6" icon="account_circle"></tags>
+    <!-- <tags v-bind:chips="getSingleImage._source.people" bgcolor="#9DC4B6" icon="account_circle"></tags>
     <tags v-bind:chips="getSingleImage._source.places" bgcolor="#0193DC" icon="location_on"></tags>
-    <tags v-bind:chips="getSingleImage._source.keywords" bgcolor="lightgrey" icon="label"></tags>
+    <tags v-bind:chips="getSingleImage._source.keywords" bgcolor="lightgrey" icon="label"></tags> -->
     <!-- <singleItemMap></singleItemMap> -->
     <!-- <relatedImages></relatedImages> -->
+    <people></people>
+    <tagChips></tagChips>
+    <colors></colors>
+    <dateTime></dateTime>
+    <location></location>
   </div>
 </template>
 
@@ -72,5 +77,10 @@ export default {
   .searchKeyword {
     font-size: 3em;
     margin-left: 1em;
+    line-height: normal;
+  }
+
+  img {
+    margin-bottom: 2em;
   }
 </style>

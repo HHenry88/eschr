@@ -1,6 +1,6 @@
 <template lang="html">
-  <div class="container" v-on:click="selectImage">
-    <img v-bind:src="thumbnailSrc" alt="">
+  <div class="thumbnails" v-on:click="selectImage">
+    <img v-bind:src="thumbnailSrc" alt="" class="thumbnail-img">
   </div>
 </template>
 
@@ -33,14 +33,22 @@ export default {
 }
 </script>
 
-<style lang="css">
-.container{
-  width: 234px;
+<style lang="css" scoped>
+.thumbnails{
+  width: 100%;
+}
+
+.thumbnails:hover{
+  cursor: pointer;
+}
+
+.thumbnail-img {
+  width: 100%;
 }
 
 /* resize images */
-.container img {
+/*.thumbnails img {
   width: 100%;
   height: auto;
-}
+}*/
 </style>

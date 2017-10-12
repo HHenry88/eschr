@@ -1,20 +1,26 @@
 <template lang="html">
-  <b-container fluid class="tags">
+  <b-container fluid class="people" v-if="keywords.length > 0">
     <b-row class="info-header">
       <b-col col sm="1" class='icon'>
-        <img src='static/img/tags-icon.png' />
+        <img src='static/img/people-icon.png' />
       </b-col>
       <b-col col sm="10">
-        <div class='info-title'>Things</div>
+        <div class='info-title'>People</div>
 	    </b-col>
     </b-row>
     <b-row class="justify-content-md-center">
       <b-col col lg="1"></b-col>
-      <b-col cols="11">
-        <div v-for="(keyword, index) in keywords" :key="index" v-bind:style="">
-          <div v-on:click="changeTag(keyword)" class="tag blue">{{keyword}}</div>
-        </div>
+      <b-col cols="10" class="portraits">
+        <b-row>
+          <b-col v-for="(keyword, index) in keywords" :key="index" v-bind:style="" col sm="3">
+            <div v-on:click="changeTag(keyword)" class="tag">
+              <img src="static/img/people-icon.png" alt="" id="portrait">
+              {{keyword}}
+            </div>
+          </b-col>
+        </b-row>
       </b-col>
+      <b-col col lg="1"></b-col>
     </b-row>
   </b-container>
 </template>
@@ -44,7 +50,7 @@ export default {
     }
   },
   created(){
-    this.keywords = this.getSingleImage._source.keywords.filter((word) => {
+    this.keywords = this.getSingleImage._source.people.filter((word) => {
       if(word !== null){
         return word
       }
@@ -54,24 +60,25 @@ export default {
 </script>
 
 <style lang="css" scoped>
-  .tags {
+  .people {
     margin-bottom: 2em;
   }
 
   .tag, .color {
   	text-transform:uppercase;
   	float:left;
-  	padding: 5px 8px 3px 8px;
-  	margin: 0px 10px 5px 0px;
+  	padding: 5px 8px 3px 0px;
+  	margin: 0px 5px 5px 0px;
   	background: #FFF;
-  	border:1px solid #006FFF;
-  	font-size: 1.5em;
-    font-weight: bold;
-  	color:#006FFF;
+  	font-size:1.5em;
 	}
 
   .tag:hover{
     cursor: pointer;
+  }
+
+  #portrait {
+    min-width: 80%;
   }
 
   .blue {
@@ -84,12 +91,12 @@ export default {
     margin-top: 0.5em;
   }
 
-  .icon img {
+	.icon img {
   	min-width:80%;
   	max-width:1.5em;
   	float:right;
 	}
-  .info-title {
+	.info-title {
   	font-weight:bold;
   	font-size:2em;
   	color:#2a2a2a;
@@ -102,4 +109,8 @@ export default {
     font-size:.80em;
     color: #ccc;
 	}
+
+  .portraits {
+    padding-left: 0;
+  }
 </style>
