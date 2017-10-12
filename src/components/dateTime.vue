@@ -5,7 +5,7 @@
         <img src='static/img/time-icon.png' />
       </b-col>
       <b-col col sm="10">
-        <div class='info-title'>{{formattedDate}}</div>
+        <div class='info-title'>{{createdDate | formatDate}}</div>
 	    </b-col>
     </b-row>
     <b-row>
@@ -21,11 +21,12 @@
 
 <script>
 import { mapGetters } from 'vuex'
+import { parse } from 'exif-date'
 
 export default {
   data(){
     return {
-      formattedDate: ''
+      createdDate: ''
     }
   },
   computed:{
@@ -34,16 +35,14 @@ export default {
     ])
   },
   created(){
-    const created = this.getSingleImage._source.exif.created.split(' ')
-    created[0] = created[0].replace(':', '-');
-    const date = new Date(created.join(' '));
-    this.formattedDate = date;
+    const created = parse(this.getSingleImage._source.exif.created)
+    if(created) this.createdDate = created;
     this.logger();
     console.log(this);
   },
   methods:{
     logger: function(){
-      console.log('in logger',this.formattedDate);
+      console.log('in logger',this.createdDate);
     }
   }
 }
