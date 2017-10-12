@@ -19,9 +19,6 @@ const elasticSearch = {
       Vue.axios.get('https://search-eschr-demo-kokjqkr3h4rrpfcwbrqzdrdhbu.ap-southeast-1.es.amazonaws.com/demo/_search')
         .then((data) => {
           commit('responseData', data.data.hits.hits)
-          if(payload){
-            dispatch('retrieveKeywords');
-          }
         })
         .catch((err) => {
           console.warn(err);

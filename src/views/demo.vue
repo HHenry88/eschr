@@ -102,7 +102,6 @@ export default {
   },
   created() {
     store.dispatch('retrieveData')
-    store.dispatch('retrieveKeywords')
   },
   components: {
     ClipLoader
