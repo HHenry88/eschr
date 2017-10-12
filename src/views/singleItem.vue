@@ -1,12 +1,12 @@
 <template lang="html">
   <div class="single-item-container">
     <md-toolbar class="md-dense">
+      <md-button class="md-icon-button" >
       <router-link to="/demodrilldown">
-        <md-button class="md-icon-button" >
-          <md-icon>keyboard_arrow_left</md-icon>
-        </md-button>
+          <md-icon class="md-size-3x">keyboard_arrow_left</md-icon>
       </router-link>
-      <h2 class="md-title" style="flex: 1, float: left">{{searchTerm}}</h2>
+      </md-button>
+      <h1 class="md-title searchKeyword" style="flex: 1, float: left">{{searchTerm}}</h1>
     </md-toolbar>
 
     <img v-bind:src="getSingleImageSrc" alt="">
@@ -54,12 +54,22 @@ export default {
 </script>
 
 <style lang="css" scoped>
-  .single-item-container {
-    padding: 0.5%;
+  .md-dense {
+    background-image: linear-gradient(-131deg, #00C5F0 0%, #3B51AD 100%);
   }
 
-  img {
-    margin-top: 5%;
-    border: 1px solid grey;
+  .md-icon-button {
+    font-size: 40px;
+    height: 100px !important;
+    border-radius: 0%;
+  }
+
+  .md-icon {
+    color: #fff;
+  }
+
+  .searchKeyword {
+    font-size: 3em;
+    margin-left: 1em;
   }
 </style>

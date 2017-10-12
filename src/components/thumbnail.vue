@@ -35,7 +35,7 @@ export default {
 
 <style lang="css">
 .container{
-  width: 230px;
+  width: 234px;
 }
 
 /* resize images */

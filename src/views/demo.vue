@@ -129,7 +129,7 @@ export default {
     /* Add Visual Search to: */
     font-family: AvenirNext-Bold;
     font-size: 60px;
-    color: #FFFFFF;
+    color: #FFF;
     height: 3em;
     line-height: normal;
     margin: 0.3em;
@@ -139,7 +139,7 @@ export default {
     width: 90%;
     margin: 0 auto;
     margin-bottom: -2%;
-    background-color: white;
+    background-color: #FFF !important;
   }
 
   .searchButton {

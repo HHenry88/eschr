@@ -27,7 +27,7 @@ export default {
   }
 
   .md-icon {
-    color: white;
+    color: #fff;
   }
 
   .md-icon-button {
