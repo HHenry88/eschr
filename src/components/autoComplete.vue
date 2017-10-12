@@ -570,7 +570,7 @@ export default {
 <style lang="css" scoped>
 #autocomplete-input-template {
   width: 100%;
-  margin-top: 2%;
+  margin-top: 1%;
 }
 
 ul {
@@ -636,5 +636,34 @@ ul.options-list li.highlighted {
 
 .optionText {
   padding-top: 15px;
+}
+
+@media only screen  and (min-width : 1224px) {
+    .autocomplete-input {
+        top: 2em;
+    }
+
+    #autocompleteTextField {
+        font-size: 2em;
+    }
+
+    ul.options-list li {
+        padding: 5px 7px;
+    }
+
+    .autocomplete-option {
+        font-size: 2em;
+    }
+
+    .optionIcon {
+        font-size: 1em;
+        margin: 0 0.2em;
+        min-width: 0.2em;
+        min-height: auto;
+    }
+
+    .optionText {
+      padding-top: 5px;
+    }
 }
 </style>

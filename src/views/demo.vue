@@ -112,78 +112,107 @@ export default {
 
 <style scoped>
   .demoView {
-    position: absolute;
-    display: block;
-    width: 100%;
-    min-height: 100%;
-    /* bounds: */
-    background-image: linear-gradient(-131deg, #00C5F0 0%, #3B51AD 100%);
-    /* Kabob Menu Icon: */
-    overflow: scroll;
+      position: absolute;
+      display: block;
+      width: 100%;
+      min-height: 100%;
+      /* bounds: */
+      background-image: linear-gradient(-131deg, #00C5F0 0%, #3B51AD 100%);
+      /* Kabob Menu Icon: */
+      overflow: scroll;
   }
   .content {
-    margin: 10% auto;
+      margin: 10% auto;
   }
 
   h1 {
-    /* Add Visual Search to: */
-    font-family: AvenirNext-Bold;
-    font-size: 60px;
-    color: #FFF;
-    height: 3em;
-    line-height: normal;
-    margin: 0.3em;
+      /* Add Visual Search to: */
+      font-family: AvenirNext-Bold;
+      font-size: 4em;
+      color: #FFF;
+      height: 3em;
+      line-height: normal;
+      margin: 0.3em;
   }
 
   .searchBar {
-    width: 90%;
-    margin: 0 auto;
-    margin-bottom: -2%;
-    background-color: #FFF !important;
+      width: 90%;
+      margin: 0 auto;
+      margin-bottom: -2%;
+      background-color: #FFF !important;
   }
 
   .searchButton {
-    width: 80%;
-    height: 120px;
-    border-radius: 0%;
+      width: 80%;
+      height: 120px;
+      border-radius: 0%;
   }
 
   .image-upload-icon {
-    position: relative;
-    left: 2em;
+      position: relative;
+      left: 2em;
   }
 
   .image-upload-icon i{
-    color: red;
+      color: red;
   }
 
   .image-upload {
-    /*So 'Choose file' button does not appear and uses camera icon to input file*/
-    display: none;
+      /*So 'Choose file' button does not appear and uses camera icon to input file*/
+      display: none;
   }
 
   .search-by-image {
-    width: 50%;
-    position: relative;
-    left: 18%;
+      width: 50%;
+      position: relative;
+      left: 18%;
   }
 
   .search-text {
-    color: red;
-    width: 100%;
-    font-size: 30px;
-    margin: auto;
+      color: red;
+      width: 100%;
+      font-size: 30px;
+      margin: auto;
   }
 
   .searchButton i {
-    color: #6DC6B5;
-    margin-left: 0.2em;
+      color: #6DC6B5;
+      margin-left: 0.2em;
   }
 
   .thumbnailImg {
-    border-radius: 15px;
-    max-width: 50%;
-    height: auto;
+      border-radius: 15px;
+      max-width: 50%;
+      height: auto;
+  }
+
+  @media only screen  and (min-width : 1224px) {
+    .content {
+      margin: 2% auto;
+    }
+
+    .miroImg {
+      width: 30%;
+    }
+
+    h1 {
+      font-size: 2em;
+    }
+
+    .searchBar {
+        width: 70%;
+        margin-bottom: -2%;
+    }
+
+    .image-upload-icon {
+        left: 3.5em;
+    }
+
+    .search-by-image {
+        width: 30%;
+        position: relative;
+        left: 19%;
+    }
   }
 
 </style>

@@ -89,11 +89,19 @@ export default {
     top: 1.5em;
   }
 
+  .backButton:hover {
+    background: none !important;
+  }
+
   .backButton i {
     color: #000;
   }
 
   .imageIcons {
     width: 20%;
+  }
+
+  @media only screen  and (min-width : 1224px) {
+
   }
 </style>
