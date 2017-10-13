@@ -37,11 +37,6 @@ export default {
       'getThumbnailActive'
     ])
   },
-  methods:{
-    ...mapActions([
-      'retrieveData'
-    ])
-  },
   data(){
     return {
       displayIcon: 'local_offer',
@@ -50,7 +45,6 @@ export default {
     }
   },
   created(){
-    // this.retrieveData();
     if(typeof this.getSearchTerm === 'object'){
       this.searchTerm = this.getSearchTerm.join(', ')
     } else {

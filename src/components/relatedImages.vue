@@ -35,19 +35,11 @@ export default {
       'getData'
     ])
   },
-  methods:{
-    ...mapActions([
-      'retrieveData'
-    ])
-  },
   data(){
     return {
       displayIcon: 'portrait',
       subject: 'Taylor Host',
     }
-  },
-  created(){
-    this.retrieveData();
   }
 }
 </script>

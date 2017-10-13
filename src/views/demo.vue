@@ -94,14 +94,10 @@ export default {
       reader.readAsArrayBuffer(e.target.files[0]);
     },
     ...mapActions([
-      'retrieveData',
       'retrieveKeywords',
       'retrieveMatchedImages',
       'retrieveThumbnail',
     ])
-  },
-  created() {
-    store.dispatch('retrieveData')
   },
   components: {
     ClipLoader
