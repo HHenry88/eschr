@@ -2,7 +2,9 @@
   <div class="">
       <b-container fluid class="toolbar ">
         <b-row align-v="top" class="searchInfoBar">
-          <b-col sm="9" lg="10">
+          <b-col sm="1" lg="2">
+          </b-col>
+          <b-col sm="8" lg="7">
             <md-icon class="displayIcon md-size-2x" style="" v-if="!getThumbnailActive">{{displayIcon}}</md-icon>
             <img v-bind:src="getThumbnailSrc" alt="" class="thumbnailImage"  v-if="getThumbnailActive">
             <span style="flex: 1, float: left" class="searchTerms title">{{searchTerm}}</span>
