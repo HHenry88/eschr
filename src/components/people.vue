@@ -1,21 +1,22 @@
 <template lang="html">
-  <b-container fluid class="people" v-if="keywords.length > 0">
+  <b-container fluid v-if="people.length">
     <b-row class="info-header">
       <b-col col sm="1" class='icon'>
         <img src='static/img/people-icon.png' />
       </b-col>
-      <b-col col sm="10">
+      <b-col col sm="11">
         <div class='info-title'>People</div>
 	    </b-col>
     </b-row>
-    <b-row class="justify-content-md-center">
-      <b-col col lg="1"></b-col>
+    <b-row>
+      <b-col col sm="1"></b-col>
       <b-col cols="10" class="portraits">
         <b-row>
-          <b-col v-for="(keyword, index) in keywords" :key="index" v-bind:style="" col sm="3">
-            <div v-on:click="changeTag(keyword)" class="tag">
-              <img src="static/img/people-icon.png" alt="" id="portrait">
-              {{keyword}}
+          <b-col col sm="1"></b-col>
+          <b-col v-for="(person, index) in people" :key="index" col>
+            <div v-on:click="changeTag(person)" class="portrait">
+              <img src="static/img/people-icon.png" :alt="person"><br />
+               <p>{{person}}</p>
             </div>
           </b-col>
         </b-row>
@@ -33,7 +34,7 @@ import Vue from 'vue'
 export default {
   data(){
     return {
-      keywords: []
+      people: []
     }
   },
   computed:{
@@ -50,7 +51,7 @@ export default {
     }
   },
   created(){
-    this.keywords = this.getSingleImage._source.people.filter((word) => {
+    this.people = this.getSingleImage._source.people.filter((word) => {
       if(word !== null){
         return word
       }
@@ -77,8 +78,12 @@ export default {
     cursor: pointer;
   }
 
-  #portrait {
+  .portrait {
     min-width: 80%;
+    left:auto;
+    right:auto;
+    display: block;
+    text-transform: capitalize;
   }
 
   .blue {

@@ -1,5 +1,5 @@
 <template lang="html">
-  <b-container fluid class="tags">
+  <b-container fluid class="tags" v-if="keywords.length">
     <b-row class="info-header">
       <b-col col sm="1" class='icon'>
         <img src='static/img/tags-icon.png' />

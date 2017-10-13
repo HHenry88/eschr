@@ -1,12 +1,12 @@
 <template lang="html">
-  <b-container fluid class="location">
+  <b-container fluid>
     <b-row class="info-header">
       <b-col col sm="1" class='icon'>
         <img src='static/img/location-icon.png' />
       </b-col>
       <b-col col sm="10">
         <div class='info-title'>{{location}}</div>
-	    </b-col>
+      </b-col>
     </b-row>
   </b-container>
 </template>
@@ -50,6 +50,7 @@ export default {
   	font-size:2em;
   	color:#2a2a2a;
   	text-align: left;
+  	text-transform: capitalize;
 	}
 	.info-header {
   	height:3em;

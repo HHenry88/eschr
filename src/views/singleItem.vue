@@ -1,6 +1,6 @@
 <template lang="html">
-  <div class="single-item-container">
-    <md-toolbar class="md-dense">
+  <div class="single-item-container" style="margin-top: 6em;">
+    <md-toolbar class="md-dense" style="position:fixed; width:100%; margin-top:-6em;">
       <md-button class="md-icon-button" >
       <router-link to="/demodrilldown">
           <md-icon class="md-size-3x">keyboard_arrow_left</md-icon>
@@ -83,4 +83,5 @@ export default {
   img {
     margin-bottom: 2em;
   }
+
 </style>
