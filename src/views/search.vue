@@ -75,9 +75,22 @@ export default {
 </script>
 
 <style lang="css">
+  
+  @media only screen  and (min-width : 1224px) {
+    .md-dialog.md-reference{
+          width:1080px;
+    }
+
+  }
+  @media only screen and (max-width: 1223px) {
+    .md-dialog.md-reference{
+      min-height: 100%;
+      min-width: 100%;
+    }
+  }
+  
   .md-dialog.md-reference{
     min-height: 100%;
-    min-width: 100%;
   }
 
   .searchHeader {
@@ -101,7 +114,5 @@ export default {
     width: 20%;
   }
 
-  @media only screen  and (min-width : 1224px) {
 
-  }
 </style>

@@ -1,20 +1,18 @@
 <template lang="html">
   <div class="">
     <md-toolbar class="md-dense">
-    <md-layout md-row>
-      <md-layout class="icons" md-align="end" md-flex-xsmall>
-        <md-button v-on:click="openDialog('searchDialog')" id="search"><md-icon class="searchIcon" >search</md-icon></md-button>
-        <md-icon class="md-size-2x">camera_alt</md-icon>
-        <md-icon class="md-size-2x">import_export</md-icon>
+      <md-layout md-row>
+        <md-layout class="icons" md-align="end" md-flex-xsmall>
+          <md-button v-on:click="openDialog('searchDialog')" id="search"><md-icon class="searchIcon" >search</md-icon></md-button>
+          <md-icon class="md-size-2x">camera_alt</md-icon>
+          <md-icon class="md-size-2x">import_export</md-icon>
+        </md-layout>
       </md-layout>
-    </md-layout>
-  </md-toolbar>
-
-  <md-dialog md-open-from="#searchButton" md-close-to="#custom" ref="searchDialog" class="searchDialog">
-    <searchView></searchView>
-  </md-dialog>
-
-</div>
+    </md-toolbar>
+    <md-dialog md-open-from="#searchButton" md-close-to="#custom" ref="searchDialog" class="searchDialog">
+      <searchView></searchView>
+    </md-dialog>
+  </div>
 </template>
 
 <script>
@@ -55,6 +53,7 @@ export default {
   }
   div.md-dialog-container.searchDialog.md-theme-default.md-active > div.md-dialog.md-reference{
     height: 100%;
+    max-width:1080px;
     width: 100%;
   }
 </style>

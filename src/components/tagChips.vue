@@ -10,11 +10,12 @@
     </b-row>
     <b-row class="justify-content-md-center">
       <b-col col lg="1"></b-col>
-      <b-col cols="11">
+      <b-col cols="10">
         <div v-for="(keyword, index) in keywords" :key="index" v-bind:style="">
           <div v-on:click="changeTag(keyword)" class="tag blue">{{keyword}}</div>
         </div>
       </b-col>
+      <b-col col lg="1"></b-col>
     </b-row>
   </b-container>
 </template>

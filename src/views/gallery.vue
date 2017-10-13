@@ -1,7 +1,7 @@
 <template lang="html">
   <div class="">
   <md-toolbar class="md-dense">
-      <b-row align-v="center" class="searchInfoBar">
+     <b-row align-v="center" class="searchInfoBar">
         <b-col cols="2" v-if="!getThumbnailActive">
           <md-icon class="displayIcon md-size-2x">{{displayIcon}}</md-icon>
         </b-col>

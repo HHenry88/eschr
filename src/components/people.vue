@@ -21,7 +21,7 @@
           </b-col>
         </b-row>
       </b-col>
-      <b-col col lg="1"></b-col>
+      <b-col col sm="1"></b-col>
     </b-row>
   </b-container>
 </template>
@@ -97,8 +97,8 @@ export default {
   }
 
 	.icon img {
-  	min-width:80%;
-  	max-width:1.5em;
+  	min-width:1em;
+  	max-width:3em;
   	float:right;
 	}
 	.info-title {
