@@ -83,5 +83,10 @@ export default {
   img {
     margin-bottom: 2em;
   }
+  .icon img {
+  	min-width:1em;
+  	max-width:1.5em;
+  	float:right;
+	}
 
 </style>

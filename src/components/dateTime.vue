@@ -58,8 +58,8 @@ export default {
   }
 
   .icon img {
-  	min-width:80%;
-  	max-width:1.5em;
+  	min-width:1em;
+  	max-width:3em;
   	float:right;
 	}
   

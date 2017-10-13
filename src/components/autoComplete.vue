@@ -1,7 +1,7 @@
 <template lang="html">
   <div id="autocomplete-input-template">
     <div class="autocomplete-input" >
-      <input v-model="keyword" type="text" ref="autocompleteRef" id="autocompleteTextField" value="text field" placeholder="Search for Image" @input="onInput($event.target.value)" @keyup.esc="isOpen = false" @blur="isOpen = false" @keydown.down="moveDown" @keydown.up="moveUp" @keydown.enter="select" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false">
+      <input v-model="keyword" type="text" ref="autocompleteRef" id="autocompleteTextField" value="text field" placeholder="Search for Image" @input="onInput($event.target.value)" @keyup.esc="isOpen = false" @blur="isOpen = false" @keydown.down="moveDown" @keydown.up="moveUp" @keydown.enter="select" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" role="textbox">
       <ul v-show="isOpen" class="options-list">
         <li v-for="(option, index) in getKeywords" :class="{
             'highlighted': index === highlightedPosition
@@ -65,6 +65,9 @@ export default {
       this.isOpen = false
       store.dispatch('retrieveMatchedImages', {result: this.keyword, thumbnail: false });
     }
+  },
+  updated: () => {
+    console.log("Help");
   }
 }
 </script>
