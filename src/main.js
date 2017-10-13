@@ -50,6 +50,9 @@ Vue.config.productionTip = false
 /* eslint-disable no-new */
 import { store } from './store/store.js'
 
+Vue.material.inkRipple = false
+
+
 new Vue({
   el: '#app',
   router,

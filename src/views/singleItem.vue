@@ -1,20 +1,19 @@
 <template lang="html">
   <div class="single-item-container" style="margin-top: 6em;">
-    <md-toolbar class="md-dense" style="position:fixed; width:100%; margin-top:-6em;">
+    <md-toolbar class="toolbar" style="position:fixed; width:100%; margin-top:-6em;">
       <md-button class="md-icon-button" >
       <router-link to="/demodrilldown">
           <md-icon class="md-size-3x">keyboard_arrow_left</md-icon>
       </router-link>
       </md-button>
-      <h1 class="md-title searchKeyword" style="flex: 1, float: left">{{searchTerm}}</h1>
+      <span style="float:left; flex:1">
+        <md-icon class="displayIcon md-size-2x">{{displayIcon}}</md-icon>
+        <span class="md-title searchKeyword" style="text-transform: uppercase; font-size: 2em">{{searchTerm}}</span>
+      </span>
     </md-toolbar>
 
-    <img v-bind:src="getSingleImageSrc" alt="">
-    <!-- <tags v-bind:chips="getSingleImage._source.people" bgcolor="#9DC4B6" icon="account_circle"></tags>
-    <tags v-bind:chips="getSingleImage._source.places" bgcolor="#0193DC" icon="location_on"></tags>
-    <tags v-bind:chips="getSingleImage._source.keywords" bgcolor="lightgrey" icon="label"></tags> -->
-    <!-- <singleItemMap></singleItemMap> -->
-    <!-- <relatedImages></relatedImages> -->
+    <img v-bind:src="getSingleImageSrc" alt="" style="width: 100%;">
+    <div style="padding-top:50px;"> </div>
     <people></people>
     <tagChips></tagChips>
     <colors></colors>
@@ -31,7 +30,8 @@ export default {
   data(){
     return{
       singleItem: '',
-      searchTerm: ''
+      searchTerm: '',
+      displayIcon: 'local_offer'
     }
   },
   methods: {
@@ -60,8 +60,13 @@ export default {
 </script>
 
 <style lang="css" scoped>
-  .md-dense {
+  .toolbar {
     background-image: linear-gradient(-131deg, #00C5F0 0%, #3B51AD 100%);
+  }
+  
+  .displayIcon {
+    margin-top:-6px;
+    vertical-align: center;
   }
 
   .md-icon-button {

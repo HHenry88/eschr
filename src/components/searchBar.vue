@@ -19,7 +19,7 @@
 export default {
   data(){
     return {
-        showSearchBar: true,
+      showSearchBar: true,
     }
   },
   methods: {

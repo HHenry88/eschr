@@ -1,29 +1,22 @@
 <template lang="html">
   <div class="">
-  <md-toolbar class="md-dense">
-     <b-row align-v="center" class="searchInfoBar">
-        <b-col cols="2" v-if="!getThumbnailActive">
-          <md-icon class="displayIcon md-size-2x">{{displayIcon}}</md-icon>
-        </b-col>
-        <b-col cols="2" v-if="getThumbnailActive">
-          <img v-bind:src="getThumbnailSrc" alt="" class="thumbnailImage">
-        </b-col>
-        <b-col cols="8">
-          <h1 style="flex: 1, float: left" class="searchTerms">{{searchTerm}}</h1>
-        </b-col>
-      <b-col cols="2">
-        <h1 style="flex: 1, margin: auto 0" class="photo-quantity">{{ getMatchedImages.length }} Photos</h1>
-        <!-- <md-button class="md-icon-button" md-align="end" style="float:right, position: relative, margin: 0">
-          <md-icon>keyboard_arrow_right</md-icon>
-        </md-button> -->
-      </b-col>
-      </b-row>
-  </md-toolbar>
-  <galleryComponent v-bind:images="getMatchedImages"></galleryComponent>
-  <div class="" v-if="routeName !== '/demodrilldown'">
-    <filterButton></filterButton>
+      <b-container fluid class="toolbar ">
+        <b-row align-v="top" class="searchInfoBar">
+          <b-col sm="9" lg="10">
+            <md-icon class="displayIcon md-size-2x" style="" v-if="!getThumbnailActive">{{displayIcon}}</md-icon>
+            <img v-bind:src="getThumbnailSrc" alt="" class="thumbnailImage"  v-if="getThumbnailActive">
+            <span style="flex: 1, float: left" class="searchTerms title">{{searchTerm}}</span>
+          </b-col>
+          <b-col lg="2" sm="3">
+            <p style="flex: 1, margin: auto 0; margin-right: 20px;float:right" class="title">{{ getMatchedImages.length }} Photos</p>
+          </b-col>
+        </b-row> 
+      </b-container>
+    <galleryComponent v-bind:images="getMatchedImages"></galleryComponent>
+    <div class="" v-if="routeName !== '/demodrilldown'">
+      <filterButton></filterButton>
+    </div>
   </div>
-</div>
 </template>
 
 <script>
@@ -51,7 +44,7 @@ export default {
   },
   data(){
     return {
-      displayIcon: 'portrait',
+      displayIcon: 'local_offer',
       routeName: this.$route.path,
       searchTerm: ''
     }
@@ -68,6 +61,13 @@ export default {
 </script>
 
 <style lang="css" scoped>
+  
+.toolbar {
+  margin-top:-68px; 
+  margin-left:40px;
+  text-align: center;
+}
+  
 .md-dense {
   background: #fff !important;
   color: #9FA9BA;
@@ -78,10 +78,15 @@ export default {
   width: 100%;
   margin-left: 0;
   margin-right: 0;
+  text-align: center;
+  vertical-align: middle;
+  height:auto;
+  color: white;
 }
 
 .displayIcon {
-    margin: 5px;
+    margin-top:-6px;
+    vertical-align: center;
 }
 .md-icon-button {
     margin: 6px 8px;
@@ -93,11 +98,12 @@ export default {
 }
 
 .searchTerms {
-    line-height: 110%;
+    text-transform: uppercase;
 }
 
-.photo-quantity {
-    font-size: 2em;
+.title {
+  font-size: 2em;
+  white-space:nowrap;
 }
 
 @media only screen  and (min-width : 1224px) {
