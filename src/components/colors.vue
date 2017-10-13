@@ -11,8 +11,8 @@
     <b-row class="justify-content-md-center">
       <b-col col lg="1"></b-col>
       <b-col cols="11">
-        <div v-for="(keyword, index) in keywords" :key="index" class="tags">
-          <div v-on:click="changeTag(keyword)" class="tag" v-bind:style="{background: keyword}"></div>
+        <div v-for="(color, index) in colors" :key="index" class="tags">
+          <div class="tag" v-bind:style="{background: colorToHex(color), color:isDark(color)?'white':'black'}">{{colorToName(colorToHex(color))}}</div>
         </div>
       </b-col>
     </b-row>
@@ -22,12 +22,14 @@
 <script>
 import { mapGetters, mapActions } from 'vuex'
 import { store } from '../store/store'
+import namer from 'color-namer'
+import rgbToHsl from 'rgb-to-hsl';
 import Vue from 'vue'
 
 export default {
   data(){
     return {
-      keywords: ['dodgerblue', 'mediumpurple', 'limegreen', 'yellow', 'tomato', 'orange']
+      colors: ['dodgerblue', 'mediumpurple', 'limegreen', 'yellow', 'tomato', 'orange']
     }
   },
   computed:{
@@ -42,14 +44,26 @@ export default {
     changeTag: function(term) {
       // store.dispatch('retrieveMatchedImages', {result: term, thumbnail: false});
       console.log('you picked:', term);
+    },
+    colorToHex: (colorJSON) => {
+      if (colorJSON instanceof String) return colourJSON;
+      var colorDec = colorJSON.color;
+      var colorHex = ((colorDec.red * 65536) + (colorDec.green * 256) + (colorDec.blue)).toString(16);
+      return "#" + colorHex;
+    },
+    colorToName: (colorHex) => {
+      return namer(colorHex).ntc[0].name;
+    },
+    isDark: (colorJSON) => {
+      if (colorJSON instanceof String) return false;
+      var colorDec = colorJSON.color;
+      var hsl = rgbToHsl(colorDec.red, colorDec.green, colorDec.blue);
+      console.log(hsl);
+      return parseFloat(hsl[2])<50; 
     }
   },
   created(){
-    // this.keywords = this.getSingleImage._source.keywords.filter((word) => {
-    //   if(word !== null){
-    //     return word
-    //   }
-    // })
+   this.colors = this.getSingleImage._source.colors?this.getSingleImage._source.colors:[];
   }
 }
 </script>
@@ -64,13 +78,12 @@ export default {
   	float:left;
   	padding: 5px 8px 3px 8px;
   	margin: 0px 10px 5px 0px;
-  	width: 6.5em;
-    height: 2.5em;
+  	background: #FFF;
+  	font-size: 1.5em;
+    font-weight: bold;
+    border-radius: 10px;
 	}
 
-  .tag:hover{
-    cursor: pointer;
-  }
 
   .icon {
     margin-top: 0.5em;
