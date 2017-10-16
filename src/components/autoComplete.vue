@@ -1,8 +1,8 @@
 <template lang="html">
   <div id="autocomplete-input-template">
     <div class="autocomplete-input" >
-      <input v-model="keyword" type="text" ref="autocompleteRef" id="autocompleteTextField" value="text field" placeholder="Search for Image" @input="onInput($event.target.value)" @keyup.esc="isOpen = false" @blur="isOpen = false" @keydown.down="moveDown" @keydown.up="moveUp" @keydown.enter="select" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" role="textbox">
-      <ul v-show="isOpen" class="options-list">
+      <input v-model="keyword" type="text" ref="autocompleteRef" id="autocompleteTextField" value="text field" @input="onInput($event.target.value)" @keyup.esc="isOpen = false" @blur="isOpen = false" @keydown.down="moveDown" @keydown.up="moveUp" @keydown.enter="select" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" role="textbox">
+      <ul v-show="true" class="options-list">
         <li v-for="(option, index) in getKeywords" :class="{
             'highlighted': index === highlightedPosition
             }" @mouseenter="highlightedPosition = index" @mousedown="select">
@@ -78,6 +78,15 @@ export default {
   margin-top: 1%;
 }
 
+#autocompleteTextField {
+  border: none;
+}
+
+#autocompleteTextField:focus{
+    outline: none;
+}
+
+
 ul {
   padding: 0;
 }
@@ -102,12 +111,13 @@ input {
 ul.options-list {
   display: flex;
   flex-direction: column;
-  margin-top: 0;
+  margin-top: 2em;
   border: 1px solid #dbdbdb;
   border-radius: 0 0 3px 3px;
   position: absolute;
-  width: 95%;
+  width: 58em;
   overflow: hidden;
+  left: -16em;
 }
 
 ul.options-list li {
@@ -149,7 +159,12 @@ ul.options-list li.highlighted {
     }
 
     #autocompleteTextField {
-        font-size: 2em;
+        font-size: 3em;
+    }
+
+    ul.options-list {
+      left: -15em;
+      margin-top: 3.6em;
     }
 
     ul.options-list li {
@@ -169,6 +184,10 @@ ul.options-list li.highlighted {
 
     .optionText {
       padding-top: 5px;
+    }
+
+    .backButton {
+      top: 0em;
     }
 }
 </style>
