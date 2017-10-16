@@ -81,7 +81,7 @@ export default {
   .portrait {
     min-width: 80%;
     left:auto;
-    right:auto;
+    right:auto; 
     display: block;
     text-transform: capitalize;
   }

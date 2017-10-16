@@ -18,7 +18,7 @@ export default {
 <style lang="css" scoped>
   @media only screen  and (min-width : 1224px) {
     .search_result {
-      max-width:1080px;
+      max-width:1200px;
     }
   }  
   
