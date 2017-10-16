@@ -1,33 +1,45 @@
 <template>
   <div class="demoView">
-      <b-row class="justify-content-md-center" id="miro-logo" cols="12">
+    <b-container fluid>
+      <b-row id="miro-logo" cols="12">
         <b-col>
           <img src="../../static/img/miro-visual-search-as-a-service.png" alt="miro" class="miroImg">
         </b-col>
       </b-row>
-      <b-row class="text-center justify-content-md-center">
-        <b-col id="tag-line" cols="10">
+      <b-row>
+        <b-col id="tag-line" cols="12">
           <h1>Add Visual Search to Your APP or Project in <u>Minutes.</u></h1>
         </b-col>
       </b-row>
-      <b-row class="searchBar v-center">
-        <b-col class="md-icon-button searchButton" v-on:click="openDialog('searchDialog')">
+      <b-row class="searchArea searchBar v-center" cols="12">
+        <b-col class="searchButton" v-on:click="openDialog('searchDialog')" sm="11" lg="10">
           <b-row class="input-row">
-            <b-col cols="2" class='search-icon'>
+            <b-col sm="1" lg="1" class=" v-center search-icon">
               <img src="../../static/img/search-icon.png" alt="">
             </b-col>
-            <b-col align-self="center" class="blinking-cursor">|</b-col>
+            <b-col cols="1" align-self="center" class="blinking-cursor"></b-col>
           </b-row>
         </b-col>
-        <b-col cols="2">
+        <b-col sm="1" lg="2">
           <label class="image-upload-icon" for="file-input">
             <img src="../../static/img/camera-icon.png" alt="">
           </label>
+          <input type="file" id="file-input" class="image-upload" v-on:change="uploadImage($event)"></input>
         </b-col>
-        <input type="file" id="file-input" class="image-upload" v-on:change="uploadImage($event)"></input>
       </b-row>
-      <img src="../assets/searchByImage.png" alt="" class="search-by-image">
-
+      <b-row  class="searchArea v-center" cols="12" style="height:5em">
+        <b-col  class="searchButton"  sm="11" lg="10">
+          <b-row class="input-row">
+            <b-col cols="1">
+            </b-col>
+            <b-col cols="1" align-self="center" class="blinking-cursor"></b-col>
+          </b-row>
+        </b-col>
+        <b-col sm="1" lg="2">
+          <img src="../assets/searchByImage.png" alt="Search by Image" class="search-by-image">
+        </b-col>
+      </b-row>
+    </b-container>
     <clip-loader :loading="loading" :color="color" :size="size"></clip-loader>
 
     <div class="" v-if="loading">
@@ -138,15 +150,16 @@ export default {
   }
 
   .searchBar {
-      width: 90%;
-      margin: 0 auto;
-      margin-bottom: -2%;
       background-color: #FFF !important;
-
       border: 0px solid #3f51b5;
-      height: 10em;
-      padding: 10px 5px;
       font-family: Roboto;
+  }
+  .searchArea {
+    width: 90%;
+    margin: 0 auto;
+    height: 10em;
+    padding: 10px 5px;
+    margin-bottom: -2%;
   }
 
   .searchButton {
@@ -154,9 +167,10 @@ export default {
   }
 
   .search-icon {
-    border-right: 8px solid #ddd;
     margin-left: 2em;
-    padding: 15px;
+    position: relative;
+    min-width: 5em;
+    padding: 5px;
   }
 
   .input-row {
@@ -227,7 +241,9 @@ export default {
 
   .image-upload-icon {
       position: relative;
-      width: 80%;
+      width: 5em;
+      margin-right:2em;
+      float:right;
   }
 
   .image-upload-icon:hover {
@@ -240,9 +256,9 @@ export default {
   }
 
   .search-by-image {
-      width: 50%;
       position: relative;
-      left: 20%;
+      min-width: 20em;
+      float:right;
   }
 
   .search-text {
@@ -275,9 +291,9 @@ export default {
       font-size: 2em;
     }
 
-    .searchBar {
+    .searchArea {
         width: 70%;
-        margin-bottom: -2%;
+        margin-bottom: -1em;
         height: 8em;
     }
 
@@ -290,10 +306,16 @@ export default {
     }
 
     .search-by-image {
-        width: 30%;
-        position: relative;
-        left: 20%;
+      position: relative;
+      float:right;
+      margin-top: 1em;
     }
+  }
+  @media only screen  and (max-width : 1223px) {
+    .search-by-image {
+      margin-right: 1em;
+      margin-top: 1em;
+    } 
   }
 
 </style>
