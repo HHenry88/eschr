@@ -155,7 +155,7 @@ ul.options-list li.highlighted {
 
 @media only screen  and (min-width : 1224px) {
     .autocomplete-input {
-        top: 2em;
+        top: 0em;
     }
 
     #autocompleteTextField {
@@ -164,7 +164,7 @@ ul.options-list li.highlighted {
 
     ul.options-list {
       left: -15em;
-      margin-top: 3.6em;
+      margin-top: 4em;
     }
 
     ul.options-list li {
