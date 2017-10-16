@@ -153,7 +153,7 @@ export default {
   }
 
   .image-upload-icon i{
-      color: red;
+      color: #e91e63;
   }
 
   .image-upload-icon:hover {

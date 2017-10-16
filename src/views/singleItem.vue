@@ -6,18 +6,10 @@
           <md-icon class="md-size-3x">keyboard_arrow_left</md-icon>
       </router-link>
       </md-button>
-      <b-container>
-        <b-row style="text-align: center; vertical-align: center;">
-          <b-col sm="1" lg="2"></b-col>
-          <b-col sm="8" lg="8">
-            <span>
-              <md-icon class="displayIcon md-size-2x">{{displayIcon}}</md-icon>
-              <span class="md-title searchKeyword" style="text-transform: uppercase; font-size: 2em">{{searchTerm}}</span>
-            </span>
-          </b-col>
-          <b-col sm="3" lg="2"></b-col>
-        </b-row>
-      </b-container>
+      <span style="float:left; flex:1">
+        <md-icon class="displayIcon md-size-2x">{{displayIcon}}</md-icon>
+        <span class="md-title searchKeyword" style="text-transform: uppercase; font-size: 2em">{{searchTerm}}</span>
+      </span>
     </md-toolbar>
 
     <img v-bind:src="getSingleImageSrc" alt="" style="width: 100%;">

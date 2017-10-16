@@ -2,12 +2,10 @@
   <div class="">
       <b-container fluid class="toolbar ">
         <b-row align-v="top" class="searchInfoBar">
-          <b-col sm="1" lg="2">
-          </b-col>
-          <b-col sm="8" lg="7">
-            <md-icon class="displayIcon md-size-2x" style="" v-if="!getThumbnailActive">{{displayIcon}}</md-icon>
-            <img v-bind:src="getThumbnailSrc" alt="" class="thumbnailImage"  v-if="getThumbnailActive">
-            <span style="flex: 1, float: left" class="searchTerms title">{{searchTerm}}</span>
+          <b-col sm="9" lg="10" style="overflow:hidden; text-overflow: ellipsis;">
+            <p class="searchTerms title"><md-icon class="displayIcon md-size-2x" style="" v-if="!getThumbnailActive">{{displayIcon}}</md-icon>
+            <img v-bind:src="getThumbnailSrc" alt="" class="thumbnailImage"  v-if="getThumbnailActive"> &nbsp;
+            {{searchTerm}}</p>
           </b-col>
           <b-col lg="2" sm="3">
             <p style="flex: 1, margin: auto 0; margin-right: 20px;float:right" class="title">{{ getMatchedImages.length }} Photos</p>
@@ -95,12 +93,17 @@ export default {
 }
 
 .thumbnailImage {
-    padding-left: 20px;
-    padding-top: 20%;
+    /* padding-left: 20px;
+    padding-top: 20%; */
+    margin-top:-10px;
+    width:60px;
+    height:60px;
+    float:left;
 }
 
 .searchTerms {
     text-transform: uppercase;
+    white-space: nowrap;
 }
 
 .title {
