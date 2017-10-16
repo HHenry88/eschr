@@ -1,5 +1,5 @@
 <template lang="html">
-  <div class="single-item-container" style="margin-top: 6em;">
+  <div  style="margin-top: 6em;">
     <md-toolbar class="toolbar" style="position:fixed; width:100%; margin-top:-6em;">
       <md-button class="md-icon-button" >
       <router-link to="/demodrilldown">
@@ -11,14 +11,15 @@
         <span class="md-title searchKeyword" style="text-transform: uppercase; font-size: 2em">{{searchTerm}}</span>
       </span>
     </md-toolbar>
-
-    <img v-bind:src="getSingleImageSrc" alt="" style="width: 100%;">
-    <div style="padding-top:50px;"> </div>
-    <people></people>
-    <tagChips></tagChips>
-    <colors></colors>
-    <dateTime></dateTime>
-    <location></location>
+    <b-container class="single-item-container" fluid>
+      <img v-bind:src="getSingleImageSrc" alt="" style="width: 100%;">
+      <div style="padding-top:50px;"> </div>
+      <people></people>
+      <tagChips></tagChips>
+      <colors></colors>
+      <dateTime></dateTime>
+      <location></location>
+    </b-container>
   </div>
 </template>
 
@@ -93,5 +94,12 @@ export default {
   	max-width:1.5em;
   	float:right;
 	}
+	
+	
+  @media only screen  and (min-width : 1224px) {
+    .single-item-container {
+      max-width:1080px;
+    }
+  }
 
 </style>
