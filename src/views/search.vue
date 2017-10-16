@@ -29,11 +29,18 @@
           </md-layout>
         </md-layout>
       </div>
-      <b-row class="justify-content-md-center" id="grey-miro">
-        <b-col align-self="center">
-          <img src="../../static/img/miro-visual-search-as-a-service.png" alt="miro" class="grey">
-        </b-col>
-      </b-row>
+      <b-container fluid>
+        <b-row class="" id="grey-miro">
+          <b-col col   align-self="center" class="text-center">
+            <img src="../../static/img/miro-visual-search-as-a-service.png" alt="miro" class="grey" />
+          </b-col>
+        </b-row>
+        <b-row>
+          <b-col col class="text-center grey">
+            Try some search terms like <strong>Colombia</strong> or <strong>Dog</strong>
+          </b-col>
+        </b-row>
+      </b-container>
   </div>
 </template>
 
@@ -137,7 +144,7 @@ export default {
   }
 
   .search-icon {
-    border-right: 8px solid #ddd;
+    /* border-right: 8px solid #ddd; */
     text-align: center;
   }
 
@@ -148,7 +155,8 @@ export default {
   .grey {
     -webkit-filter: grayscale(100%);
     filter: grayscale(100%);
-    opacity: 0.3;
+    opacity: 0.2;
+    font-size: 24pt;
   }
 
 
