@@ -1,30 +1,32 @@
 <template>
   <div class="demoView">
-
-    <div class="content">
-      <img src="../assets/it2g.png" alt="miro" class="miroImg">
-      <h1>Add Visual Search to Your App or Project in <u>Minutes</u></h1>
-      <md-toolbar class="md-large searchBar">
-        <md-button class="md-icon-button searchButton" v-on:click="openDialog('searchDialog')">
-          <md-layout>
-            <md-layout md-flex="20">
-              <md-icon class="md-size-4x">search</md-icon>
-            </md-layout>
-            <md-layout md-flex="10">
-              <img src="../assets/grey-bar.png" alt="" class="">
-            </md-layout>
-            <md-layout>
-              <h2 class="md-title search-text" style="flex: 1">SEARCH</h2>
-            </md-layout>
-          </md-layout>
-        </md-button>
-        <label class="image-upload-icon" for="file-input">
-          <md-icon class="md-size-4x">photo_camera</md-icon>
-        </label>
+      <b-row class="justify-content-md-center" id="miro-logo" cols="12">
+        <b-col>
+          <img src="../../static/img/miro-visual-search-as-a-service.png" alt="miro" class="miroImg">
+        </b-col>
+      </b-row>
+      <b-row class="text-center justify-content-md-center">
+        <b-col id="tag-line" cols="10">
+          <h1>Add Visual Search to Your APP or Project in <u>Minutes.</u></h1>
+        </b-col>
+      </b-row>
+      <b-row class="searchBar v-center">
+        <b-col class="md-icon-button searchButton" v-on:click="openDialog('searchDialog')">
+          <b-row class="input-row">
+            <b-col cols="2" class='search-icon'>
+              <img src="../../static/img/search-icon.png" alt="">
+            </b-col>
+            <b-col align-self="center" class="blinking-cursor">|</b-col>
+          </b-row>
+        </b-col>
+        <b-col cols="2">
+          <label class="image-upload-icon" for="file-input">
+            <img src="../../static/img/camera-icon.png" alt="">
+          </label>
+        </b-col>
         <input type="file" id="file-input" class="image-upload" v-on:change="uploadImage($event)"></input>
-      </md-toolbar>
+      </b-row>
       <img src="../assets/searchByImage.png" alt="" class="search-by-image">
-    </div>
 
     <clip-loader :loading="loading" :color="color" :size="size"></clip-loader>
 
@@ -120,14 +122,19 @@ export default {
       margin: 10% auto;
   }
 
+  #miro-logo {
+    margin: 12em 0px 5em 0px;
+  }
+
+  #tag-line {
+    margin: 0px 0px 80px 0px;
+  }
+
   h1 {
       /* Add Visual Search to: */
       font-family: AvenirNext-Bold;
-      font-size: 4em;
       color: #FFF;
-      height: 3em;
-      line-height: normal;
-      margin: 0.3em;
+      font-size: 5em;
   }
 
   .searchBar {
@@ -135,21 +142,92 @@ export default {
       margin: 0 auto;
       margin-bottom: -2%;
       background-color: #FFF !important;
+
+      border: 0px solid #3f51b5;
+      height: 10em;
+      padding: 10px 5px;
+      font-family: Roboto;
   }
 
   .searchButton {
-      width: 80%;
-      height: 120px;
-      border-radius: 0%;
+    height: 75%;
+  }
+
+  .search-icon {
+    border-right: 8px solid #ddd;
+    margin-left: 2em;
+    padding: 15px;
+  }
+
+  .input-row {
+    height: 100%;
+  }
+
+  .blinking-cursor {
+    font-weight: 100;
+    font-size: 5em;
+    padding-right: 6em;
+    color: #ddd;
+    -webkit-animation: 1s blink step-end infinite;
+    -moz-animation: 1s blink step-end infinite;
+    -ms-animation: 1s blink step-end infinite;
+    -o-animation: 1s blink step-end infinite;
+    animation: 1s blink step-end infinite;
+  }
+
+  @keyframes "blink" {
+    from, to {
+      color: transparent;
+    }
+    50% {
+      color: #ddd;
+    }
+  }
+
+  @-moz-keyframes blink {
+    from, to {
+      color: transparent;
+    }
+    50% {
+      color: #ddd;
+    }
+  }
+
+  @-webkit-keyframes "blink" {
+    from, to {
+      color: transparent;
+    }
+    50% {
+      color: #ddd;
+    }
+  }
+
+  @-ms-keyframes "blink" {
+    from, to {
+      color: transparent;
+    }
+    50% {
+      color: #ddd;
+    }
+  }
+
+  @-o-keyframes "blink" {
+    from, to {
+      color: transparent;
+    }
+    50% {
+      color: #ddd;
+    }
+  }
+
+  .v-center {
+    display: flex;
+    align-items: center;
   }
 
   .image-upload-icon {
       position: relative;
-      left: 2em;
-  }
-
-  .image-upload-icon i{
-      color: #e91e63;
+      width: 80%;
   }
 
   .image-upload-icon:hover {
@@ -164,7 +242,7 @@ export default {
   .search-by-image {
       width: 50%;
       position: relative;
-      left: 18%;
+      left: 20%;
   }
 
   .search-text {
@@ -174,11 +252,6 @@ export default {
       margin: auto;
   }
 
-  .searchButton i {
-      color: #6DC6B5;
-      margin-left: 0.2em;
-  }
-
   .thumbnailImg {
       border-radius: 15px;
       max-width: 50%;
@@ -186,6 +259,10 @@ export default {
   }
 
   @media only screen  and (min-width : 1224px) {
+    #miro-logo {
+      margin-top: 4em;
+    }
+
     .content {
       margin: 2% auto;
     }
@@ -201,16 +278,21 @@ export default {
     .searchBar {
         width: 70%;
         margin-bottom: -2%;
+        height: 8em;
+    }
+
+    .search-icon {
+      padding: 5px;
     }
 
     .image-upload-icon {
-        left: 3.5em;
+        left: 1.5em;
     }
 
     .search-by-image {
         width: 30%;
         position: relative;
-        left: 19%;
+        left: 20%;
     }
   }
 
