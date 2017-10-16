@@ -63,8 +63,9 @@ export default {
 <style lang="css" scoped>
   .toolbar {
     background-image: linear-gradient(-131deg, #00C5F0 0%, #3B51AD 100%);
+    z-index: 1;
   }
-  
+
   .displayIcon {
     margin-top:-6px;
     vertical-align: center;
@@ -94,8 +95,8 @@ export default {
   	max-width:1.5em;
   	float:right;
 	}
-	
-	
+
+
   @media only screen  and (min-width : 1224px) {
     .single-item-container {
       max-width:1200px;

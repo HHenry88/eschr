@@ -59,4 +59,4 @@ new Vue({
   template: '<App/>',
   components: { App },
   store: store
-})
+}).$mount('#app')
