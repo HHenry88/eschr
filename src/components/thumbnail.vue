@@ -1,8 +1,6 @@
 <template lang="html">
-
-  <!-- <p>{{image._source.resource_id}}</p> -->
-  <div class="container" v-on:click="selectImage">
-    <img v-bind:src="imgSrc" alt="">
+  <div class="thumbnails" v-on:click="selectImage">
+    <img v-bind:src="thumbnailSrc" alt="" class="thumbnail-img">
   </div>
 </template>
 
@@ -16,7 +14,8 @@ export default {
   props: ['image'],
   data(){
     return {
-      imgSrc: `https://s3-eu-west-1.amazonaws.com/eschr-test-development/SOURCE/${this.image._source.resource_id}.jpg`
+      thumbnailSrc: `https://demoimg.miro.io/120_${this.image._source.resource_id}.jpg`,
+      imgSrc: `https://demoimg.miro.io/full/${this.image._source.resource_id}.jpg`
     }
   },
   methods: {
@@ -24,22 +23,32 @@ export default {
       'selectSingleItem'
     ]),
     selectImage: function() {
-      store.dispatch('selectSingleItem', this.imgSrc);
+      store.dispatch('selectSingleItem', {
+        imageSrc: this.imgSrc,
+        image: this.image
+      });
       this.$router.push('image/1')
     }
   }
 }
 </script>
 
-<style lang="css">
-.container{
-  width: 187px;
-  height: 120px;
+<style lang="css" scoped>
+.thumbnails{
+  width: 100%;
+}
+
+.thumbnails:hover{
+  cursor: pointer;
+}
+
+.thumbnail-img {
+  width: 100%;
 }
 
 /* resize images */
-.container img {
+/*.thumbnails img {
   width: 100%;
   height: auto;
-}
+}*/
 </style>

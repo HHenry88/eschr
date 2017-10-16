@@ -1,9 +1,8 @@
 <template lang="html">
   <div class="">
-
     <md-toolbar class="md-dense">
       <md-button class="md-icon-button">
-        <router-link to="/demo"><md-icon>keyboard_arrow_left</md-icon></router-link>
+        <router-link to="/"><md-icon class="md-size-3x">keyboard_arrow_left</md-icon></router-link>
       </md-button>
     </md-toolbar>
     <gallery></gallery>
@@ -13,6 +12,7 @@
 <script>
 
 export default {
+  name: 'demodrilldown',
   data(){
     return{
       returnedData: {}
@@ -21,8 +21,18 @@ export default {
 }
 </script>
 
-<style lang="css">
+<style lang="css" scoped>
+  .md-dense {
+    background-image: linear-gradient(-131deg, #00C5F0 0%, #3B51AD 100%);
+  }
+
   .md-icon {
-    color: white;
+    color: #fff;
+  }
+
+  .md-icon-button {
+    font-size: 40px;
+    height: 100px !important;
+    border-radius: 0%;
   }
 </style>

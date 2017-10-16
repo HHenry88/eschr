@@ -1,76 +1,221 @@
 <template>
   <div class="demoView">
-    <md-toolbar class="md-large searchBar">
-      <md-button class="md-icon-button searchButton" v-on:click="openDialog('searchDialog')">
-        <md-icon class="md-size-4x">search</md-icon>
-      </md-button>
 
-      <md-input-container>
-        <label class="image-upload-icon"><md-icon class="md-size-4x" for="file-input">image</md-icon></label>
-        <md-file v-model="onlyImages" accept="image/*" id="file-input" class="image-upload"></md-file>
-        </md-input-container>
-    </md-toolbar>
+    <div class="content">
+      <img src="../assets/it2g.png" alt="miro" class="miroImg">
+      <h1>Add Visual Search to Your App or Project in <u>Minutes</u></h1>
+      <md-toolbar class="md-large searchBar">
+        <md-button class="md-icon-button searchButton" v-on:click="openDialog('searchDialog')">
+          <md-layout>
+            <md-layout md-flex="20">
+              <md-icon class="md-size-4x">search</md-icon>
+            </md-layout>
+            <md-layout md-flex="10">
+              <img src="../assets/grey-bar.png" alt="" class="">
+            </md-layout>
+            <md-layout>
+              <h2 class="md-title search-text" style="flex: 1">SEARCH</h2>
+            </md-layout>
+          </md-layout>
+        </md-button>
+        <label class="image-upload-icon" for="file-input">
+          <md-icon class="md-size-4x">photo_camera</md-icon>
+        </label>
+        <input type="file" id="file-input" class="image-upload" v-on:change="uploadImage($event)"></input>
+      </md-toolbar>
+      <img src="../assets/searchByImage.png" alt="" class="search-by-image">
+    </div>
 
-    <md-dialog md-open-from="#searchButton" ref="searchDialog" class="searchDialog">
-      <searchView></searchView>
+    <clip-loader :loading="loading" :color="color" :size="size"></clip-loader>
+
+    <div class="" v-if="loading">
+      <img v-bind:src="thumbnailSrc" alt="" class="thumbnailImg">
+    </div>
+
+    <md-dialog md-open-from="#searchButton" ref="searchDialog" class="searchDialog" id="search-dialog">
+      <searchView v-bind:close-button="refss"></searchView>
     </md-dialog>
-</div>
+
+  </div>
 </template>
 
 <script>
+import { mapGetters, mapActions } from 'vuex'
+import { store } from '../store/store'
+import Vue from 'vue'
+import ClipLoader from 'vue-spinner/src/ClipLoader.vue'
+
+
 export default {
   name: 'demo',
-  data () {
+  data() {
     return {
-      onlyImages: null
+      refss: this.$refs,
+      loading: false,
+      size: '200px',
+      color: 'red',
+      thumbnailSrc: ''
     }
   },
   methods: {
     openDialog(ref) {
       this.$refs[ref].open();
+      setTimeout(()=> {
+        document.getElementById("autocompleteTextField").focus()
+      },1)
     },
     closeDialog(ref) {
       this.$refs[ref].close();
-    }
+    },
+    uploadImage(e){
+      this.loading = true;
+      const headers = {
+        'Content-Type': 'image/jpeg',
+      }
+
+      const reader = new FileReader();
+      const thumbnail = new FileReader();
+      thumbnail.onload = (e) => {
+          this.thumbnailSrc = thumbnail.result;
+          store.dispatch('retrieveThumbnail', thumbnail.result)
+      }
+      thumbnail.readAsDataURL(e.target.files[0]);
+
+      reader.onload = (e) => {
+        Vue.axios.post(`https://vynwt6nfq5.execute-api.eu-west-1.amazonaws.com/demo/upload`, e.target.result, {headers: headers})
+        .then((data) => {
+          store.dispatch('retrieveMatchedImages', {result: data.data.keywords, thumbnail: true})
+          this.loading = false;
+        })
+        .catch((err) => {
+          console.warn(err);
+        })
+      }
+      reader.readAsArrayBuffer(e.target.files[0]);
+    },
+    ...mapActions([
+      'retrieveData',
+      'retrieveKeywords',
+      'retrieveMatchedImages',
+      'retrieveThumbnail',
+    ])
+  },
+  created() {
+    store.dispatch('retrieveData')
+  },
+  components: {
+    ClipLoader
   }
 }
 </script>
 
 <style scoped>
   .demoView {
-    position: absolute;
-    display: block;
-    width: 100%;
-    height: 100%;
-    margin: 60% auto;
+      position: absolute;
+      display: block;
+      width: 100%;
+      min-height: 100%;
+      /* bounds: */
+      background-image: linear-gradient(-131deg, #00C5F0 0%, #3B51AD 100%);
+      /* Kabob Menu Icon: */
+      overflow: scroll;
+  }
+  .content {
+      margin: 10% auto;
   }
 
-
-  .searchButton {
-    width: 10%;
-    height: 100px;
+  h1 {
+      /* Add Visual Search to: */
+      font-family: AvenirNext-Bold;
+      font-size: 4em;
+      color: #FFF;
+      height: 3em;
+      line-height: normal;
+      margin: 0.3em;
   }
 
   .searchBar {
-    width: 90%;
-    margin: auto;
+      width: 90%;
+      margin: 0 auto;
+      margin-bottom: -2%;
+      background-color: #FFF !important;
   }
 
-  .md-input-container {
-    width: 80% !important;
+  .searchButton {
+      width: 80%;
+      height: 120px;
+      border-radius: 0%;
   }
 
   .image-upload-icon {
-    position: relative;
-    margin-left: 670px;
-    margin-bottom: 45px;
+      position: relative;
+      left: 2em;
   }
 
-  .md-input-container > div > .md-icon{
-    display: none !important;
+  .image-upload-icon i{
+      color: #e91e63;
+  }
+
+  .image-upload-icon:hover {
+    cursor: pointer;
   }
 
   .image-upload {
-
+      /*So 'Choose file' button does not appear and uses camera icon to input file*/
+      display: none;
   }
+
+  .search-by-image {
+      width: 50%;
+      position: relative;
+      left: 18%;
+  }
+
+  .search-text {
+      color: red;
+      width: 100%;
+      font-size: 30px;
+      margin: auto;
+  }
+
+  .searchButton i {
+      color: #6DC6B5;
+      margin-left: 0.2em;
+  }
+
+  .thumbnailImg {
+      border-radius: 15px;
+      max-width: 50%;
+      height: auto;
+  }
+
+  @media only screen  and (min-width : 1224px) {
+    .content {
+      margin: 2% auto;
+    }
+
+    .miroImg {
+      width: 30%;
+    }
+
+    h1 {
+      font-size: 2em;
+    }
+
+    .searchBar {
+        width: 70%;
+        margin-bottom: -2%;
+    }
+
+    .image-upload-icon {
+        left: 3.5em;
+    }
+
+    .search-by-image {
+        width: 30%;
+        position: relative;
+        left: 19%;
+    }
+  }
+
 </style>

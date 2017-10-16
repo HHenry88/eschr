@@ -1,15 +1,24 @@
 <template lang="html">
-  <div class="">
-    <md-toolbar class="md-dense">
+  <div class="single-item-container" style="margin-top: 6em;">
+    <md-toolbar class="toolbar" style="position:fixed; width:100%; margin-top:-6em;">
+      <md-button class="md-icon-button" >
       <router-link to="/demodrilldown">
-        <md-button class="md-icon-button" >
-          <md-icon>keyboard_arrow_left</md-icon>
-        </md-button>
+          <md-icon class="md-size-3x">keyboard_arrow_left</md-icon>
       </router-link>
-      <h2 class="md-title" style="flex: 1, float: left">Taylor Host</h2>
+      </md-button>
+      <span style="float:left; flex:1">
+        <md-icon class="displayIcon md-size-2x">{{displayIcon}}</md-icon>
+        <span class="md-title searchKeyword" style="text-transform: uppercase; font-size: 2em">{{searchTerm}}</span>
+      </span>
     </md-toolbar>
 
-    <img v-bind:src="getSingleItem" alt="">
+    <img v-bind:src="getSingleImageSrc" alt="" style="width: 100%;">
+    <div style="padding-top:50px;"> </div>
+    <people></people>
+    <tagChips></tagChips>
+    <colors></colors>
+    <dateTime></dateTime>
+    <location></location>
   </div>
 </template>
 
@@ -20,7 +29,9 @@ import singleItemMap from '../components/singleItemMap'
 export default {
   data(){
     return{
-      singleItem: ''
+      singleItem: '',
+      searchTerm: '',
+      displayIcon: 'local_offer'
     }
   },
   methods: {
@@ -30,14 +41,57 @@ export default {
   },
   computed: {
     ...mapGetters([
-      'getSingleItem'
+      'getSingleImageSrc',
+      'getSingleImage',
+      'getSearchTerm',
     ])
   },
   components:{
     'singleItemMap': singleItemMap
   },
+  created(){
+    if(typeof this.getSearchTerm === 'object'){
+      this.searchTerm = this.getSearchTerm.join(', ')
+    } else {
+      this.searchTerm = this.getSearchTerm
+    }
+  }
 }
 </script>
 
-<style lang="css">
+<style lang="css" scoped>
+  .toolbar {
+    background-image: linear-gradient(-131deg, #00C5F0 0%, #3B51AD 100%);
+  }
+  
+  .displayIcon {
+    margin-top:-6px;
+    vertical-align: center;
+  }
+
+  .md-icon-button {
+    font-size: 40px;
+    height: 100px !important;
+    border-radius: 0%;
+  }
+
+  .md-icon {
+    color: #fff;
+  }
+
+  .searchKeyword {
+    font-size: 3em;
+    margin-left: 1em;
+    line-height: normal;
+  }
+
+  img {
+    margin-bottom: 2em;
+  }
+  .icon img {
+  	min-width:1em;
+  	max-width:1.5em;
+  	float:right;
+	}
+
 </style>
