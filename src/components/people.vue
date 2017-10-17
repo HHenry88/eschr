@@ -13,7 +13,7 @@
       <b-col cols="10" class="portraits">
         <b-row>
           <b-col col sm="1"></b-col>
-          <b-col v-for="(person, index) in people" :key="index" col>
+          <b-col v-for="(person, index) in people" :key="index" col md="auto">
             <div v-on:click="changeTag(person)" class="portrait">
               <img src="static/img/people-icon.png" :alt="person"><br />
                <p>{{person}}</p>
@@ -79,6 +79,7 @@ export default {
   }
 
   .portrait {
+    padding-right: 2em;
     min-width: 80%;
     left:auto;
     right:auto; 

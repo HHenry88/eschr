@@ -6,7 +6,7 @@ import router from './router'
 import VueMaterial from 'vue-material'
 import axios from 'axios'
 import VueAxios from 'vue-axios'
-
+import VueProgress from 'vue-progress'
 //Components
 import toolBar from './components/toolBar'
 import tabBar from './components/tabBar'
@@ -21,7 +21,9 @@ import colors from './components/colors'
 import dateTime from './components/dateTime'
 import location from './components/location'
 import autoComplete from './components/autoComplete'
+import imageUploader from './components/imageUploader'
 import searchView from './views/search'
+
 
 Vue.component('toolBar', toolBar)
 Vue.component('tabBar', tabBar)
@@ -37,6 +39,7 @@ Vue.component('dateTime', dateTime)
 Vue.component('location', location)
 Vue.component('autoComplete', autoComplete)
 Vue.component('searchView', searchView)
+Vue.component('imageUploader', imageUploader)
 
 //Views
 import gallery from './views/gallery'
@@ -44,8 +47,12 @@ Vue.component('gallery', gallery)
 
 Vue.use(VueMaterial)
 Vue.use(VueAxios, axios)
+Vue.use(VueProgress)
+
 
 Vue.config.productionTip = false
+
+
 
 /* eslint-disable no-new */
 import { store } from './store/store.js'

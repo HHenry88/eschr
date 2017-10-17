@@ -42,12 +42,14 @@
     </b-container>
 
     <div class="image-upload-screen" v-show="loading">
-      <b-row align-h="center" style="position: absolute; bottom: 40%; width: 100%">
+      <b-row align-h="center" style="position: absolute; bottom: 40%; width: 100%; max-height: 400px;">
         <b-col cols="10" align-self="start">
           <div v-show="false">
-            <canvas id="cvas" width="2000" height="1500"></canvas>
+            <canvas id="cvas" width="2000" height="3000"></canvas>
+            <img id="hideimg" />
           </div>
           <img v-bind:src="thumbnailSrc" alt="" class="thumbnailImg">
+          <progress-bar class="line" ref="basicLine" type="line" :options="options"></progress-bar>
         </b-col>
       </b-row>
     </div>
@@ -63,7 +65,7 @@
 <script>
 import { mapGetters, mapActions } from 'vuex'
 import { store } from '../store/store'
-import Vue from 'vue'
+import Vue from 'vue' 
 
 export default {
   name: 'demo',
@@ -71,57 +73,88 @@ export default {
     return {
       refss: this.$refs,
       loading: false,
-      thumbnailSrc: ''
+      thumbnailSrc: '',
+      size: '200px',
+      color: 'red',
+      progress: 0,
+      thumbnailSrc: '',
+      progressBar:'',
+      options: {
+        strokeWidth: 4,
+        easing: 'easeInOut',
+        duration: 500,
+        color: '#FFEA82',
+        trailColor: '#eee',
+        trailWidth: 1,
+        svgStyle: { width: '100%', height: '100%' }
+      }
     }
   },
   methods: {
     openDialog(ref) {
       this.$refs[ref].open();
       setTimeout(()=> {
-        document.getElementById("autocompleteTextField").focus()
-      },1)
+        document.getElementById("autocompleteTextField").focus();
+      },5)
     },
     closeDialog(ref) {
       this.$refs[ref].close();
     },
     uploadImage(e){
       this.loading = true;
+      this.progressBar = this.$refs.basicLine;
+      this.progressBar.setText("Uploading");
+      this.progressBar.set(0.01);
       const headers = {
         'Content-Type': 'image/jpeg',
       }
-
+      const resizedImage = new Image();
       const reader = new FileReader();
       const thumbnail = new FileReader();
+      const that=this;
 
       thumbnail.onload = (e) => {
-          this.thumbnailSrc = thumbnail.result;
-          const canvas = document.getElementById("cvas")
-          const ctx = canvas.getContext("2d");
-          const img = new Image();
+        this.thumbnailSrc = thumbnail.result;
+        const canvas = document.getElementById("cvas")
+        const ctx = canvas.getContext("2d");
+        const img = new Image();
 
-          img.src = thumbnail.result
-          img.onload = function(){
-            canvas.height = canvas.width * (img.height / img.width);
-            ctx.drawImage(this, 0, 0, img.width, img.height, 0, 0, canvas.width, canvas.height )
-          }
-          store.dispatch('retrieveThumbnail', thumbnail.result)
+        img.src = thumbnail.result;
+        img.onload = function(){
+          canvas.height = canvas.width * (img.height / img.width);
+          console.log(this);
+          ctx.drawImage(this, 0, 0, img.width, img.height, 0, 0, canvas.width, canvas.height )
+          var blob=document.getElementById("cvas").toBlob( (blob) => {
+            console.log(blob);  
+            Vue.axios.post(`https://vynwt6nfq5.execute-api.eu-west-1.amazonaws.com/demo/upload`, blob, {
+              headers: headers,
+              onUploadProgress: function(progressEvent) {
+                console.log(progressEvent)
+                if (progressEvent.position === progressEvent.total) {
+                  that.progressBar.setText("Analysing");
+                  that.progressBar.set(0.8);
+                } else {
+                  that.progress=(progressEvent.position/progressEvent.total);
+                  that.progressBar.set(that.progress * 0.75);
+                  console.log(that.progress);
+                }
+              }
+            }).then((data) => {
+              that.progressBar.setText("Querying");
+              that.progressBar.set(1.0);
+              store.dispatch('retrieveMatchedImages', {result: data.data.keywords, thumbnail: true});
+              setTimeout(() => {this.loading = false}, 500);
+              
+            })
+            .catch((err) => {
+              console.warn(err);
+            });
+          }, 'image/jpeg',95);
+        }
+        store.dispatch('retrieveThumbnail', thumbnail.result);
       }
-      thumbnail.readAsDataURL(e.target.files[0]);
-
-      reader.onload = (e) => {
-        document.getElementById("cvas").toBlob( (blob) => {
-
-          Vue.axios.post(`https://vynwt6nfq5.execute-api.eu-west-1.amazonaws.com/demo/upload`, blob, {headers: headers})
-          .then((data) => {
-            store.dispatch('retrieveMatchedImages', {result: data.data.keywords, thumbnail: true})
-            this.loading = false;
-          })
-          .catch((err) => {
-            console.warn(err);
-          })
-        }, 'image/jpeg', 95);
-      }
-      reader.readAsArrayBuffer(e.target.files[0]);
+      thumbnail.readAsDataURL(e.target.files[0]);      
+      //reader.readAsArrayBuffer(e.target.files[0]);
     },
     ...mapActions([
       'retrieveKeywords',
@@ -348,6 +381,17 @@ export default {
       margin-right: 1em;
       margin-top: 1em;
     }
+  }
+  
+  .pgcontainer {
+    padding: 0 50px 50px 50px;
+  }
+  .line {
+    margin: 0 auto;
+    width: 200px;
+    height: 16px;
+    top: 96px;
+    font-size: 24pt;
   }
 
 </style>
