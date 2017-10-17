@@ -9,8 +9,8 @@
           <div class="autocomplete-option">
             <b-row class="optionText">
                 <b-col cols="*" sm="1" md="1" lg="1" ><md-icon class="md-size-2x optionIcon">search</md-icon></b-col>
-                <b-col cols="*" sm="9" md="10" lg="10" >{{option.text}}</b-col>
-                <b-col cols="*" sm="2" md="1" lg="1" >{{option.score}}</b-col>
+                <b-col cols="*" sm="9" md="9" lg="10" >{{option.text}}</b-col>
+                <b-col cols="*" sm="2" md="2" lg="1" >{{option.score}}</b-col>
             </b-row>
           </div>
         </li>

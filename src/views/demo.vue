@@ -17,7 +17,7 @@
             <b-col sm="1" lg="1" class=" v-center search-icon">
               <img src="../../static/img/search-icon.png" alt="">
             </b-col>
-            <b-col cols="1" align-self="center" class="blinking-cursor"></b-col>
+            <b-col cols="1" align-self="center" class="blinking-cursor">|</b-col>
           </b-row>
         </b-col>
         <b-col sm="1" lg="2">
