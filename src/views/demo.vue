@@ -104,6 +104,7 @@ export default {
       this.loading = true;
       this.progressBar = this.$refs.basicLine;
       this.progressBar.setText("Uploading");
+      this.progress=0.01;
       this.progressBar.set(0.01);
       const headers = {
         'Content-Type': 'image/jpeg',
@@ -128,11 +129,11 @@ export default {
               headers: headers,
               onUploadProgress: function(progressEvent) {
                 console.log(progressEvent)
-                if (progressEvent.position === progressEvent.total) {
+                if (progressEvent.loaded === progressEvent.total) {
                   that.progressBar.setText("Analysing");
                   that.progressBar.set(0.8);
                 } else {
-                  that.progress=(progressEvent.position/progressEvent.total);
+                  that.progress=(progressEvent.loaded/progressEvent.total);
                   that.progressBar.set(that.progress * 0.75);
                   console.log(that.progress);
                 }
