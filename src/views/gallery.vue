@@ -58,7 +58,6 @@ export default {
   
 .toolbar {
   margin-top:-68px; 
-  margin-left:40px;
   text-align: center;
 }
   
