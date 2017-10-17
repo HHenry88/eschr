@@ -42,7 +42,7 @@
     </b-container>
 
     <div class="image-upload-screen" v-show="loading">
-      <b-row align-h="center" style="position: absolute; bottom: 40%; width: 100%; max-height: 400px;">
+      <b-row align-h="center" style="position: absolute; bottom: 20%; top: 20%; width: 100%;">
         <b-col cols="10" align-self="start">
           <div v-show="false">
             <canvas id="cvas" width="2000" height="3000"></canvas>
@@ -122,10 +122,8 @@ export default {
         img.src = thumbnail.result;
         img.onload = function(){
           canvas.height = canvas.width * (img.height / img.width);
-          console.log(this);
           ctx.drawImage(this, 0, 0, img.width, img.height, 0, 0, canvas.width, canvas.height )
           var blob=document.getElementById("cvas").toBlob( (blob) => {
-            console.log(blob);  
             Vue.axios.post(`https://vynwt6nfq5.execute-api.eu-west-1.amazonaws.com/demo/upload`, blob, {
               headers: headers,
               onUploadProgress: function(progressEvent) {
@@ -317,8 +315,8 @@ export default {
 
   .thumbnailImg {
       border-radius: 15px;
-      max-width: 70%;
-      min-width: 70%;
+      max-width: 60%;
+      max-height: 60%;
       height: auto;
       border: 1px solid black;
   }

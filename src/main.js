@@ -21,7 +21,6 @@ import colors from './components/colors'
 import dateTime from './components/dateTime'
 import location from './components/location'
 import autoComplete from './components/autoComplete'
-import imageUploader from './components/imageUploader'
 import searchView from './views/search'
 
 
@@ -39,7 +38,6 @@ Vue.component('dateTime', dateTime)
 Vue.component('location', location)
 Vue.component('autoComplete', autoComplete)
 Vue.component('searchView', searchView)
-Vue.component('imageUploader', imageUploader)
 
 //Views
 import gallery from './views/gallery'
