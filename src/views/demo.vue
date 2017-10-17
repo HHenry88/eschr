@@ -40,7 +40,6 @@
         </b-col>
       </b-row>
     </b-container>
-    <clip-loader :loading="loading" :color="color" :size="size"></clip-loader>
 
     <div class="image-upload-screen" v-show="loading">
       <b-row align-h="center" style="position: absolute; bottom: 40%; width: 100%">
@@ -65,8 +64,6 @@
 import { mapGetters, mapActions } from 'vuex'
 import { store } from '../store/store'
 import Vue from 'vue'
-import ClipLoader from 'vue-spinner/src/ClipLoader.vue'
-
 
 export default {
   name: 'demo',
@@ -74,8 +71,6 @@ export default {
     return {
       refss: this.$refs,
       loading: false,
-      size: '200px',
-      color: 'red',
       thumbnailSrc: ''
     }
   },
@@ -133,9 +128,6 @@ export default {
       'retrieveMatchedImages',
       'retrieveThumbnail',
     ])
-  },
-  components: {
-    ClipLoader
   }
 }
 </script>
@@ -291,7 +283,6 @@ export default {
   }
 
   .thumbnailImg {
-      /*position: relative;*/
       border-radius: 15px;
       max-width: 70%;
       min-width: 70%;
@@ -300,14 +291,14 @@ export default {
   }
 
   .image-upload-screen {
-        position: fixed;
-        width: 100%;
-        height: 100%;
-        top: 0;
-        left: 0;
-        right: 0;
-        bottom: 0;
-        background-color: rgba(230,230,230,0.95);
+      position: fixed;
+      width: 100%;
+      height: 100%;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background-color: rgba(230,230,230,0.95);
   }
 
   @media only screen  and (min-width : 1224px) {
