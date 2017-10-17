@@ -2,7 +2,12 @@
   <div class="">
       <b-container fluid class="toolbar ">
         <b-row align-v="top" class="searchInfoBar">
-          <b-col sm="9" lg="10" style="overflow:hidden; text-overflow: ellipsis;">
+          <b-col sm="1" lg="1">
+            <md-button class="md-icon-button">
+              <router-link to="/"><md-icon class=" md-size-2x" style="color:white; text-align:center; font-size:36pt;">keyboard_arrow_left</md-icon></router-link>
+            </md-button>
+          </b-col>
+          <b-col sm="8" lg="9" style="overflow:hidden; text-overflow: ellipsis;">
             <p class="searchTerms title"><md-icon class="displayIcon md-size-2x" style="" v-if="!getThumbnailActive">{{displayIcon}}</md-icon>
             <img v-bind:src="getThumbnailSrc" alt="" class="thumbnailImage"  v-if="getThumbnailActive"> &nbsp;
             {{searchTerm}}</p>
@@ -67,6 +72,7 @@ export default {
   min-height: 6em;
 }
 
+
 .searchInfoBar {
   width: 100%;
   margin-left: 0;
@@ -95,8 +101,9 @@ export default {
 }
 
 .searchTerms {
-    text-transform: uppercase;
-    white-space: nowrap;
+  margin-left:48px;
+  text-transform: uppercase;
+  white-space: nowrap;
 }
 
 .title {

@@ -1,9 +1,8 @@
 <template lang="html">
   <div class="">
     <md-toolbar class="md-dense">
-      <md-button class="md-icon-button">
-        <router-link to="/"><md-icon class="md-size-3x">keyboard_arrow_left</md-icon></router-link>
-      </md-button>
+    <div style="height:6em;">
+    </div>
     </md-toolbar>
     <gallery></gallery>
   </div>
