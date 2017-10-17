@@ -42,13 +42,21 @@
     </b-container>
     <clip-loader :loading="loading" :color="color" :size="size"></clip-loader>
 
-    <div class="" v-if="loading">
-      <img v-bind:src="thumbnailSrc" alt="" class="thumbnailImg">
+    <div class="image-upload-screen" v-show="loading">
+      <b-row align-h="center" style="position: absolute; bottom: 40%; width: 100%">
+        <b-col cols="10" align-self="start">
+          <div v-show="false">
+            <canvas id="cvas" width="2000" height="1500"></canvas>
+          </div>
+          <img v-bind:src="thumbnailSrc" alt="" class="thumbnailImg">
+        </b-col>
+      </b-row>
     </div>
 
     <md-dialog md-open-from="#searchButton" ref="searchDialog" class="searchDialog" id="search-dialog">
       <searchView v-bind:close-button="refss"></searchView>
     </md-dialog>
+
 
   </div>
 </template>
@@ -89,21 +97,34 @@ export default {
 
       const reader = new FileReader();
       const thumbnail = new FileReader();
+
       thumbnail.onload = (e) => {
           this.thumbnailSrc = thumbnail.result;
+          const canvas = document.getElementById("cvas")
+          const ctx = canvas.getContext("2d");
+          const img = new Image();
+
+          img.src = thumbnail.result
+          img.onload = function(){
+            canvas.height = canvas.width * (img.height / img.width);
+            ctx.drawImage(this, 0, 0, img.width, img.height, 0, 0, canvas.width, canvas.height )
+          }
           store.dispatch('retrieveThumbnail', thumbnail.result)
       }
       thumbnail.readAsDataURL(e.target.files[0]);
 
       reader.onload = (e) => {
-        Vue.axios.post(`https://vynwt6nfq5.execute-api.eu-west-1.amazonaws.com/demo/upload`, e.target.result, {headers: headers})
-        .then((data) => {
-          store.dispatch('retrieveMatchedImages', {result: data.data.keywords, thumbnail: true})
-          this.loading = false;
-        })
-        .catch((err) => {
-          console.warn(err);
-        })
+        document.getElementById("cvas").toBlob( (blob) => {
+
+          Vue.axios.post(`https://vynwt6nfq5.execute-api.eu-west-1.amazonaws.com/demo/upload`, blob, {headers: headers})
+          .then((data) => {
+            store.dispatch('retrieveMatchedImages', {result: data.data.keywords, thumbnail: true})
+            this.loading = false;
+          })
+          .catch((err) => {
+            console.warn(err);
+          })
+        }, 'image/jpeg', 95);
       }
       reader.readAsArrayBuffer(e.target.files[0]);
     },
@@ -125,6 +146,7 @@ export default {
       display: block;
       width: 100%;
       min-height: 100%;
+      max-height: 100%;
       /* bounds: */
       background-image: linear-gradient(-131deg, #00C5F0 0%, #3B51AD 100%);
       /* Kabob Menu Icon: */
@@ -269,9 +291,23 @@ export default {
   }
 
   .thumbnailImg {
+      /*position: relative;*/
       border-radius: 15px;
-      max-width: 50%;
+      max-width: 70%;
+      min-width: 70%;
       height: auto;
+      border: 1px solid black;
+  }
+
+  .image-upload-screen {
+        position: fixed;
+        width: 100%;
+        height: 100%;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background-color: rgba(230,230,230,0.95);
   }
 
   @media only screen  and (min-width : 1224px) {
@@ -310,12 +346,17 @@ export default {
       float:right;
       margin-top: 1em;
     }
+
+    .thumbnailImg {
+      max-width: 30%;
+      min-width: 30%;
+    }
   }
   @media only screen  and (max-width : 1223px) {
     .search-by-image {
       margin-right: 1em;
       margin-top: 1em;
-    } 
+    }
   }
 
 </style>
