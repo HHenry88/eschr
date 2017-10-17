@@ -83,7 +83,7 @@ export default {
         strokeWidth: 4,
         easing: 'easeInOut',
         duration: 500,
-        color: '#FFEA82',
+        color: '#e91e63',
         trailColor: '#eee',
         trailWidth: 1,
         svgStyle: { width: '100%', height: '100%' }
