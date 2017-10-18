@@ -1,120 +1,94 @@
-<template id="toolBar">
-  <div>
-    <md-toolbar class="md-dense">
-      <md-button class="md-icon-button" @click="$refs.sidenav.toggle()">
-        <md-icon>menu</md-icon>
-      </md-button>
+<template>
+  <b-container fluid class="tool-bar">
+    <b-row align-v="center" class="tool-bar-row">
+      <b-col cols="1">
+        <router-link to="/"><md-icon class="md-size-3x" style="color:white;">keyboard_arrow_left</md-icon></router-link>
+      </b-col>
 
-      <h2 class="md-title" style="flex: 1, float: left">Demo Title</h2>
-    </md-toolbar>
+      <b-col cols="9">
+        <p class="searchTerms title"><md-icon class="displayIcon md-size-2x" style="" v-if="!getThumbnailActive">{{displayIcon}}</md-icon>
+        <img v-bind:src="getThumbnailSrc" alt="" class="thumbnailImage"  v-if="getThumbnailActive"> &nbsp;
+          {{searchTerm}}
+        </p>
+      </b-col>
 
-    <md-sidenav class="md-left" ref="sidenav" md-theme="side-nav-bar-header">
-    <md-toolbar class="md-account-header">
-      <md-list>
-        <md-list-item class="md-avatar-list">
-          <md-avatar class="md-large">
-            <img src="https://placeimg.com/64/64/people/8" alt="People">
-          </md-avatar>
-        </md-list-item>
-
-        <md-list-item>
-          <div class="md-list-text-container">
-            <span>John Doe</span>
-            <span>johndoe@email.com</span>
-          </div>
-
-          <md-button class="md-icon-button md-list-action">
-            <md-icon>arrow_drop_down</md-icon>
-          </md-button>
-        </md-list-item>
-      </md-list>
-    </md-toolbar>
-
-    <md-list>
-      <md-list-item @click="$refs.sidenav.toggle()">
-        <md-icon>insert_drive_file</md-icon> <span>Demo 1</span>
-      </md-list-item>
-
-      <md-list-item @click="$refs.sidenav.toggle()">
-        <md-icon>people</md-icon> <span>Demo 2</span>
-      </md-list-item>
-
-      <md-list-item @click="$refs.sidenav.toggle()">
-        <md-icon>access_time</md-icon> <span>Demo 3</span>
-      </md-list-item>
-
-      <md-list-item @click="$refs.sidenav.toggle()">
-        <md-icon>start</md-icon> <span>Feedback</span>
-      </md-list-item>
-
-      <md-list-item @click="$refs.sidenav.toggle()">
-        <md-icon>delete</md-icon> <span>About</span>
-      </md-list-item>
-      <md-list-item @click="$refs.sidenav.toggle()">
-        <md-icon>delete</md-icon> <span>Contact Us</span>
-      </md-list-item>
-    </md-list>
-  </md-sidenav>
-  </div>
+      <b-col cols="2">
+        <p class="photo-count">{{ getMatchedImages.length }} Photos</p>
+      </b-col>
+    </b-row>
+  </b-container>
 </template>
 
 <script>
-import Vue from 'vue'
-import VueMaterial from 'vue-material'
-
-Vue.use(VueMaterial);
-
-Vue.material.registerTheme('side-nav-bar-header', {
-  primary: 'white',
-  accent: 'red',
-  warn: 'red',
-  background: 'white'
-})
+import {mapGetters} from 'vuex'
 
   export default {
     name: 'toolBar',
     data(){
       return {
+        searchTerm: '',
+        displayIcon: 'local_offer',
+      }
+    },
+    computed:{
+      ...mapGetters([
+        'getThumbnailSrc',
+        'getThumbnailActive',
+        'getMatchedImages',
+        'getSearchTerm'
+      ])
+    },
+    created(){
+      if(typeof this.getSearchTerm === 'object'){
+        this.searchTerm = this.getSearchTerm.join(', ')
+      } else {
+        this.searchTerm = this.getSearchTerm
       }
     }
   }
 </script>
 
 <style scoped>
-  .md-fab {
-    margin: 0;
-    position: absolute;
-    bottom: -20px;
-    left: 16px;
-  }
-
-  .md-title {
+  .tool-bar {
+    background-image: linear-gradient(-131deg, #00C5F0 0%, #3B51AD 100%);
+    height: 6em;
     color: #fff;
+    position: fixed;
+    z-index: 1;
+    top: 0px;
+    bottom: 0px;
   }
 
-  .md-list {
-    overflow: auto;
+  .tool-bar-row {
+    height: 100%;
   }
 
-  .md-list-action .md-icon {
-    color: rgba(#000, .26);
+  .thumbnailImage {
+    margin-top:-10px;
+    width:60px;
+    height:60px;
+    float:left;
   }
 
-  .md-avatar-icon .md-icon {
-    color: #fff !important;
+  .searchTerms {
+    text-transform: uppercase;
+    white-space: nowrap;
   }
 
-  .md-sidenav .md-list-text-container > :nth-child(2) {
-    color: rgba(#fff, .54);
+  .title {
+    font-size: 2em;
+    white-space:nowrap;
+    overflow-x: hidden;
+    margin-top: 0.5em;
+    text-overflow: ellipsis;
   }
 
-  .md-account-header {
-    .md-list-item:hover .md-button:hover {
-      background-color: inherit;
-    }
+  .photo-count {
+    font-size: 1.5em;
+    margin-top: 0.5em;
+  }
 
-    .md-avatar-list .md-list-item-container:hover {
-      background: none !important;
-    }
+  .router-link-active {
+    text-decoration: none;
   }
 </style>

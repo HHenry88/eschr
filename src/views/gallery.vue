@@ -1,22 +1,5 @@
 <template lang="html">
-  <div class="">
-      <b-container fluid class="toolbar ">
-        <b-row align-v="top" class="searchInfoBar">
-          <b-col sm="1" lg="1">
-            <md-button class="md-icon-button">
-              <router-link to="/"><md-icon class=" md-size-2x" style="color:white; text-align:center; font-size:36pt;">keyboard_arrow_left</md-icon></router-link>
-            </md-button>
-          </b-col>
-          <b-col sm="8" lg="9" style="overflow:hidden; text-overflow: ellipsis;">
-            <p class="searchTerms title"><md-icon class="displayIcon md-size-2x" style="" v-if="!getThumbnailActive">{{displayIcon}}</md-icon>
-            <img v-bind:src="getThumbnailSrc" alt="" class="thumbnailImage"  v-if="getThumbnailActive"> &nbsp;
-            {{searchTerm}}</p>
-          </b-col>
-          <b-col lg="2" sm="3">
-            <p style="flex: 1, margin: auto 0; margin-right: 20px;float:right" class="title">{{ getMatchedImages.length }} Photos</p>
-          </b-col>
-        </b-row> 
-      </b-container>
+  <div class="gallery">
     <galleryComponent v-bind:images="getMatchedImages"></galleryComponent>
     <div class="" v-if="routeName !== '/demodrilldown'">
       <filterButton></filterButton>
@@ -48,67 +31,14 @@ export default {
       routeName: this.$route.path,
       searchTerm: ''
     }
-  },
-  created(){
-    if(typeof this.getSearchTerm === 'object'){
-      this.searchTerm = this.getSearchTerm.join(', ')
-    } else {
-      this.searchTerm = this.getSearchTerm
-    }
   }
 }
 </script>
 
 <style lang="css" scoped>
-  
-.toolbar {
-  margin-top:-68px; 
-  text-align: center;
-}
-  
-.md-dense {
-  background: #fff !important;
-  color: #9FA9BA;
-  min-height: 6em;
-}
 
-
-.searchInfoBar {
-  width: 100%;
-  margin-left: 0;
-  margin-right: 0;
-  text-align: center;
-  vertical-align: middle;
-  height:auto;
-  color: white;
-}
-
-.displayIcon {
-    margin-top:-6px;
-    vertical-align: center;
-}
-.md-icon-button {
-    margin: 6px 8px;
-}
-
-.thumbnailImage {
-    /* padding-left: 20px;
-    padding-top: 20%; */
-    margin-top:-10px;
-    width:60px;
-    height:60px;
-    float:left;
-}
-
-.searchTerms {
-  margin-left:48px;
-  text-transform: uppercase;
-  white-space: nowrap;
-}
-
-.title {
-  font-size: 2em;
-  white-space:nowrap;
+.gallery {
+  margin-top: 6em;
 }
 
 @media only screen  and (min-width : 1224px) {
