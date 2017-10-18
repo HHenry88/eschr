@@ -60,8 +60,7 @@ export default {
       if (colorJSON instanceof String) return false;
       var colorDec = colorJSON.color;
       var hsl = rgbToHsl(colorDec.red, colorDec.green, colorDec.blue);
-      console.log(hsl);
-      return parseFloat(hsl[2])<50; 
+      return parseFloat(hsl[2])<50;
     }
   },
   created(){
