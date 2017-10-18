@@ -31,9 +31,6 @@ export default {
       routeName: this.$route.path,
       searchTerm: ''
     }
-  },
-  created(){
-    console.log(this.$route);
   }
 }
 </script>
