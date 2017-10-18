@@ -10,8 +10,6 @@ import 'bootstrap/dist/css/bootstrap.css'
 import 'bootstrap-vue/dist/bootstrap-vue.css'
 import moment from 'moment'
 
-
-
 Vue.use(Router);
 Vue.use(BootstrapVue);
 
@@ -40,7 +38,7 @@ export default new Router({
       component: demo
     },
     {
-      path: '/demodrilldown',
+      path: '/results/:tags',
       name: demoDrillDown,
       component: demoDrillDown
     }

@@ -2,7 +2,9 @@
   <b-container fluid class="tool-bar">
     <b-row align-v="center" class="tool-bar-row">
       <b-col cols="1">
-        <router-link to="/"><md-icon class="md-size-3x" style="color:white;">keyboard_arrow_left</md-icon></router-link>
+        <div class="" v-on:click="backButton">
+          <md-icon class="md-size-3x" style="color:white;">keyboard_arrow_left</md-icon>
+        </div>
       </b-col>
 
       <b-col cols="9">
@@ -21,7 +23,7 @@
 
 <script>
 import {mapGetters} from 'vuex'
-
+import Vue from 'vue'
   export default {
     name: 'toolBar',
     data(){
@@ -37,6 +39,11 @@ import {mapGetters} from 'vuex'
         'getMatchedImages',
         'getSearchTerm'
       ])
+    },
+    methods: {
+      backButton: function() {
+        this.$router.go(-1)
+      }
     },
     created(){
       if(typeof this.getSearchTerm === 'object'){

@@ -1,9 +1,9 @@
 <template lang="html">
   <div class="gallery">
     <galleryComponent v-bind:images="getMatchedImages"></galleryComponent>
-    <div class="" v-if="routeName !== '/demodrilldown'">
+    <!-- <div class="" v-if="routeName !== '/results/'">
       <filterButton></filterButton>
-    </div>
+    </div> -->
   </div>
 </template>
 
@@ -31,6 +31,9 @@ export default {
       routeName: this.$route.path,
       searchTerm: ''
     }
+  },
+  created(){
+    console.log(this.$route);
   }
 }
 </script>
