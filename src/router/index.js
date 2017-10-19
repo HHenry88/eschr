@@ -38,7 +38,7 @@ export default new Router({
       component: demo
     },
     {
-      path: '/results/:tags',
+      path: '/search/tags/:tags',
       name: demoDrillDown,
       component: demoDrillDown
     }

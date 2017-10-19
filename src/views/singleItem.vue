@@ -41,7 +41,9 @@ export default {
     'singleItemMap': singleItemMap
   },
   created(){
-    if(typeof this.getSearchTerm === 'object'){
+    if(this.searchTerm.length === 0) {
+      this.$router.push('/')
+    } else if (typeof this.getSearchTerm === 'object'){
       this.searchTerm = this.getSearchTerm.join(', ')
     } else {
       this.searchTerm = this.getSearchTerm
