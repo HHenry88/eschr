@@ -18,7 +18,7 @@
       </b-col>
 
       <b-col cols="2" v-if="!!getSearchTerm">
-        <p class="photo-count">{{ getMatchedImages.length }} Photos</p>
+        <p class="photo-count">{{ getImagesCount }} Photos</p>
       </b-col>
     </b-row>
   </b-container>
@@ -40,7 +40,8 @@ import Vue from 'vue'
         'getThumbnailSrc',
         'getThumbnailActive',
         'getMatchedImages',
-        'getSearchTerm'
+        'getSearchTerm',
+        'getImagesCount'
       ])
     },
     methods: {

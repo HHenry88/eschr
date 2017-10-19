@@ -4,11 +4,13 @@ import router from '../router/index'
 const searchImages = {
   state:{
     matchedImages: [],
-    searchTerm: ''
+    searchTerm: '',
+    imagesCount: 0,
   },
   getters: {
     getMatchedImages: state => state.matchedImages,
-    getSearchTerm: state => state.searchTerm
+    getSearchTerm: state => state.searchTerm,
+    getImagesCount: state => state.imagesCount,
   },
   mutations: {
     sortMatchedImages: (state, payload) => {
@@ -30,6 +32,7 @@ const searchImages = {
           }
         })
         .then((data) => {
+          state.imagesCount= data.data.hits.total;
           state.matchedImages = data.data.hits.hits;
           router.push(`/search/tags/${query}`)
         })

@@ -46,11 +46,7 @@ export default {
   created(){
   },
   beforeRouteEnter( to, from, next) {
-    console.log(this);
-    console.log('single to',to);
-    console.log('single from',from);
-    console.log(from.name.com);
-    if(!from.name || from.name.name === 'demodrilldown'){
+    if(!from.name){
       store.dispatch('retrieveSingleItemByParams', to.params.id)
       .then((data) => {
         next();

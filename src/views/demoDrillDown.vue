@@ -30,8 +30,6 @@ export default {
     ])
   },
   beforeRouteEnter( to, from, next) {
-    console.log('from',from);
-    console.log('to',to);
     if(!from.name){
       store.dispatch('retrieveMatchedImages', {result: to.params.tags, thumbnail: false})
       .then(() => {
@@ -45,7 +43,6 @@ export default {
     }
   },
   created(){
-    console.log(this);
     const tag = this.$router.history.current.params.tags;
     if(this.$router.history.current.params.tags !== this.getSearchTerm) {
       store.dispatch('setSearchTerm', tag)
