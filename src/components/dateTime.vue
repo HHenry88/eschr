@@ -37,13 +37,8 @@ export default {
   created(){
     const created = parse(this.getSingleImage._source.exif.created)
     if(created) this.createdDate = created;
-    this.logger();
-    console.log(this);
   },
   methods:{
-    logger: function(){
-      console.log('in logger',this.createdDate);
-    }
   }
 }
 </script>
@@ -62,7 +57,7 @@ export default {
   	max-width:3em;
   	float:right;
 	}
-  
+
   .info-title {
   	font-weight:bold;
   	font-size:2em;

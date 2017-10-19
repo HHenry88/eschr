@@ -31,7 +31,7 @@ const searchImages = {
         })
         .then((data) => {
           state.matchedImages = data.data.hits.hits;
-          router.push('/demodrilldown')
+          router.push(`/results/${query}`)
         })
         .catch((err) => {
           console.warn(err);

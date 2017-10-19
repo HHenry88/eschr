@@ -27,7 +27,7 @@ export default {
         imageSrc: this.imgSrc,
         image: this.image
       });
-      this.$router.push('image/1')
+      this.$router.push({name: 'singleItem', params: {id: this.image._source.resource_id} })
     }
   }
 }

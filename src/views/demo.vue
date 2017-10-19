@@ -12,7 +12,7 @@
         </b-col>
       </b-row>
       <b-row class="searchArea searchBar v-center" cols="12">
-        <b-col class="searchButton" v-on:click="openDialog('searchDialog')" sm="11" lg="10">
+        <b-col class="searchButton" v-on:click="openDialog('searchDialog')" sm="10" lg="10">
           <b-row class="input-row">
             <b-col sm="1" lg="1" class=" v-center search-icon">
               <img src="../../static/img/search-icon.png" alt="">
@@ -20,7 +20,7 @@
             <b-col cols="1" align-self="center" class="blinking-cursor">|</b-col>
           </b-row>
         </b-col>
-        <b-col sm="1" lg="2">
+        <b-col sm="2" lg="2">
           <label class="image-upload-icon" for="file-input">
             <img src="../../static/img/camera-icon.png" alt="">
           </label>
@@ -65,7 +65,7 @@
 <script>
 import { mapGetters, mapActions } from 'vuex'
 import { store } from '../store/store'
-import Vue from 'vue' 
+import Vue from 'vue'
 
 export default {
   name: 'demo',
@@ -143,7 +143,7 @@ export default {
               that.progressBar.set(1.0);
               store.dispatch('retrieveMatchedImages', {result: data.data.keywords, thumbnail: true});
               setTimeout(() => {this.loading = false}, 500);
-              
+
             })
             .catch((err) => {
               console.warn(err);
@@ -152,7 +152,7 @@ export default {
         }
         store.dispatch('retrieveThumbnail', thumbnail.result);
       }
-      thumbnail.readAsDataURL(e.target.files[0]);      
+      thumbnail.readAsDataURL(e.target.files[0]);
       //reader.readAsArrayBuffer(e.target.files[0]);
     },
     ...mapActions([
@@ -381,7 +381,7 @@ export default {
       margin-top: 1em;
     }
   }
-  
+
   .pgcontainer {
     padding: 0 50px 50px 50px;
   }
