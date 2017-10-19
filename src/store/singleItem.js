@@ -1,3 +1,5 @@
+import Vue from 'vue'
+
 const singleItem = {
   state: {
     singleImageSrc:{},
@@ -11,12 +13,27 @@ const singleItem = {
     changeSingleImage: (state, payload) => {
       state.singleImageSrc = payload.imageSrc;
       state.singleImage = payload.image;
-    }
+    },
+
   },
   actions: {
     selectSingleItem: (context, payload) => {
       context.commit('changeSingleImage', payload);
       context.dispatch('retrieveCoordinates', payload.image);
+    },
+    retrieveSingleItemByParams: (context, payload) => {
+      Vue.axios.get(`https://search-eschr-demo-kokjqkr3h4rrpfcwbrqzdrdhbu.ap-southeast-1.es.amazonaws.com/test/tags/${payload}`)
+        .then((data) => {
+          const newImage = {
+            image: data.data,
+            imageSrc: `https://demoimg.miro.io/full/${data.data._source.resource_id}.jpg`
+          }
+
+          context.commit('changeSingleImage', newImage);
+        })
+        .catch((err) => {
+          console.warn(err);
+        })
     }
   }
 }

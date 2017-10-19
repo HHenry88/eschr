@@ -45,11 +45,14 @@ export default {
     }
   },
   created(){
-    this.keywords = this.getSingleImage._source.keywords.filter((word) => {
-      if(word !== null){
-        return word
-      }
-    })
+    const that = this;
+    setTimeout(() => {
+      that.keywords = that.getSingleImage._source.keywords.filter((word) => {
+        if(word !== null){
+          return word
+        }
+      })
+    }, 500)
   }
 }
 </script>

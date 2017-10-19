@@ -26,7 +26,10 @@ export default {
     ])
   },
   created(){
-    this.location = !!this.getSingleImage._source.location ? this.getSingleImage._source.location : this.getSingleImage._source.places.join(' ');
+    const that = this;
+    setTimeout(()=>{
+      that.location = !!that.getSingleImage._source.location ? that.getSingleImage._source.location : that.getSingleImage._source.places.join(' ');
+    }, 500)
   }
 }
 </script>

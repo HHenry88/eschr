@@ -15,6 +15,7 @@
 
 <script>
 import { mapGetters, mapActions } from 'vuex'
+import { store } from '../store/store'
 import singleItemMap from '../components/singleItemMap'
 
 export default {
@@ -27,7 +28,8 @@ export default {
   },
   methods: {
     ...mapActions([
-      'changeSingleItem'
+      'changeSingleItem',
+      'retrieveSingleItemByParams'
     ])
   },
   computed: {
@@ -41,12 +43,20 @@ export default {
     'singleItemMap': singleItemMap
   },
   created(){
-    if(this.getSearchTerm.length === 0) {
-      this.$router.push('/')
-    } else if (typeof this.getSearchTerm === 'object'){
+     if (typeof this.getSearchTerm === 'object'){
       this.searchTerm = this.getSearchTerm.join(', ')
     } else {
       this.searchTerm = this.getSearchTerm
+    }
+  },
+  beforeRouteEnter( to, from, next) {
+    if(!from.name){
+      store.dispatch('retrieveSingleItemByParams', to.params.id)
+      .then((data) => {
+        next();
+      })
+    } else {
+      next();
     }
   }
 }

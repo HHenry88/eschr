@@ -128,14 +128,12 @@ export default {
             Vue.axios.post(`https://vynwt6nfq5.execute-api.eu-west-1.amazonaws.com/demo/upload`, blob, {
               headers: headers,
               onUploadProgress: function(progressEvent) {
-                console.log(progressEvent)
                 if (progressEvent.loaded === progressEvent.total) {
                   that.progressBar.setText("Analysing");
                   that.progressBar.set(0.8);
                 } else {
                   that.progress=(progressEvent.loaded/progressEvent.total);
                   that.progressBar.set(that.progress * 0.75);
-                  console.log(that.progress);
                 }
               }
             }).then((data) => {

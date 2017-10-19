@@ -31,7 +31,7 @@ import Vue from 'vue'
 export default {
   data(){
     return {
-      colors: ['dodgerblue', 'mediumpurple', 'limegreen', 'yellow', 'tomato', 'orange']
+      colors: []
     }
   },
   computed:{
@@ -63,8 +63,11 @@ export default {
       return parseFloat(hsl[2])<50;
     }
   },
-  created(){
-   this.colors = this.getSingleImage._source.colors?this.getSingleImage._source.colors:[];
+  beforeCreate(){
+    const that = this;
+    setTimeout(()=>{
+     that.colors = that.getSingleImage._source.colors?that.getSingleImage._source.colors:[];
+   }, 1000)
   }
 }
 </script>

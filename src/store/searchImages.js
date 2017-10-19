@@ -12,6 +12,7 @@ const searchImages = {
   },
   mutations: {
     sortMatchedImages: (state, payload) => {
+      console.log('payload',payload);
       state.searchTerm = payload.result;
       let query = []
       if(typeof payload.result === 'object') {
@@ -30,6 +31,7 @@ const searchImages = {
           }
         })
         .then((data) => {
+          console.log('returned data', data);
           state.matchedImages = data.data.hits.hits;
           router.push(`/search/tags/${query}`)
         })

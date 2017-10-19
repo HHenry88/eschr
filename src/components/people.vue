@@ -50,12 +50,15 @@ export default {
       store.dispatch('retrieveMatchedImages', {result: term, thumbnail: false});
     }
   },
-  created(){
-    this.people = this.getSingleImage._source.people.filter((word) => {
-      if(word !== null){
-        return word
-      }
-    })
+  beforeCreate(){
+      const that = this;
+      setTimeout(() => {
+      that.people = that.getSingleImage._source.people.filter((word) => {
+        if(word !== null){
+          return word
+        }
+      })
+    }, 500)
   }
 }
 </script>
@@ -82,7 +85,7 @@ export default {
     padding-right: 2em;
     min-width: 80%;
     left:auto;
-    right:auto; 
+    right:auto;
     display: block;
     text-transform: capitalize;
   }

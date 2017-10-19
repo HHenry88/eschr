@@ -35,8 +35,11 @@ export default {
     ])
   },
   created(){
-    const created = parse(this.getSingleImage._source.exif.created)
-    if(created) this.createdDate = created;
+    const that = this;
+    setTimeout(function(){
+      const created = parse(that.getSingleImage._source.exif.created)
+      if(created) that.createdDate = created;
+    },500)
   },
   methods:{
   }

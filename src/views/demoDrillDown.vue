@@ -17,14 +17,27 @@ export default {
       returnedData: {}
     }
   },
+  methods: {
+    ...mapActions([
+      'retrieveMatchedImages'
+    ])
+  },
   computed: {
     ...mapGetters([
       'getMatchedImages'
     ])
   },
-  created(){
-    if(this.getMatchedImages.length === 0) {
-      this.$router.push('/')
+  beforeRouteEnter( to, from, next) {
+    if(!from.name){
+      store.dispatch('retrieveMatchedImages', {result: to.params.tags, thumbnail: false})
+        .then(() => {
+          next()
+        })
+        .catch((err) => {
+          console.warn(err);
+        })
+    } else {
+      next();
     }
   }
 }
