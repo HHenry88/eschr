@@ -29,7 +29,8 @@ export default {
   methods: {
     ...mapActions([
       'changeSingleItem',
-      'retrieveSingleItemByParams'
+      'retrieveSingleItemByParams',
+      'setSearchTerm'
     ])
   },
   computed: {
@@ -43,14 +44,13 @@ export default {
     'singleItemMap': singleItemMap
   },
   created(){
-     if (typeof this.getSearchTerm === 'object'){
-      this.searchTerm = this.getSearchTerm.join(', ')
-    } else {
-      this.searchTerm = this.getSearchTerm
-    }
   },
   beforeRouteEnter( to, from, next) {
-    if(!from.name){
+    console.log(this);
+    console.log('single to',to);
+    console.log('single from',from);
+    console.log(from.name.com);
+    if(!from.name || from.name.name === 'demodrilldown'){
       store.dispatch('retrieveSingleItemByParams', to.params.id)
       .then((data) => {
         next();

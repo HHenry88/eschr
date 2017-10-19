@@ -12,12 +12,11 @@ const searchImages = {
   },
   mutations: {
     sortMatchedImages: (state, payload) => {
-      console.log('payload',payload);
       state.searchTerm = payload.result;
       let query = []
       if(typeof payload.result === 'object') {
         query = payload.result
-        this.searchTerm = payload.result.join(', ')
+        state.searchTerm = payload.result.join(', ')
       } else {
         query.push(payload.result)
       }
@@ -31,13 +30,15 @@ const searchImages = {
           }
         })
         .then((data) => {
-          console.log('returned data', data);
           state.matchedImages = data.data.hits.hits;
           router.push(`/search/tags/${query}`)
         })
         .catch((err) => {
           console.warn(err);
         })
+    },
+    changeSearchTerm: (state, payload) => {
+      state.searchTerm = payload;
     }
   },
   actions:{
@@ -46,6 +47,9 @@ const searchImages = {
       if(payload.thumbnail === false){
         context.dispatch('turnOffThumbnail' )
       }
+    },
+    setSearchTerm: (context, payload) => {
+      context.commit('changeSearchTerm', payload)
     }
   }
 }

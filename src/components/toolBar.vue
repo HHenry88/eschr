@@ -6,14 +6,18 @@
           <md-icon class="md-size-3x" style="color:white;">keyboard_arrow_left</md-icon>
         </div>
       </b-col>
-      <b-col cols="9">
+      <b-col cols="9" v-if="!!getSearchTerm">
         <p class="searchTerms title"><md-icon class="displayIcon md-size-2x" style="" v-if="!getThumbnailActive">{{displayIcon}}</md-icon>
         <img v-bind:src="getThumbnailSrc" alt="" class="thumbnailImage"  v-if="getThumbnailActive"> &nbsp;
           {{searchTerm}}
         </p>
       </b-col>
 
-      <b-col cols="2">
+      <b-col cols="10" align-self="center" class="text-center" v-if="!getSearchTerm" id="toolbar-miro">
+        <img src="../../static/img/miro-visual-search-as-a-service.png" alt="miro" class="grey" />
+      </b-col>
+
+      <b-col cols="2" v-if="!!getSearchTerm">
         <p class="photo-count">{{ getMatchedImages.length }} Photos</p>
       </b-col>
     </b-row>
@@ -67,6 +71,15 @@ import Vue from 'vue'
 
   .tool-bar-row {
     height: 100%;
+  }
+
+  #toolbar-miro {
+
+  }
+
+  .grey {
+    width: 8em;
+    opacity: 0.9;
   }
 
   .thumbnailImage {

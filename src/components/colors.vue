@@ -22,7 +22,7 @@
 </template>
 
 <script>
-import { mapGetters, mapActions } from 'vuex'
+import { mapGetters } from 'vuex'
 import { store } from '../store/store'
 import namer from 'color-namer'
 import rgbToHsl from 'rgb-to-hsl';
@@ -40,11 +40,7 @@ export default {
     ])
   },
   methods: {
-    ...mapActions([
-      'retrieveMatchedImages'
-    ]),
     changeTag: function(term) {
-      // store.dispatch('retrieveMatchedImages', {result: term, thumbnail: false});
       console.log('you picked:', term);
     },
     colorToHex: (colorJSON) => {

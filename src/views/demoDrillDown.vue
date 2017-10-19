@@ -19,25 +19,36 @@ export default {
   },
   methods: {
     ...mapActions([
-      'retrieveMatchedImages'
+      'retrieveMatchedImages',
+      'setSearchTerm'
     ])
   },
   computed: {
     ...mapGetters([
-      'getMatchedImages'
+      'getMatchedImages',
+      'getSearchTerm'
     ])
   },
   beforeRouteEnter( to, from, next) {
+    console.log('from',from);
+    console.log('to',to);
     if(!from.name){
       store.dispatch('retrieveMatchedImages', {result: to.params.tags, thumbnail: false})
-        .then(() => {
-          next()
-        })
-        .catch((err) => {
-          console.warn(err);
-        })
+      .then(() => {
+        next()
+      })
+      .catch((err) => {
+        console.warn(err);
+      })
     } else {
       next();
+    }
+  },
+  created(){
+    console.log(this);
+    const tag = this.$router.history.current.params.tags;
+    if(this.$router.history.current.params.tags !== this.getSearchTerm) {
+      store.dispatch('setSearchTerm', tag)
     }
   }
 }
