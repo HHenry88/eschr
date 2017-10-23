@@ -43,6 +43,7 @@ export default {
     }
   },
   created(){
+    window.scrollTo(0,0);
     const tag = this.$router.history.current.params.tags;
     if(this.$router.history.current.params.tags !== this.getSearchTerm) {
       store.dispatch('setSearchTerm', tag)

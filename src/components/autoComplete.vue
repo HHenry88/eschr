@@ -67,7 +67,6 @@ export default {
     }
   },
   updated: () => {
-    console.log("Help");
   }
 }
 </script>

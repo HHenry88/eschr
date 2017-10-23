@@ -3,7 +3,8 @@ import Vue from 'vue'
 const singleItem = {
   state: {
     singleImageSrc:{},
-    singleImage: {}
+    singleImage: {},
+    currentIndex: 0,
   },
   getters: {
     getSingleImageSrc: state => state.singleImageSrc,
@@ -13,6 +14,7 @@ const singleItem = {
     changeSingleImage: (state, payload) => {
       state.singleImageSrc = payload.imageSrc;
       state.singleImage = payload.image;
+      state.currentIndex = payload.currentIndex;
     },
 
   },
@@ -26,7 +28,7 @@ const singleItem = {
         .then((data) => {
           const newImage = {
             image: data.data,
-            imageSrc: `https://demoimg.miro.io/full/${data.data._source.resource_id}.jpg`
+            imageSrc: `https://demoimg.miro.io/full/${data.data._source.resource_id}.jpg`,
           }
 
           context.commit('changeSingleImage', newImage);

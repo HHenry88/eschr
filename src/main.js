@@ -7,6 +7,7 @@ import VueMaterial from 'vue-material'
 import axios from 'axios'
 import VueAxios from 'vue-axios'
 import VueProgress from 'vue-progress'
+import { Swipe, SwipeItem } from 'vue-swipe';
 //Components
 import toolBar from './components/toolBar'
 import tabBar from './components/tabBar'
@@ -23,7 +24,8 @@ import location from './components/location'
 import autoComplete from './components/autoComplete'
 import searchView from './views/search'
 
-
+Vue.component('swipe', Swipe);
+Vue.component('swipe-item', SwipeItem);
 Vue.component('toolBar', toolBar)
 Vue.component('tabBar', tabBar)
 Vue.component('searchBar', searchBar)

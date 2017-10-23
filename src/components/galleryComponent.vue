@@ -1,12 +1,12 @@
 <template lang="html">
   <b-container fluid class="search_result">
     <b-row class='thumbnails-layout'>
-      <b-col cols="*" sm="5" md="3" lg="2" v-for="(image,key) in images" :key="key" md-with-hover class="thumbnailcols">
-          <thumbnail v-bind:image='image'></thumbnail>
+      <b-col cols="*" sm="5" md="3" lg="2" v-for="(image,key) in getMatchedImages" :key="key" md-with-hover class="thumbnailcols">
+          <thumbnail v-bind:image='image' v-bind:index="key"></thumbnail>
       </b-col>
-      <infinite-loading @infinite="infiniteHandler" spinner="bubbles">
+      <infinite-loading @infinite="infiniteHandler" spinner="bubbles" :distance="10" force-use-infinite-wrapper="true">
         <span slot='no-more'>
-          none left, jamie!
+
         </span>
       </infinite-loading>
     </b-row>
@@ -15,24 +15,33 @@
 
 <script>
 import infiniteLoading from 'vue-infinite-loading'
+import { mapGetters, mapActions } from 'vuex'
+import { store } from '../store/store'
 
 export default {
   name: 'galleryComponent',
-  props:['images'],
   data(){
     return {
-      busy: false
+
     }
   },
   methods: {
+    ...mapActions([
+      'retrieveMoreImagesOfSearchTerm'
+    ]),
     infiniteHandler($state){
-      console.log('loading!');
-      setTimeout(()=>{
-        console.log('loaded!');
-        $state.loaded();
-        $state.complete();
-      },3000)
+      console.log('infiniteHandler');
+      store.dispatch('retrieveMoreImagesOfSearchTerm')
+        .then(()=>{
+          $state.loaded();
+          $state.complete();
+        })
     }
+  },
+  computed:{
+    ...mapGetters([
+      'getMatchedImages'
+    ])
   },
   components: {
     infiniteLoading,

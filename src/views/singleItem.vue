@@ -44,6 +44,7 @@ export default {
     'singleItemMap': singleItemMap
   },
   created(){
+    window.scrollTo(0,0);
   },
   beforeRouteEnter( to, from, next) {
     if(!from.name){

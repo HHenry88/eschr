@@ -11,11 +11,12 @@ import Vue from 'vue'
 
 export default {
   name: 'thumbnail',
-  props: ['image'],
+  props: ['image', 'index'],
   data(){
     return {
       thumbnailSrc: `https://demoimg.miro.io/120_${this.image._source.resource_id}.jpg`,
-      imgSrc: `https://demoimg.miro.io/full/${this.image._source.resource_id}.jpg`
+      imgSrc: `https://demoimg.miro.io/full/${this.image._source.resource_id}.jpg`,
+      currentIndex: this.index
     }
   },
   methods: {
@@ -25,7 +26,8 @@ export default {
     selectImage: function() {
       store.dispatch('selectSingleItem', {
         imageSrc: this.imgSrc,
-        image: this.image
+        image: this.image,
+        currentIndex: this.currentIndex
       });
       this.$router.push({name: 'singleItem', params: {id: this.image._source.resource_id} })
     }

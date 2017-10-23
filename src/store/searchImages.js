@@ -6,6 +6,9 @@ const searchImages = {
     matchedImages: [],
     searchTerm: '',
     imagesCount: 0,
+    size: 100,
+    from: 0,
+    query: []
   },
   getters: {
     getMatchedImages: state => state.matchedImages,
@@ -15,26 +18,49 @@ const searchImages = {
   mutations: {
     sortMatchedImages: (state, payload) => {
       state.searchTerm = payload.result;
-      let query = []
+      state.from = 0;
       if(typeof payload.result === 'object') {
-        query = payload.result
+        state.query = payload.result
         state.searchTerm = payload.result.join(', ')
       } else {
-        query.push(payload.result)
+        state.query = [];
+        state.query.push(payload.result);
       }
       Vue.axios.post(`https://search-eschr-demo-kokjqkr3h4rrpfcwbrqzdrdhbu.ap-southeast-1.es.amazonaws.com/test/tags/_search`,
         {
-          size: 100,
+          size: state.size,
           "query" : {
             "terms" : {
-              "keywords" : query
+              "keywords" : state.query
             }
           },
+          from: 0,
         })
         .then((data) => {
+          state.from += 100;
           state.imagesCount= data.data.hits.total;
           state.matchedImages = data.data.hits.hits;
-          router.push(`/search/tags/${query}`)
+          router.push(`/search/tags/${state.query}`)
+        })
+        .catch((err) => {
+          console.warn(err);
+        })
+    },
+    retrieveMoreMatchedImages: (state) => {
+      Vue.axios.post(`https://search-eschr-demo-kokjqkr3h4rrpfcwbrqzdrdhbu.ap-southeast-1.es.amazonaws.com/test/tags/_search`,
+        {
+          size: state.size,
+          "query" : {
+            "terms" : {
+              "keywords" : state.query
+            }
+          },
+          from: state.from,
+        })
+        .then((data) => {
+          console.log(data.data.hits.hits);
+          state.from += 100;
+          state.matchedImages = state.matchedImages.concat(data.data.hits.hits);
         })
         .catch((err) => {
           console.warn(err);
@@ -53,6 +79,9 @@ const searchImages = {
     },
     setSearchTerm: (context, payload) => {
       context.commit('changeSearchTerm', payload)
+    },
+    retrieveMoreImagesOfSearchTerm: (context) => {
+      context.commit('retrieveMoreMatchedImages')
     }
   }
 }
