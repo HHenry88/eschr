@@ -1,6 +1,9 @@
 <template lang="html">
   <div class="gallery">
-    <galleryComponent v-bind:images="getMatchedImages"></galleryComponent>
+    <galleryComponent v-bind:images="getMatchedImages" v-if="getMatchedImages.length > 0"></galleryComponent>
+    <div class="no-matches-found" v-if="getMatchedImages.length === 0">
+      <h1>No matches found!</h1>
+    </div>
     <!-- <div class="" v-if="routeName !== '/results/'">
       <filterButton></filterButton>
     </div> -->
@@ -29,9 +32,11 @@ export default {
     return {
       displayIcon: 'local_offer',
       routeName: this.$route.path,
-      searchTerm: ''
+      searchTerm: '',
+      matched: []
     }
-  }
+  },
+
 }
 </script>
 
@@ -39,6 +44,10 @@ export default {
 
 .gallery {
   margin-top: 6em;
+}
+
+.no-matches-found {
+  margin-top: 10em;
 }
 
 @media only screen  and (min-width : 1224px) {

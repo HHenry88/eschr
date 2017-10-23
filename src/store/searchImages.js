@@ -29,7 +29,7 @@ const searchImages = {
             "terms" : {
               "keywords" : query
             }
-          }
+          },
         })
         .then((data) => {
           state.imagesCount= data.data.hits.total;
