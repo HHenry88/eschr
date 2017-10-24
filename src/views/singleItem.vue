@@ -7,7 +7,7 @@
         <people :people="getSingleImage._source.people"></people>
         <tagChips :keywords="getSingleImage._source.keywords"></tagChips>
         <colors :colors="getSingleImage._source.colors"></colors>
-        <dateTime :date="getSingleImage._source.exif.created"></dateTime>
+        <dateTime :dateTime="getSingleImage._source.exif.created"></dateTime>
         <location :loc="getSingleImage._source.location" :places="getSingleImage._source.places"></location>
       </b-container>
   </div>

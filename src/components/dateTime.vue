@@ -5,7 +5,7 @@
         <img src='static/img/time-icon.png' />
       </b-col>
       <b-col col sm="10">
-        <div class='info-title'>{{this.createdDate | formatDate}}</div>
+        <div class='info-title'>{{createdDate | formatDate}}</div>
 	    </b-col>
     </b-row>
     <b-row>
@@ -24,18 +24,16 @@ import { mapGetters } from 'vuex'
 import { parse } from 'exif-date'
 
 export default {
-  props: ['date'],
+  props: ['dateTime'],
   data(){
     return{
-      createdDate: this.date
+      createdDate: ''
     }
   },
-  created(){
-    const that = this;
-    setTimeout(function(){
-      const created = parse(that.createdDate)
-      if(created) that.createdDate = created;
-    },500)
+  watch:{
+    dateTime: function(newval, oldval) {
+      this.createdDate = parse(newval);
+    }
   },
 }
 </script>
