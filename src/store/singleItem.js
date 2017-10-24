@@ -8,7 +8,8 @@ const singleItem = {
   },
   getters: {
     getSingleImageSrc: state => state.singleImageSrc,
-    getSingleImage: state => state.singleImage
+    getSingleImage: state => state.singleImage,
+    getCurrentIndex: state => state.currentIndex
   },
   mutations: {
     changeSingleImage: (state, payload) => {
@@ -16,7 +17,6 @@ const singleItem = {
       state.singleImage = payload.image;
       state.currentIndex = payload.currentIndex;
     },
-
   },
   actions: {
     selectSingleItem: (context, payload) => {
@@ -29,6 +29,7 @@ const singleItem = {
           const newImage = {
             image: data.data,
             imageSrc: `https://demoimg.miro.io/full/${data.data._source.resource_id}.jpg`,
+            currentIndex: payload.currentIndex
           }
 
           context.commit('changeSingleImage', newImage);

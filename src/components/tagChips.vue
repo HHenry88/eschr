@@ -11,7 +11,7 @@
     <b-row class="justify-content-md-center">
       <b-col col lg="1"></b-col>
       <b-col cols="10">
-        <div v-for="(keyword, index) in keywords" :key="index" v-bind:style="">
+        <div v-for="(keyword, index) in keywords.filter((word) => {if(word !== null){return word}})" :key="index" v-bind:style="">
           <div v-on:click="changeTag(keyword)" class="tag blue">{{keyword}}</div>
         </div>
       </b-col>
@@ -21,21 +21,11 @@
 </template>
 
 <script>
-import { mapGetters, mapActions } from 'vuex'
+import { mapActions } from 'vuex'
 import { store } from '../store/store'
-import Vue from 'vue'
 
 export default {
-  data(){
-    return {
-      keywords: []
-    }
-  },
-  computed:{
-    ...mapGetters([
-      'getSingleImage'
-    ])
-  },
+  props: ['keywords'],
   methods: {
     ...mapActions([
       'retrieveMatchedImages'
@@ -44,16 +34,6 @@ export default {
       store.dispatch('retrieveMatchedImages', {result: term, thumbnail: false});
     }
   },
-  created(){
-    const that = this;
-    setTimeout(() => {
-      that.keywords = that.getSingleImage._source.keywords.filter((word) => {
-        if(word !== null){
-          return word
-        }
-      })
-    }, 500)
-  }
 }
 </script>
 

@@ -32,16 +32,7 @@ import { store } from '../store/store'
 import Vue from 'vue'
 
 export default {
-  data(){
-    return {
-      people: []
-    }
-  },
-  computed:{
-    ...mapGetters([
-      'getSingleImage'
-    ])
-  },
+  props:['people'],
   methods: {
     ...mapActions([
       'retrieveMatchedImages'
@@ -50,16 +41,6 @@ export default {
       store.dispatch('retrieveMatchedImages', {result: term, thumbnail: false});
     }
   },
-  beforeCreate(){
-      const that = this;
-      setTimeout(() => {
-      that.people = that.getSingleImage._source.people.filter((word) => {
-        if(word !== null){
-          return word
-        }
-      })
-    }, 500)
-  }
 }
 </script>
 

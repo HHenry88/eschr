@@ -15,6 +15,7 @@
 import { mapGetters } from 'vuex'
 
 export default {
+  props: ['loc', 'places'],
   data(){
     return {
       location: ''
@@ -28,7 +29,7 @@ export default {
   created(){
     const that = this;
     setTimeout(()=>{
-      that.location = !!that.getSingleImage._source.location ? that.getSingleImage._source.location : that.getSingleImage._source.places.join(' ');
+      that.location = !!that.loc ? that.loc : that.places.join(' ');
     }, 500)
   }
 }

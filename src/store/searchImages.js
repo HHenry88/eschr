@@ -58,7 +58,6 @@ const searchImages = {
           from: state.from,
         })
         .then((data) => {
-          console.log(data.data.hits.hits);
           state.from += 100;
           state.matchedImages = state.matchedImages.concat(data.data.hits.hits);
         })

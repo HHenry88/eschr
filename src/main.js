@@ -7,7 +7,8 @@ import VueMaterial from 'vue-material'
 import axios from 'axios'
 import VueAxios from 'vue-axios'
 import VueProgress from 'vue-progress'
-import { Swipe, SwipeItem } from 'vue-swipe';
+import Vue2TouchEvents from 'vue2-touch-events'
+
 //Components
 import toolBar from './components/toolBar'
 import tabBar from './components/tabBar'
@@ -24,8 +25,6 @@ import location from './components/location'
 import autoComplete from './components/autoComplete'
 import searchView from './views/search'
 
-Vue.component('swipe', Swipe);
-Vue.component('swipe-item', SwipeItem);
 Vue.component('toolBar', toolBar)
 Vue.component('tabBar', tabBar)
 Vue.component('searchBar', searchBar)
@@ -48,7 +47,12 @@ Vue.component('gallery', gallery)
 Vue.use(VueMaterial)
 Vue.use(VueAxios, axios)
 Vue.use(VueProgress)
-
+Vue.use(Vue2TouchEvents, {
+    disableClick: true,
+    touchClass: '',
+    tapTolerance: 10,
+    swipeTolerance: 100,
+})
 
 Vue.config.productionTip = false
 

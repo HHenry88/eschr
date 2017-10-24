@@ -22,23 +22,13 @@
 </template>
 
 <script>
-import { mapGetters } from 'vuex'
 import { store } from '../store/store'
 import namer from 'color-namer'
 import rgbToHsl from 'rgb-to-hsl';
 import Vue from 'vue'
 
 export default {
-  data(){
-    return {
-      colors: []
-    }
-  },
-  computed:{
-    ...mapGetters([
-      'getSingleImage'
-    ])
-  },
+  props:['colors'],
   methods: {
     changeTag: function(term) {
       console.log('you picked:', term);
@@ -59,12 +49,6 @@ export default {
       return parseFloat(hsl[2])<50;
     }
   },
-  beforeCreate(){
-    const that = this;
-    setTimeout(()=>{
-     that.colors = that.getSingleImage._source.colors?that.getSingleImage._source.colors:[];
-   }, 1000)
-  }
 }
 </script>
 

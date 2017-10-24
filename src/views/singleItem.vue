@@ -2,18 +2,19 @@
   <div>
     <toolBar></toolBar>
       <b-container class="single-item-container" fluid>
-        <img v-bind:src="getSingleImageSrc" alt="" style="width: 100%;">
+        <img v-bind:src="getSingleImageSrc" alt="" style="width: 100%;"  v-touch:swipe.left="nextPic" v-touch:swipe.right="prevPic">
         <div style="padding-top:50px;"> </div>
-        <people></people>
-        <tagChips></tagChips>
-        <colors></colors>
-        <dateTime></dateTime>
-        <location></location>
+        <people :people="getSingleImage._source.people"></people>
+        <tagChips :keywords="getSingleImage._source.keywords"></tagChips>
+        <colors :colors="getSingleImage._source.colors"></colors>
+        <dateTime :date="getSingleImage._source.exif.created"></dateTime>
+        <location :loc="getSingleImage._source.location" :places="getSingleImage._source.places"></location>
       </b-container>
   </div>
 </template>
 
 <script>
+import Vue from 'vue'
 import { mapGetters, mapActions } from 'vuex'
 import { store } from '../store/store'
 import singleItemMap from '../components/singleItemMap'
@@ -28,16 +29,36 @@ export default {
   },
   methods: {
     ...mapActions([
-      'changeSingleItem',
       'retrieveSingleItemByParams',
-      'setSearchTerm'
-    ])
+      'selectSingleItem'
+    ]),
+    nextPic(){
+      const nextImage = this.getMatchedImages[this.getCurrentIndex + 1]
+      store.dispatch('selectSingleItem', {
+        imageSrc: `https://demoimg.miro.io/full/${nextImage._source.resource_id}.jpg`,
+        image: nextImage,
+        currentIndex: this.getCurrentIndex + 1
+      }).then(() => {
+        this.$router.push({name: 'singleItem', params: {id: nextImage._source.resource_id} })
+      })
+    },
+    prevPic(){
+      const prevImage = this.getMatchedImages[this.getCurrentIndex - 1]
+      store.dispatch('selectSingleItem', {
+        imageSrc: `https://demoimg.miro.io/full/${prevImage._source.resource_id}.jpg`,
+        image: prevImage,
+        currentIndex: this.getCurrentIndex - 1
+      }).then(() => {
+        this.$router.push({name: 'singleItem', params: {id: prevImage._source.resource_id} })
+      })
+    }
   },
   computed: {
     ...mapGetters([
       'getSingleImageSrc',
-      'getSingleImage',
-      'getSearchTerm',
+      'getMatchedImages',
+      'getCurrentIndex',
+      'getSingleImage'
     ])
   },
   components:{

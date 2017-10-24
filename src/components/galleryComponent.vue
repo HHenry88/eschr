@@ -30,7 +30,6 @@ export default {
       'retrieveMoreImagesOfSearchTerm'
     ]),
     infiniteHandler($state){
-      console.log('infiniteHandler');
       store.dispatch('retrieveMoreImagesOfSearchTerm')
         .then(()=>{
           $state.loaded();
