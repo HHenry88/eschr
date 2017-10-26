@@ -15,6 +15,7 @@
         </b-col>
       </b-row>
     </div>
+
     <vue-elastic-autocomplete
        :suggestions="suggestions"
        inputClass="ve-autocomplete-input"
@@ -35,7 +36,8 @@
          {{ suggestion.text }} {{ suggestion.score }}
        </template> -->
 
-     </vue-elastic-autocomplete>
+    </vue-elastic-autocomplete>
+
       <div class="" v-if="routeName !== 'demo'">
         <md-layout md-gutter>
           <md-layout class="imageIcons">
@@ -105,7 +107,7 @@ export default {
     },
     onChange (value) {
       console.log(value);
-      store.dispatch('elastic/suggest/fetchSuggestions', value)
+      this.$store.dispatch('elastic/suggest/fetchSuggestions', value)
     },
     onSelect (keyword) {
       console.log('keyword', keyword)
@@ -116,7 +118,7 @@ export default {
       'getKeywords'
     ]),
     suggestions () {
-      return store.getters['elastic/suggest/suggestions']
+      return this.$store.getters['elastic/suggest/suggestions']
     }
   }
 };
