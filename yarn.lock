@@ -6161,6 +6161,10 @@ vue-hot-reload-api@^2.1.0:
   version "2.1.1"
   resolved "https://registry.yarnpkg.com/vue-hot-reload-api/-/vue-hot-reload-api-2.1.1.tgz#1ba6712166182fd651753804b9d8d8d02d855579"
 
+vue-infinite-loading@^2.2.1:
+  version "2.2.1"
+  resolved "https://registry.yarnpkg.com/vue-infinite-loading/-/vue-infinite-loading-2.2.1.tgz#91a349c0fde8a1a51befd9d867eafd80c0dc2126"
+
 vue-loader@^13.0.4:
   version "13.2.1"
   resolved "https://registry.yarnpkg.com/vue-loader/-/vue-loader-13.2.1.tgz#0c6cba3154d2b325d17dde2c0be52c34b888bc6d"
@@ -6214,6 +6218,10 @@ vue-template-compiler@^2.4.2:
 vue-template-es2015-compiler@^1.6.0:
   version "1.6.0"
   resolved "https://registry.yarnpkg.com/vue-template-es2015-compiler/-/vue-template-es2015-compiler-1.6.0.tgz#dc42697133302ce3017524356a6c61b7b69b4a18"
+
+vue2-touch-events@^0.2.3:
+  version "0.2.3"
+  resolved "https://registry.yarnpkg.com/vue2-touch-events/-/vue2-touch-events-0.2.3.tgz#55987d1cc8a1e66d6f78ee54bd14219da11e3b5f"
 
 vue@^2.4.2:
   version "2.4.4"
