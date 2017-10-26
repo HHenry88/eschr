@@ -74,15 +74,15 @@ Vue.config.productionTip = false
 
 
 /* eslint-disable no-new */
-import { store } from './store/store.js'
+import { store } from './store/store'
 
 Vue.material.inkRipple = false
 
 
 new Vue({
   el: '#app',
+  store,
   router,
   template: '<App/>',
-  components: { App },
-  store: store
+  components: { App }
 }).$mount('#app')
