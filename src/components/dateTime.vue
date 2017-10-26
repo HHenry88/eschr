@@ -35,6 +35,9 @@ export default {
       this.createdDate = parse(newval);
     }
   },
+  created(){
+    this.createdDate = parse(this.dateTime)
+  }
 }
 </script>
 
