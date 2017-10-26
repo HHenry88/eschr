@@ -32,9 +32,9 @@
          <p>footer</p>
        </template>
 
-       <!-- <template slot="suggestion" slot-scope="{ suggestion }">
+       <template slot="suggestion" slot-scope="{ suggestion }">
          {{ suggestion.text }} {{ suggestion.score }}
-       </template> -->
+       </template>
 
     </vue-elastic-autocomplete>
 
