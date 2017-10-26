@@ -8,6 +8,8 @@ import axios from 'axios'
 import VueAxios from 'vue-axios'
 import VueProgress from 'vue-progress'
 import Vue2TouchEvents from 'vue2-touch-events'
+import VueElastic from 'vue-elasticsearch'
+import 'vue-elasticsearch/dist/vue-elasticsearch.css'
 
 //Components
 import toolBar from './components/toolBar'
@@ -52,6 +54,19 @@ Vue.use(Vue2TouchEvents, {
     touchClass: '',
     tapTolerance: 10,
     swipeTolerance: 100,
+})
+
+Vue.use(VueElastic, {
+  suggest: {
+    host: 'https://search-eschr-tyiqhwx3brb5tglcxbocehuvda.eu-west-1.es.amazonaws.com',
+    index: 'test',
+    type: 'suggestions'
+  },
+  search: {
+    host: 'https://search-eschr-demo-kokjqkr3h4rrpfcwbrqzdrdhbu.ap-southeast-1.es.amazonaws.com',
+    index: 'test',
+    type: 'tags'
+  }
 })
 
 Vue.config.productionTip = false

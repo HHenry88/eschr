@@ -7,6 +7,8 @@ import relatedImages from './relatedImages'
 //import elasticSearch from './elasticSearch'
 import searchImages from './searchImages'
 import singleItemMap from './singleItemMap'
+import { VueElasticStore } from 'vue-elasticsearch'
+
 
 Vue.use(Vuex)
 
@@ -18,6 +20,7 @@ export const store = new Vuex.Store({
     relatedImages,
     //elasticSearch,
     searchImages,
-    singleItemMap
+    singleItemMap,
+    elastic: VueElasticStore
   }
 })

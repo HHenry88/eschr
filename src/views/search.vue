@@ -15,6 +15,25 @@
         </b-col>
       </b-row>
     </div>
+    <vue-elastic-autocomplete
+       :suggestions="suggestions"
+       inputClass="ve-autocomplete-input"
+       suggestionClass="ve-autocomplete-suggestion"
+       @changed="onChange"
+       @selected="onSelect">
+
+       <template slot="input-box-header">
+       </template>
+
+       <template slot="input-box-footer">
+         <i class="fa fa-search"></i>
+       </template>
+
+       <template slot="suggestion" slot-scope="{ suggestion }">
+         {{ suggestion.text }} {{ suggestion.score }}
+       </template>
+
+     </vue-elastic-autocomplete>
       <div class="" v-if="routeName !== 'demo'">
         <md-layout md-gutter>
           <md-layout class="imageIcons">
@@ -53,7 +72,7 @@ export default {
     return {
       searchTerms: [],
       selectedTerm: '',
-      routeName: this.$route.name
+      routeName: this.$route.name,
     };
   },
   props: ['closeButton'],
@@ -81,12 +100,22 @@ export default {
     },
     submit: function(e) {
       store.dispatch('retrieveMatchedImages', {result: this.selectedTerm, thumbnail: false });
+    },
+    onChange (value) {
+      console.log(value);
+      store.dispatch('elastic/suggest/fetchSuggestions', value)
+    },
+    onSelect (keyword) {
+      console.log('keyword', keyword)
     }
   },
   computed:{
     ...mapGetters([
       'getKeywords'
-    ])
+    ]),
+    suggestions () {
+      return store.getters['elastic/suggest/suggestions']
+    }
   }
 };
 </script>
