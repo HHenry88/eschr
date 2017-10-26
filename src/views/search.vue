@@ -23,15 +23,17 @@
        @selected="onSelect">
 
        <template slot="input-box-header">
+         <p>text here header</p>
        </template>
 
        <template slot="input-box-footer">
          <i class="fa fa-search"></i>
+         <p>footer</p>
        </template>
 
-       <template slot="suggestion" slot-scope="{ suggestion }">
+       <!-- <template slot="suggestion" slot-scope="{ suggestion }">
          {{ suggestion.text }} {{ suggestion.score }}
-       </template>
+       </template> -->
 
      </vue-elastic-autocomplete>
       <div class="" v-if="routeName !== 'demo'">
