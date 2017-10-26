@@ -12,11 +12,9 @@
           {{searchTerm}}
         </p>
       </b-col>
-
       <b-col cols="8" align-self="center" class="text-center" v-if="!getSearchTerm" id="toolbar-miro">
         <img src="../../static/img/miro-visual-search-as-a-service.png" alt="miro" class="miro-logo" />
       </b-col>
-
       <b-col cols="2" v-if="!!getSearchTerm">
         <p class="photo-count">{{ getImagesCount }} Photos</p>
       </b-col>
@@ -46,10 +44,12 @@ import Vue from 'vue'
     },
     methods: {
       backButton: function() {
+        console.log(this.$router);
         this.$router.go(-1)
       }
     },
     created(){
+      console.log(this.$router);
       if(typeof this.getSearchTerm === 'object'){
         this.searchTerm = this.getSearchTerm.join(', ')
       } else {
