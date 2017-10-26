@@ -8,14 +8,15 @@
 import {mapActions } from 'vuex'
 import {store} from '../store/store'
 import Vue from 'vue'
+import { fullImage, thumbnailImage } from '../images.config.inc.js'
 
 export default {
   name: 'thumbnail',
   props: ['image', 'index'],
   data(){
     return {
-      thumbnailSrc: `https://demoimg.miro.io/120_${this.image._source.resource_id}.jpg`,
-      imgSrc: `https://demoimg.miro.io/full/${this.image._source.resource_id}.jpg`,
+      thumbnailSrc: `${thumbnailImage}${this.image._source.resource_id}.jpg`,
+      imgSrc: `${fullImage}${this.image._source.resource_id}.jpg`,
       currentIndex: this.index
     }
   },

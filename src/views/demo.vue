@@ -66,6 +66,7 @@
 import { mapGetters, mapActions } from 'vuex'
 import { store } from '../store/store'
 import Vue from 'vue'
+import { travelImageUpload } from '../travel.config.inc.js'
 
 export default {
   name: 'demo',
@@ -125,7 +126,7 @@ export default {
           canvas.height = canvas.width * (img.height / img.width);
           ctx.drawImage(this, 0, 0, img.width, img.height, 0, 0, canvas.width, canvas.height )
           var blob=document.getElementById("cvas").toBlob( (blob) => {
-            Vue.axios.post(`https://vynwt6nfq5.execute-api.eu-west-1.amazonaws.com/demo/upload`, blob, {
+            Vue.axios.post(travelImageUpload, blob, {
               headers: headers,
               onUploadProgress: function(progressEvent) {
                 if (progressEvent.loaded === progressEvent.total) {
@@ -139,7 +140,9 @@ export default {
             }).then((data) => {
               that.progressBar.setText("Querying");
               that.progressBar.set(1.0);
+              console.log('dispatch');
               store.dispatch('retrieveMatchedImages', {result: data.data.keywords, thumbnail: true});
+              console.log('after dispatch');
               setTimeout(() => {this.loading = false}, 500);
 
             })

@@ -1,5 +1,6 @@
 import Vue from 'vue'
 import router from '../router/index'
+import { travelTagSearch } from '../travel.config.inc.js'
 
 const searchImages = {
   state:{
@@ -26,7 +27,8 @@ const searchImages = {
         state.query = [];
         state.query.push(payload.result);
       }
-      Vue.axios.post(`https://search-eschr-demo-kokjqkr3h4rrpfcwbrqzdrdhbu.ap-southeast-1.es.amazonaws.com/test/tags/_search`,
+      console.log('about to search tags');
+      Vue.axios.post(travelTagSearch,
         {
           size: state.size,
           "query" : {
@@ -47,7 +49,7 @@ const searchImages = {
         })
     },
     retrieveMoreMatchedImages: (state) => {
-      Vue.axios.post(`https://search-eschr-demo-kokjqkr3h4rrpfcwbrqzdrdhbu.ap-southeast-1.es.amazonaws.com/test/tags/_search`,
+      Vue.axios.post(travelTagSearch,
         {
           size: state.size,
           "query" : {
