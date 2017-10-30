@@ -14,7 +14,7 @@
       </b-col>
 
       <b-col cols="10" align-self="center" class="text-center" v-if="!getSearchTerm" id="toolbar-miro">
-        <img src="../../static/img/miro-visual-search-as-a-service.png" alt="miro" class="grey" />
+        <img src="../../static/img/miro-visual-search-as-a-service.png" alt="miro" class="miro-logo" />
       </b-col>
 
       <b-col cols="2" v-if="!!getSearchTerm">
@@ -78,7 +78,7 @@ import Vue from 'vue'
 
   }
 
-  .grey {
+  .miro-logo {
     width: 8em;
     opacity: 0.9;
   }
