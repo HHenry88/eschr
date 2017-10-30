@@ -3,7 +3,7 @@
     <b-row align-v="center" class="tool-bar-row">
       <b-col cols="2">
         <div class="" v-on:click="backButton">
-          <md-icon class="md-size-3x" style="color:white;">keyboard_arrow_left</md-icon>
+          <md-icon class="md-size-3x backArrow" style="color:white;">keyboard_arrow_left</md-icon>
         </div>
       </b-col>
       <b-col cols="8" v-if="!!getSearchTerm">
@@ -72,6 +72,10 @@ import Vue from 'vue'
 
   .tool-bar-row {
     height: 100%;
+  }
+
+  .backArrow {
+    cursor: pointer;
   }
 
   #toolbar-miro {

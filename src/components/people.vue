@@ -27,18 +27,15 @@
 </template>
 
 <script>
-import { mapGetters, mapActions } from 'vuex'
+import { mapGetters } from 'vuex'
 import { store } from '../store/store'
 import Vue from 'vue'
 
 export default {
   props:['people'],
   methods: {
-    ...mapActions([
-      'retrieveMatchedImages'
-    ]),
     changeTag: function(term) {
-      store.dispatch('retrieveMatchedImages', {result: term, thumbnail: false});
+      this.$router.push(`/search/tags/${term}`)
     }
   },
 }

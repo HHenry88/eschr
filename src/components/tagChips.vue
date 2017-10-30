@@ -27,11 +27,8 @@ import { store } from '../store/store'
 export default {
   props: ['keywords'],
   methods: {
-    ...mapActions([
-      'retrieveMatchedImages'
-    ]),
     changeTag: function(term) {
-      store.dispatch('retrieveMatchedImages', {result: term, thumbnail: false});
+      this.$router.push(`/search/tags/${term}`)
     }
   },
   computed: {
