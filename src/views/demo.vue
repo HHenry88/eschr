@@ -94,7 +94,7 @@ export default {
     openDialog(ref) {
       this.$refs[ref].open();
       setTimeout(()=> {
-        document.getElementById("autocompleteTextField").focus();
+        document.getElementById("autocompleteInputField").childNodes[0].childNodes[1].focus();
       },5)
     },
     closeDialog(ref) {
