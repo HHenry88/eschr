@@ -19,34 +19,9 @@ const searchImages = {
   mutations: {
     sortMatchedImages: (state, payload) => {
       state.searchTerm = payload.result;
-      state.from = 0;
-      if(typeof payload.result === 'object') {
-        state.query = payload.result
-        state.searchTerm = payload.result.join(', ')
-      } else {
-        state.query = [];
-        state.query.push(payload.result);
-      }
-      console.log('about to search tags');
-      Vue.axios.post(travelTagSearch,
-        {
-          size: state.size,
-          "query" : {
-            "terms" : {
-              "keywords" : state.query
-            }
-          },
-          from: 0,
-        })
-        .then((data) => {
-          state.from += 100;
-          state.imagesCount= data.data.hits.total;
-          state.matchedImages = data.data.hits.hits;
-          router.push(`/search/tags/${state.query}`)
-        })
-        .catch((err) => {
-          console.warn(err);
-        })
+      state.from += 100;
+      state.imagesCount= payload.data.hits.total;
+      state.matchedImages = payload.data.hits.hits;
     },
     retrieveMoreMatchedImages: (state) => {
       Vue.axios.post(travelTagSearch,
@@ -72,11 +47,34 @@ const searchImages = {
     }
   },
   actions:{
-    retrieveMatchedImages: (context, payload) => {
-      context.commit('sortMatchedImages', payload)
-      if(payload.thumbnail === false){
-        context.dispatch('turnOffThumbnail' )
+    retrieveMatchedImages: ({dispatch, commit, state}, payload) => {
+      state.from = 0;
+      if(typeof payload.result === 'object') {
+        state.query = payload.result
+        state.searchTerm = payload.result.join(', ')
+      } else {
+        state.query = [];
+        state.query.push(payload.result);
       }
+      return Vue.axios.post(travelTagSearch,
+        {
+          size: state.size,
+          "query" : {
+            "terms" : {
+              "keywords" : state.query
+            }
+          },
+          from: 0,
+        })
+        .then((data) => {
+          commit('sortMatchedImages', data)
+          if(payload.thumbnail === false){
+            dispatch('turnOffThumbnail' )
+          }
+        })
+        .catch((err) => {
+          console.warn(err);
+        })
     },
     setSearchTerm: (context, payload) => {
       context.commit('changeSearchTerm', payload)

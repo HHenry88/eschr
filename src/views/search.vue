@@ -67,7 +67,7 @@
         </b-row>
         <b-row>
           <b-col col class="text-center grey">
-            Try some search terms like <strong>Colombia</strong> or <strong>Dog</strong>
+            Try some search terms like <strong>Colombia</strong> or <strong>Sunset</strong>
           </b-col>
         </b-row>
       </b-container>
@@ -113,9 +113,8 @@ export default {
       this.$store.dispatch('elastic/suggest/fetchSuggestions', value)
     },
     onSelect (keyword) {
-      store.dispatch('retrieveMatchedImages', {result: keyword, thumbnail: false });
-    }
-  },
+      this.$router.push(`/search/tags/${keyword}`)
+    }  },
   computed:{
     ...mapGetters([
       'getKeywords'

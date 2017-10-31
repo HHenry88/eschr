@@ -30,7 +30,6 @@ export default {
     ])
   },
   beforeRouteEnter( to, from, next) {
-    if(!from.name){
       store.dispatch('retrieveMatchedImages', {result: to.params.tags, thumbnail: false})
       .then(() => {
         next()
@@ -38,9 +37,6 @@ export default {
       .catch((err) => {
         console.warn(err);
       })
-    } else {
-      next();
-    }
   },
   created(){
     window.scrollTo(0,0);

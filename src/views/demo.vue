@@ -140,11 +140,10 @@ export default {
             }).then((data) => {
               that.progressBar.setText("Querying");
               that.progressBar.set(1.0);
-              console.log('dispatch');
-              store.dispatch('retrieveMatchedImages', {result: data.data.keywords, thumbnail: true});
-              console.log('after dispatch');
+              const kwords = data.data.keywords.join(',');
+              console.log(`/search/tags/${kwords}`);
+              this.$router.push(`/search/tags/${kwords}`)
               setTimeout(() => {this.loading = false}, 500);
-
             })
             .catch((err) => {
               console.warn(err);
@@ -157,8 +156,6 @@ export default {
       //reader.readAsArrayBuffer(e.target.files[0]);
     },
     ...mapActions([
-      'retrieveKeywords',
-      'retrieveMatchedImages',
       'retrieveThumbnail',
     ])
   }

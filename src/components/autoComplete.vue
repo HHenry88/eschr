@@ -63,7 +63,8 @@ export default {
     select(){
       this.keyword = this.getKeywords[this.highlightedPosition].text
       this.isOpen = false
-      store.dispatch('retrieveMatchedImages', {result: this.keyword, thumbnail: false });
+      this.$router.push(`/search/tags/${this.keyword}`)
+
     }
   },
   updated: () => {
