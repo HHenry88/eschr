@@ -5,10 +5,18 @@
         <img v-bind:src="getSingleImageSrc" alt="" style="width: 100%;"  v-touch:swipe.left="nextPic" v-touch:swipe.right="prevPic">
         <div style="padding-top:50px;"> </div>
         <people :people="getSingleImage._source.people"></people>
-        <tagChips :keywords="getSingleImage._source.keywords"></tagChips>
-        <colors :colors="getSingleImage._source.colors"></colors>
-        <dateTime :dateTime="getSingleImage._source.exif.created"></dateTime>
-        <location :loc="getSingleImage._source.location" :places="getSingleImage._source.places"></location>
+        <div class="" v-if="getSingleImage._source.keywords">
+          <tagChips :keywords="getSingleImage._source.keywords"></tagChips>
+        </div>
+        <div class="" v-if="getSingleImage._source.colors">
+          <colors :colors="getSingleImage._source.colors"></colors>
+        </div>
+        <div class="" v-if="getSingleImage._source.exif.created">
+          <dateTime :dateTime="getSingleImage._source.exif.created"></dateTime>
+        </div>
+        <div class="" v-if="getSingleImage._source.location || getSingleImage._source.places">
+          <location :loc="getSingleImage._source.location" :places="getSingleImage._source.places"></location>
+        </div>
       </b-container>
   </div>
 </template>
@@ -72,7 +80,9 @@ export default {
     if(!from.name){
       store.dispatch('retrieveSingleItemByParams', to.params.id)
       .then((data) => {
-        next();
+        setTimeout(() => {
+          next();
+        }, 300)
       })
     } else {
       next();

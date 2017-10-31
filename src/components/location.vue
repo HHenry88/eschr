@@ -30,7 +30,7 @@ export default {
     const that = this;
     setTimeout(()=>{
       that.location = !!that.loc ? that.loc : that.places.join(' ');
-    }, 500)
+    }, 1)
   }
 }
 </script>

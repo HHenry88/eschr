@@ -27,7 +27,6 @@ const searchImages = {
         state.query = [];
         state.query.push(payload.result);
       }
-      console.log('about to search tags');
       Vue.axios.post(travelTagSearch,
         {
           size: state.size,
