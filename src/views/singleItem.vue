@@ -100,6 +100,30 @@ export default {
     .single-item-container {
       max-width:1200px;
     }
+
+    .singleImageLeft, .singleImageRight {
+      opacity: 0.3;
+      display: inline-block;
+      position: absolute;
+      margin: 0;
+      padding: 0;
+      top: 20%;
+      left: 5%;
+      cursor: pointer;
+      width: auto;
+    }
+
+    .singleImageRight {
+      right: 5%;
+    }
+
+    .singleImageLeft {
+      left: 5%;
+    }
+
+    .singleImageLeft:hover, .singleImageRight:hover {
+      opacity: 1;
+    }
   }
 
 </style>
