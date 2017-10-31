@@ -1,9 +1,14 @@
 <template>
   <b-container fluid class="tool-bar">
     <b-row align-v="center" class="tool-bar-row">
-      <b-col cols="2">
+      <b-col cols="2" v-if="!!getSearchTerm">
         <div class="" v-on:click="backButton">
           <md-icon class="md-size-3x" style="color:white;">keyboard_arrow_left</md-icon>
+        </div>
+      </b-col>
+      <b-col cols="2" v-if="!getSearchTerm">
+        <div class="" v-on:click="homeButton">
+          <md-icon class="md-size-3x" style="color:white;">home</md-icon>
         </div>
       </b-col>
       <b-col cols="8" v-if="!!getSearchTerm">
@@ -46,10 +51,12 @@ import Vue from 'vue'
       backButton: function() {
         console.log(this.$router);
         this.$router.go(-1)
+      },
+      homeButton: function() {
+        this.$router.push('/');
       }
     },
     created(){
-      console.log(this.$router);
       if(typeof this.getSearchTerm === 'object'){
         this.searchTerm = this.getSearchTerm.join(', ')
       } else {
