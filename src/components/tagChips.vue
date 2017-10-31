@@ -11,8 +11,8 @@
     <b-row class="justify-content-md-center">
       <b-col col lg="1"></b-col>
       <b-col cols="10">
-        <div v-for="(keyword, index) in keywords.filter((word) => {if(word !== null){return word}})" :key="index" v-bind:style="">
-          <div v-on:click="changeTag(keyword)" class="tag blue">{{keyword}}</div>
+        <div v-for="(keyword, index) in keywords.filter((word) => {if(word !== null){return word}})" :key="index">
+          <div v-on:click="changeTag(keyword)" class="tag" v-bind:class="{blue: getSearchTerm.includes(keyword)}">{{keyword}}</div>
         </div>
       </b-col>
       <b-col col lg="1"></b-col>
@@ -21,7 +21,7 @@
 </template>
 
 <script>
-import { mapActions } from 'vuex'
+import { mapActions, mapGetters } from 'vuex'
 import { store } from '../store/store'
 
 export default {
@@ -34,6 +34,11 @@ export default {
       store.dispatch('retrieveMatchedImages', {result: term, thumbnail: false});
     }
   },
+  computed: {
+    ...mapGetters([
+      'getSearchTerm'
+    ])
+  }
 }
 </script>
 
