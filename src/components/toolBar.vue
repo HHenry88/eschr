@@ -1,9 +1,14 @@
 <template>
   <b-container fluid class="tool-bar">
     <b-row align-v="center" class="tool-bar-row">
-      <b-col cols="2">
+      <b-col cols="2" v-if="!!getSearchTerm">
         <div class="" v-on:click="backButton">
           <md-icon class="md-size-3x backArrow" style="color:white;">keyboard_arrow_left</md-icon>
+        </div>
+      </b-col>
+      <b-col cols="2" v-if="!getSearchTerm">
+        <div class="" v-on:click="homeButton">
+          <md-icon class="md-size-3x" style="color:white;">home</md-icon>
         </div>
       </b-col>
       <b-col cols="8" v-if="!!getSearchTerm">
@@ -12,11 +17,9 @@
           {{searchTerm}}
         </p>
       </b-col>
-
       <b-col cols="8" align-self="center" class="text-center" v-if="!getSearchTerm" id="toolbar-miro">
         <img src="../../static/img/miro-visual-search-as-a-service.png" alt="miro" class="miro-logo" />
       </b-col>
-
       <b-col cols="2" v-if="!!getSearchTerm">
         <p class="photo-count">{{ getImagesCount }} Photos</p>
       </b-col>
@@ -46,7 +49,11 @@ import Vue from 'vue'
     },
     methods: {
       backButton: function() {
+        console.log(this.$router);
         this.$router.go(-1)
+      },
+      homeButton: function() {
+        this.$router.push('/');
       }
     },
     created(){

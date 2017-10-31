@@ -10,12 +10,11 @@
     </b-row>
     <b-row class="justify-content-md-center">
       <b-col col lg="1"></b-col>
-      <b-col cols="10">
+      <b-col cols="11">
         <div v-for="(keyword, index) in keywords.filter((word) => {if(word !== null){return word}})" :key="index">
           <div v-on:click="changeTag(keyword)" class="tag" v-bind:class="{blue: getSearchTerm.includes(keyword)}">{{keyword}}</div>
         </div>
       </b-col>
-      <b-col col lg="1"></b-col>
     </b-row>
   </b-container>
 </template>

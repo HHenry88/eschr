@@ -36,7 +36,7 @@ export default {
     }
   },
   created(){
-    this.createdDate = parse(this.dateTime);
+    this.createdDate = parse(this.dateTime)
   }
 }
 </script>

@@ -2,7 +2,13 @@
   <div>
     <toolBar></toolBar>
       <b-container class="single-item-container" fluid>
-        <img v-bind:src="getSingleImageSrc" alt="" style="width: 100%;"  v-touch:swipe.left="nextPic" v-touch:swipe.right="prevPic">
+        <b-row>
+          <b-col id="singleImageLeft" v-on:click="prevPic">
+        </b-col>
+          <b-col id="singleImageRight" v-on:click="nextPic">
+        </b-col>
+        </b-row>
+        <img v-bind:src="getSingleImageSrc" alt="" style="width: 100%;"  v-touch:swipe.left="nextPic" v-touch:swipe.right="prevPic" id="singleImage">
         <div style="padding-top:50px;"> </div>
         <people :people="getSingleImage._source.people"></people>
         <tagChips :keywords="getSingleImage._source.keywords"></tagChips>
@@ -77,6 +83,9 @@ export default {
     } else {
       next();
     }
+  },
+  beforeRouteUpdate(){
+    window.scrollTo(0,0);
   }
 }
 </script>
@@ -95,10 +104,37 @@ export default {
   	float:right;
 	}
 
+  #singleImageLeft, #singleImageRight {
+    display: none;
+  }
+
 
   @media only screen  and (min-width : 1224px) {
     .single-item-container {
       max-width:1200px;
+    }
+
+    #singleImageLeft, #singleImageRight {
+      opacity: 0.7;
+      display: inline-block;
+      position: absolute;
+      margin: 0;
+      padding: 0;
+      cursor: pointer;
+      width: 30%;
+      height: 70%;
+    }
+
+    #singleImageRight {
+      right: 5%;
+    }
+
+    #singleImageLeft {
+      left: 5%;
+    }
+
+    #singleImageLeft:hover, #singleImageRight:hover {
+      opacity: 1;
     }
   }
 
