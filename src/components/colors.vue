@@ -10,12 +10,10 @@
     </b-row>
     <b-row class="justify-content-md-center">
       <b-col col lg="1"></b-col>
-      <b-col cols="10">
+      <b-col cols="11">
         <div v-for="(color, index) in colors" :key="index" class="tags">
           <div class="tag" v-bind:style="{background: colorToHex(color), color:isDark(color)?'white':'black'}">{{colorToName(colorToHex(color))}}</div>
         </div>
-      </b-col>
-      <b-col sm="1">
       </b-col>
     </b-row>
   </b-container>

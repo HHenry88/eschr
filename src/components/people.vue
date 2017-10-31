@@ -9,7 +9,6 @@
 	    </b-col>
     </b-row>
     <b-row>
-      <b-col col sm="1"></b-col>
       <b-col cols="10" class="portraits">
         <b-row>
           <b-col col sm="1"></b-col>
@@ -101,6 +100,6 @@ export default {
 	}
 
   .portraits {
-    padding-left: 0;
+    padding-left: 2.5em;
   }
 </style>
