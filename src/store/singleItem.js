@@ -1,4 +1,6 @@
 import Vue from 'vue'
+import { travelSingleItem } from '../travel.config.inc.js'
+import { fullImage } from '../images.config.inc.js'
 
 const singleItem = {
   state: {
@@ -24,11 +26,11 @@ const singleItem = {
       context.dispatch('retrieveCoordinates', payload.image);
     },
     retrieveSingleItemByParams: (context, payload) => {
-      Vue.axios.get(`https://search-eschr-demo-kokjqkr3h4rrpfcwbrqzdrdhbu.ap-southeast-1.es.amazonaws.com/test/tags/${payload}`)
+      Vue.axios.get(`${travelSingleItem}${payload}`)
         .then((data) => {
           const newImage = {
             image: data.data,
-            imageSrc: `https://demoimg.miro.io/full/${data.data._source.resource_id}.jpg`,
+            imageSrc: `${fullImage}${data.data._source.resource_id}.jpg`,
             currentIndex: payload.currentIndex
           }
 

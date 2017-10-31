@@ -4,7 +4,6 @@ import filterStore from './filterStore'
 import searchTerms from './searchTerms'
 import singleItem from './singleItem'
 import relatedImages from './relatedImages'
-//import elasticSearch from './elasticSearch'
 import searchImages from './searchImages'
 import singleItemMap from './singleItemMap'
 
@@ -16,7 +15,6 @@ export const store = new Vuex.Store({
     searchTerms,
     singleItem,
     relatedImages,
-    //elasticSearch,
     searchImages,
     singleItemMap
   }

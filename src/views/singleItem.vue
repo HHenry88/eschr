@@ -18,6 +18,7 @@ import Vue from 'vue'
 import { mapGetters, mapActions } from 'vuex'
 import { store } from '../store/store'
 import singleItemMap from '../components/singleItemMap'
+import { fullImage } from '../images.config.inc.js'
 
 export default {
   data(){
@@ -35,7 +36,7 @@ export default {
     nextPic(){
       const nextImage = this.getMatchedImages[this.getCurrentIndex + 1]
       store.dispatch('selectSingleItem', {
-        imageSrc: `https://demoimg.miro.io/full/${nextImage._source.resource_id}.jpg`,
+        imageSrc: `${fullImage}${nextImage._source.resource_id}.jpg`,
         image: nextImage,
         currentIndex: this.getCurrentIndex + 1
       }).then(() => {
@@ -45,7 +46,7 @@ export default {
     prevPic(){
       const prevImage = this.getMatchedImages[this.getCurrentIndex - 1]
       store.dispatch('selectSingleItem', {
-        imageSrc: `https://demoimg.miro.io/full/${prevImage._source.resource_id}.jpg`,
+        imageSrc: `${fullImage}${prevImage._source.resource_id}.jpg`,
         image: prevImage,
         currentIndex: this.getCurrentIndex - 1
       }).then(() => {

@@ -1,4 +1,5 @@
 import Vue from 'vue'
+import {travelSuggestions} from '../travel.config.inc.js'
 
 const searchTerms = {
   state: {
@@ -15,7 +16,7 @@ const searchTerms = {
   mutations: {
     sortKeywords:(state, payload) => {
       //sort keywords into an array to display on autocomplete
-        Vue.axios.post(`https://search-eschr-tyiqhwx3brb5tglcxbocehuvda.eu-west-1.es.amazonaws.com/test/suggestions/_search`, {
+        Vue.axios.post(travelSuggestions, {
             "suggest": {
                 "tag-suggest" : {
                     "prefix" : payload,
