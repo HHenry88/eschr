@@ -69,7 +69,7 @@ export default {
     window.scrollTo(0,0);
   },
   beforeRouteEnter( to, from, next) {
-    if(!from.name){
+    if(!from.name || from.name.name === 'demodrilldown'){
       store.dispatch('retrieveSingleItemByParams', to.params.id)
       .then((data) => {
         next();
